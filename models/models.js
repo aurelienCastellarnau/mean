@@ -2,25 +2,28 @@ const mongoose = require('mongoose')
 const Schema   = mongoose.Schema;
 
 const Cases = new Schema({
-            compnos:                   Int32,
+            compnos:                   Number,
             naturecode:                String,
             incident_type_description: String,
             main_crimecode:            String,
             reptdistrict:              String,
-            reportingarea:             Int32,
+            reportingarea:             Number,
             fromdate:                  String,
             weapontype:                String,
             shooting:                  String,
             domestic:                  String,
             shift:                     String,
-            year:                      Int32,
-            month:                     Int32,
+            year:                      Number,
+            month:                     Number,
             day_weak:                  String,
             ucrpart:                   String,
-            x:                         Double,
-            y:                         Double,
+            x:                         Number,
+            y:                         Number,
             streetname:                String,
             xstreetname:               String,
             location:                  String
-        })
+      },
+      {
+            collection:       'cases'
+      });
 module.exports = mongoose.model('Cases', Cases);

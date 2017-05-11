@@ -1,6 +1,7 @@
 
 const express = require('express'),
-      router  = express.Router();
+      router  = express.Router(),
+      cases   = require('../models/models');
 
 router.use(function timelog (req, res, next){
     let now
@@ -11,15 +12,25 @@ router.use(function timelog (req, res, next){
 })
 
 router.get("/", function(req, res){
-    res.send("Road suppose to load all cases!")
+    cases.find(function(err, cases) {
+        if (err) {
+            return res.send(err)
+        }
+        res.json(cases)
+    })
 })
 
 router.get("/:id", function(req, res){
     let param
 
     param = req.params.id
-    console.log("User asked for case with id: ", param)
-    res.send("Road suppose to load case by id: " + param)
+    cases.findById(param, function(err, cases) {
+        if (err) {
+            return res.send(err)
+        }
+        res.json(cases)
+    })
+
 })
 
 module.exports = router
