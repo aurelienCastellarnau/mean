@@ -1,6 +1,8 @@
 const   fs       = require('fs'),
         excluded = ['index'];
 
+//Fonction qui prend en charge tous les noms des dossiers (le packet fs -> file system)
+//il faut que les fichier exports quelquechose sinon ça fait bugguer la fonction
 const   load_roads = function(app) {
     fs.readdir(__dirname, function(err, files) {
         files.forEach(function(file, value, index, array){

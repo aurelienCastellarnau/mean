@@ -1,7 +1,7 @@
 
 const express = require('express'),
       router  = express.Router(),
-      cases   = require('../models/models');
+      cases   = require('../models/casesModel');
 
 router.use(function timelog (req, res, next){
     let now

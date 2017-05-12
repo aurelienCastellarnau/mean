@@ -3,7 +3,7 @@ const express    = require('express'),
       bodyParser = require('body-parser'),
       mongoose   = require('mongoose'),
       app        = express(),
-      conf       = require('./co.js'),
+      conf       = require('./config.js'),
       router     = require('./routes/')(app);
 
 app.use(bodyParser.json());
@@ -19,7 +19,7 @@ db.once('open', function (){
     */
     app.use(express.static(path.join(conf.clipath)));
     /*
-    ** all unmatched fall on cli/dist/index.html, entry point of angular2 app 
+    ** all unmatched fall on cli/dist/index.html, entry point of angular2 app
     */
     app.get('/*', (req, res) => {
         res.sendFile(path.join(conf.clipath, 'index.html'));
