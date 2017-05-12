@@ -1,9 +1,10 @@
 const express    = require('express'),
+      path       = require('path'),
       bodyParser = require('body-parser'),
       mongoose   = require('mongoose'),
       app        = express(),
+      conf       = require('./co.js'),
       router     = require('./routes/')(app);
-      conf       = require('./co.js');
 
 app.use(bodyParser.json());
 
@@ -13,5 +14,15 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', function (){
     console.log('connection succeeded');
+    /*
+    ** serve the client directory
+    */
+    app.use(express.static(path.join(conf.clipath)));
+    /*
+    ** all unmatched fall on cli/dist/index.html, entry point of angular2 app 
+    */
+    app.get('/*', (req, res) => {
+        res.sendFile(path.join(conf.clipath, 'index.html'));
+    });
 })
 app.listen(3000);
