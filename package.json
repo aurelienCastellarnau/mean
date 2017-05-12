@@ -13,7 +13,14 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-server": "node ./api.js",
+    "build-client": "cd cli && npm install && ng build && cd ../",
+    "mongo_win": "net start MongoDB", 
+    "mongo_unix": "mongod --fork",
+    "deploy": "npm run build-client & npm install && npm run start-server",
+    "deploy_win": "npm run mongo_win & npm run deploy",
+    "deploy_unix": "npm run mongo_unix & npm run deploy"
   },
   "author": "billau_j, castel_a, godefr_s",
   "license": "ISC"
