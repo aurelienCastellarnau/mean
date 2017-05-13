@@ -1,13 +1,17 @@
-const express    = require('express'),
-      path       = require('path'),
-      bodyParser = require('body-parser'),
-      mongoose   = require('mongoose'),
-      app        = express(),
-      conf       = require('./config.js'),
-      router     = require('./routes/')(app);
+const express      = require('express'),
+      path         = require('path'),
+      bodyParser   = require('body-parser'),
+      mongoose     = require('mongoose'),
+      app          = module.exports = express(),
+      conf         = require('./config.js'),
+      cookieParser = require('cookie-parser')
+      router       = require('./routes/')(app);
 
 app.use(bodyParser.json());
+app.use(cookieParser());
+app.set('superSecret', conf.secret);
 
+mongoose.Promise = require('bluebird');
 mongoose.connect(conf.dsn);
 const db = mongoose.connection;
 
