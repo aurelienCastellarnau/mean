@@ -1,0 +1,8 @@
+<!--
+  -- <search-case></search-case>
+  -- Component: search-case.component.ts
+  -->
+<label for="search"> Your actual search is: {{search}} </label>
+<input [(ngModel)]="search" name="search" type="text" />
+<button (click)="searchCase()">search /case/:param</button>  
+<case-detail [case]="searchedCase"></case-detail>
