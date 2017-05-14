@@ -1,4 +1,12 @@
-# Cli
+# Client Angular2 ETNA 2019 - TICWEB/MEAN
+
+Prerequisite: (see parent directory's README file)
+
+How to run in Mean Api's context: (see parent directory's README file)
+
+How to run in standalone without the nodejs api: 
+
+## README ANGULAR CLI:
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.3.
 
