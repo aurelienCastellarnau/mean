@@ -8,6 +8,7 @@
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "fs": "0.0.1-security",
+    "js-cookie": "^2.1.4",
     "jsonwebtoken": "^7.4.0",
     "lodash": "^4.17.4",
     "mongodb": "^2.2.26",
