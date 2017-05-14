@@ -64,7 +64,7 @@ router.post("/create", function (req, res){
     }
 })
 
-router.post("/:id/edit", function(req, res){
+router.put("/:id/edit", function(req, res){
     const id = req.params.id;
     const role = req.cookies.role
 
@@ -76,12 +76,9 @@ router.post("/:id/edit", function(req, res){
                 if (err) {
                     return res.send(err)
                 }
-                //pareil c'est pas top..
-                agent.agentcode = req.body.agentcode || agent.agentcode
-                agent.firstname = req.body.firstname || agent.firstname
-                agent.lastname  = req.body.lastname || agent.lastname
-                agent.password  = req.body.password || agent.password
-                agent.role      = req.body.role || agent.role
+                for (elem in agent) {
+                    agent[elem] = req.body[elem] || agent[elem]
+                }
 
                 agent.save(function(err, current){
                     if (err) {

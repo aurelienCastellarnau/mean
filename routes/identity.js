@@ -36,7 +36,6 @@ router.post("/", function(req, res) {
                 // return token and role for auth
                 res
                 .cookie("token", token, {maxAge: 60*60*24})
-                .cookie("role", agent.role, {maxAge: 60*60*24})
                 .json({
                     status: "OK"
                 })
@@ -49,7 +48,6 @@ router.post("/", function(req, res) {
 router.delete("/", function(req, res) {
     res
     .cookie("token", "/", {maxAge: 0})
-    .cookie("role", "/", {maxAge: 0})
     .send("disconnected");
 })
 

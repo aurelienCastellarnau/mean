@@ -7,11 +7,12 @@ module.exports = {
         token = req.cookies.token
 
         if (token){
-            jwt.verify(token, app.get('superSecret'), function(err) {
+            jwt.verify(token, app.get('superSecret'), function(err, decoded) {
                 if (err) {
                     res.json({ success: false, message: 'Failed to authenticate token.'});
                 } else {
-                    next ();
+                    req.decoded = decoded
+                    next()
                 }
             })
         } else {
