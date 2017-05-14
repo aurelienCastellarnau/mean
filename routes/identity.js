@@ -14,6 +14,7 @@ router.use(function timelog (req, res, next){
     next()
 })
 
+//on check si la connexion est bonne, si elle est bonne on set 2 cookies, le role et le token
 router.post("/", function(req, res) {
     agent.findOne({
         agentcode: req.body.id
@@ -44,6 +45,7 @@ router.post("/", function(req, res) {
     })
 })
 
+//quand on se déco on retire les deux tokens
 router.delete("/", function(req, res) {
     res
     .cookie("token", "/", {maxAge: 0})

@@ -12,7 +12,7 @@ router.use(function timelog (req, res, next){
     console.log('[ROUTING] /cases -- Time: ', now.toLocaleString())
     next()
 })
-
+//petit middleware qui permet la vérif des token
 router.use(verify.token)
 
 router.get("/", function(req, res){

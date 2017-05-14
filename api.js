@@ -1,3 +1,4 @@
+//module exports permet de récupérer l'instance express n'importe où
 const express      = require('express'),
       path         = require('path'),
       bodyParser   = require('body-parser'),

@@ -1,7 +1,8 @@
 const jwt     = require('jsonwebtoken'),
       app     = require('../api')
-
+//Petit module contenant des fonctions de vérification.
 module.exports = {
+    //ici on vérifie que le token a bien été set et qu'il est valide.
     token : function (req, res, next) {
         token = req.cookies.token
 

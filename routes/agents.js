@@ -12,7 +12,7 @@ router.use(function timelog (req, res, next){
     next()
 })
 
-// router.use(verify.token)
+router.use(verify.token)
 
 router.get("/", function(req, res){
     agents
@@ -76,6 +76,7 @@ router.post("/:id/edit", function(req, res){
                 if (err) {
                     return res.send(err)
                 }
+                //pareil c'est pas top..
                 agent.agentcode = req.body.agentcode || agent.agentcode
                 agent.firstname = req.body.firstname || agent.firstname
                 agent.lastname  = req.body.lastname || agent.lastname
@@ -108,6 +109,7 @@ router.delete('/:id', function(req,res){
         } else {
             agents.remove({ _id: id}, function(err, result){
             if (err) return res.status(500).send({err: 'Error: Could not delete this case'});
+            //si ça a déjà été delet on te le dit gentillement
             if(!result) return res.status(400).send({err: 'case deleted from database'});
             console.log('deleted!!!');
             res.send(result);
