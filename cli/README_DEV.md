@@ -3,7 +3,8 @@ Arborescence du client:
     cli/:   [dist] => out directory, généré au build
             [node_modules]
             [src] => notre code, l'app en elle même et le base url de la conf ts.
-                        [app] => [components] => logique du front, finalement, se sont les controllers...
+                        [app] => [components] => logique du front, finalement, se sont les controllers... 
+                                                 détail du rôle des components dans 'src/app/mean.module.ts'
                               => [model] => copycat du model nodejs, ca se parse comme papa dans maman... rien à faire
                               => [services] => fonctions métiers à 'injecter' dans les controllers
                               => [style] => ...
