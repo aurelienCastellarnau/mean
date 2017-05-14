@@ -17,10 +17,6 @@ const routes: Routes = [
     component: SearchCaseComponent
   },
   {
-    path: 'search/:param',
-    component: SearchCaseComponent
-  },
-  {
     path: 'cases/:param',
     component: CaseDetailComponent
   },
