@@ -34,6 +34,10 @@ Arborescence du client:
 
             ['.gitignore', 'package.json', 'README.md'] => no comments
 
-            'tsconfig.json' => config du transpilo, définis notamment la target, actuellement, on vise l'EcmaScript 5, mais nous on code en es6 de part le typescript.
+            'tsconfig.json' => config du transpilo, définis notamment la target, 
+                              actuellement, on vise l'EcmaScript 5, 
+                              mais nous on code en es6 de part le typescript. 
+                              Ce fichier donne à l'app la façon de charger les modules
+                              (le @angular dans les imports).
 
-            
+
