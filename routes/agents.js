@@ -1,28 +1,28 @@
 const express = require('express'),
       router  = express.Router(),
-      jwt     = require('jsonwebtoken'),
-      app     = require('../api'),
+      agents  = require('../models/agentsModel'),
       verify  = require('../utils/verify'),
-      cases   = require('../models/casesModel');
+      promise = require('bluebird');
 
 router.use(function timelog (req, res, next){
     let now
 
     now = Date.now()
-    console.log('[ROUTING] /cases -- Time: ', now.toLocaleString())
+    console.log('[ROUTING] /agents -- Time: ', now.toLocaleString())
     next()
 })
-//petit middleware qui permet la vérif des token
-//elle renvoie dans req.decoded le token décodé
+
 router.use(verify.token)
 
 router.get("/", function(req, res){
-    console.log(req.decoded._doc)
-    cases.find(function(err, c) {
-        if (err) {
-            return res.send(err)
-        }
-    res.json(c)
+    agents
+        .find()
+        .select('-password')
+        .then(function(err, a) {
+            if (err) {
+                return res.send(err)
+            }
+            res.json(a)
     })
 })
 
@@ -30,30 +30,30 @@ router.get("/:id", function(req, res){
     let param
 
     param = req.params.id
-    cases.findById(param, function(err, c) {
+    agents.findById(param, function(err, a) {
         if (err) {
-        return res.send(err)
+            return res.send(err)
         }
-        res.json(c)
+        res.json(a)
     })
 
 })
 
-router.post("/create", function (req, res) {
-    let newCase
+router.post("/create", function (req, res){
+    let agent
     const role = req.decoded._doc.role
 
     if (role) {
         if ("CHEF" !== role && "DETECTIVE" !== role) {
             res.json({ success: false, message: "you don't have rights to do this"})
         } else {
-            newCase = new cases(req.body)
-            newCase
-            .save(function(err, c) {
+            agent = new agents(req.body)
+            agent
+            .save(function(err, a) {
                 if (err) {
                     return res.status(401).send(err)
                 }
-                res.json(c)
+                res.json(a)
             })
         }
     } else {
@@ -72,19 +72,19 @@ router.put("/:id/edit", function(req, res){
         if ("CHEF" !== role && "DETECTIVE" !== role) {
             res.json({ success: false, message: "you don't have rights to do this"})
         } else {
-            cases.findById(id, function(err, c) {
+            agents.findById(id, function(err, a) {
                 if (err) {
                     return res.send(err)
                 }
-                for (elem in c) {
-                    c[elem] = req.body[elem] || c[elem]
+                for (elem in a) {
+                    a[elem] = req.body[elem] || a[elem]
                 }
 
-                c.save(function(err, c){
+                a.save(function(err, a){
                     if (err) {
                         return res.send(err)
                     }
-                    res.send(c);
+                    res.send(a);
                 })
             })
         }
@@ -97,15 +97,16 @@ router.put("/:id/edit", function(req, res){
 })
 
 router.delete('/:id', function(req,res){
-    let id      = req.params.id;
+    const id    = req.params.id;
     const role  = req.decoded._doc.role
 
     if (role) {
         if ('CHEF' !== role) {
             return res.json({ success: false, message: "you don't have rights to do this"})
         } else {
-            cases.remove({ _id: id}, function(err, result){
+            agents.remove({ _id: id}, function(err, result){
             if (err) return res.status(500).send({err: 'Error: Could not delete this case'});
+            //si ça a déjà été delet on te le dit gentillement
             if(!result) return res.status(400).send({err: 'case deleted from database'});
             console.log('deleted!!!');
             res.send(result);
