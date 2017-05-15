@@ -22,8 +22,8 @@ export class CaseDetailComponent implements OnInit {
 
     .switchMap((params: Params) => this.CaseService.getCase(params['param']))
     .subscribe(function(c){
-      console.log("suscribing:", c[0])
-      that.case = c[0]
+      console.log("suscribing:", c)
+      that.case = c
       console.log(that.case)
     })
   }

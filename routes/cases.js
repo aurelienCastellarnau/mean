@@ -1,11 +1,11 @@
 const express = require('express'),
-      router  = express.Router(),
-      jwt     = require('jsonwebtoken'),
-      app     = require('../api'),
-      verify  = require('../utils/verify'),
-      cases   = require('../models/casesModel');
+    router = express.Router(),
+    jwt = require('jsonwebtoken'),
+    app = require('../api'),
+    verify = require('../utils/verify'),
+    Cases = require('../models/casesModel');
 
-router.use(function timelog (req, res, next){
+router.use(function timelog(req, res, next) {
     let now
 
     now = Date.now()
@@ -18,7 +18,7 @@ router.use(verify.token)
 
 router.get("/", function(req, res){
     console.log(req.decoded._doc)
-    cases.find(function(err, c) {
+    Cases.find(function(err, c) {
         if (err) {
             return res.send(err)
         }
@@ -26,13 +26,13 @@ router.get("/", function(req, res){
     })
 })
 
-router.get("/:id", function(req, res){
+router.get("/:id", function (req, res) {
     let param
 
     param = req.params.id
-    cases.findById(param, function(err, c) {
+    Cases.findById(param, function(err, c) {
         if (err) {
-        return res.send(err)
+            return res.send(err)
         }
         res.json(c)
     })
@@ -45,7 +45,7 @@ router.post("/create", function (req, res) {
 
     if (role) {
         if ("CHEF" !== role && "DETECTIVE" !== role) {
-            res.json({ success: false, message: "you don't have rights to do this"})
+            res.json({ success: false, message: "you don't have rights to do this" })
         } else {
             newCase = new cases(req.body)
             newCase
@@ -70,7 +70,7 @@ router.put("/:id/edit", function(req, res){
 
     if (role) {
         if ("CHEF" !== role && "DETECTIVE" !== role) {
-            res.json({ success: false, message: "you don't have rights to do this"})
+            res.json({ success: false, message: "you don't have rights to do this" })
         } else {
             cases.findById(id, function(err, c) {
                 if (err) {
@@ -102,13 +102,13 @@ router.delete('/:id', function(req,res){
 
     if (role) {
         if ('CHEF' !== role) {
-            return res.json({ success: false, message: "you don't have rights to do this"})
+            return res.json({ success: false, message: "you don't have rights to do this" })
         } else {
-            cases.remove({ _id: id}, function(err, result){
-            if (err) return res.status(500).send({err: 'Error: Could not delete this case'});
-            if(!result) return res.status(400).send({err: 'case deleted from database'});
-            console.log('deleted!!!');
-            res.send(result);
+            Cases.remove({ _id: id }, function (err, result) {
+                if (err) return res.status(500).send({ err: 'Error: Could not delete this case' });
+                if (!result) return res.status(400).send({ err: 'case deleted from database' });
+                console.log('deleted!!!');
+                res.send(result);
             });
         }
     } else {
