@@ -64,7 +64,7 @@ router.post("/create", function (req, res) {
     }
 })
 
-router.post("/:id/edit", function(req, res){
+router.put("/:id/edit", function(req, res){
     const id = req.params.id;
     const role = req.decoded._doc.role
 
