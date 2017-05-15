@@ -1,11 +1,11 @@
-import { Component }    from '@angular/core';
-import { Location }     from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Component }           from '@angular/core';
+import { Location }            from '@angular/common';
+import { RouterModule }        from '@angular/router';
 
 @Component({
-  selector: 'navigation',
+  selector:    'navigation',
   templateUrl: '../templates/navigation.component.html',
-  styleUrls: ['../style/mean.component.css']
+  styleUrls:   ['../style/navigation.component.css']
 })
 export class NavigationComponent {
     constructor(private location: Location){}

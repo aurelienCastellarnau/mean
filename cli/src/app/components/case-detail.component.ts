@@ -5,7 +5,7 @@ import { Case }                     from '../model/case';
 import { CaseService }              from '../services/case.service';
 
 @Component({
-  selector: 'case-detail',
+  selector:    'case-detail',
   templateUrl: '../templates/case-detail.component.html',
 })
 export class CaseDetailComponent implements OnInit {

@@ -3,11 +3,11 @@ import { Case }                from '../model/case';
 import { NavigationComponent } from './navigation.component';
 
 @Component({
-  selector: 'mean-root',
+  selector:    'mean-root',
   templateUrl: '../templates/mean.component.html',
-  styleUrls: ['../style/mean.component.css']
+  styleUrls:   ['../style/mean.component.css']
 })
 
 export class MeanComponent {
-  title = 'Mean Project... building...';
+  title = 'Police Cases Analytics ~ A Mean 2.0 Project';
 }

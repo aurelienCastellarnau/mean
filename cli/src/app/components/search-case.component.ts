@@ -1,13 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Case }                     from '../model/case';
 import { Router }                   from '@angular/router';
+import { MeanMaterialModule }       from '../mean-material.module';
 import { CaseService }              from '../services/case.service';
 import { ErrorHandlerService }      from '../services/error-handler.service';
 
 @Component({
-    selector: 'search-case',
+    selector:    'search-case',
     templateUrl: '../templates/search-case.component.html',
-    providers: [CaseService, ErrorHandlerService]
+    providers:   [CaseService, ErrorHandlerService]
 })
 export class SearchCaseComponent implements OnInit {
     search:                   string;
@@ -20,7 +21,7 @@ export class SearchCaseComponent implements OnInit {
     ){}
 
     ngOnInit(): void {
-        this.search = 'keyword?'
+        this.search = ''
         this.caseService.getCases()
             .then(cases => this.searchedCases = cases)
             .catch(this.errorHandler.handlePromise)
