@@ -1,0 +1,63 @@
+<!--
+  -- <cases></cases>
+  -- Component: case.component.ts
+  -->
+<button (click)="getCases()">GET /cases</button>  
+<!--
+  -- Ici je pense qu'on doit pouvoir
+  -- éviter les ngIf en utilisant
+  -- les hooks d'angular2.
+  -- Genre; je charge les cases avant
+  -- l'initialisation de la vue à tout
+  -- les coups.
+  -->
+<div *ngIf="cases">
+    <table>
+        <tr>
+            <td>id</td>
+            <td>compnos</td>
+            <td>naturecode</td>
+            <td>incident_type_description</td>
+            <td>main_crimecode</td>
+            <td>reptdistrict</td>
+            <td>reportingarea</td>
+            <td>fromdate</td>
+            <td>weapontype</td>
+            <td>shooting</td>
+            <td>domestic</td>
+            <td>shift</td>
+            <td>year</td>
+            <td>month</td>
+            <td>day_weak</td>
+            <td>ucrpart</td>
+            <td>x</td>
+            <td>y</td>
+            <td>streetname</td>
+            <td>xstreetname</td>
+            <td>location</td>
+        </tr>
+        <tr *ngFor="let case of cases">
+            <td>{{case._id}}</td>
+            <td>{{case.compnos}}</td>
+            <td>{{case.naturecode}}</td>
+            <td>{{case.incident_type_description}}</td>
+            <td>{{case.main_crimecode}}</td>
+            <td>{{case.reptdistrict}}</td>
+            <td>{{case.reportingarea}}</td>
+            <td>{{case.fromdate}}</td>
+            <td>{{case.weapontype}}</td>
+            <td>{{case.shooting}}</td>
+            <td>{{case.domestic}}</td>
+            <td>{{case.shift}}</td>
+            <td>{{case.year}}</td>
+            <td>{{case.month}}</td>
+            <td>{{case.day_weak}}</td>
+            <td>{{case.ucrpart}}</td>
+            <td>{{case.x}}</td>
+            <td>{{case.y}}</td>
+            <td>{{case.streetname}}</td>
+            <td>{{case.xstreetname}}</td>
+            <td>{{case.location}}</td>
+        </tr>
+    </table>
+</div>
