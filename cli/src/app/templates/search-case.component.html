@@ -2,7 +2,11 @@
   -- <search-case></search-case>
   -- Component: search-case.component.ts
   -->
-<label for="search"> Your actual search is: {{search}} </label>
-<input [(ngModel)]="search" name="search" type="text" />
-<button (click)="searchCase()">search /case/:param</button>  
+<label for="search">Search on: </label>
+<md-input-container>
+  <input mdInput placeholder="Entry your search here" [(ngModel)]="search" name="search" type="text" />
+</md-input-container>
+<button md-icon-button layout-margin (click)="searchCase()">
+      <md-icon>get_app</md-icon>/case/{{search}}
+  </button>
 <case-detail [case]="searchedCase"></case-detail>

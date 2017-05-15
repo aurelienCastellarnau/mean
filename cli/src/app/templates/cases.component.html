@@ -2,7 +2,7 @@
   -- <cases></cases>
   -- Component: case.component.ts
   -->
-<button (click)="getCases()">GET /cases</button>  
+<button md-button (click)="getCases()">GET /cases</button>
 <!--
   -- Ici je pense qu'on doit pouvoir
   -- éviter les ngIf en utilisant
@@ -12,52 +12,26 @@
   -- les coups.
   -->
 <div *ngIf="cases">
-    <table>
-        <tr>
-            <td>id</td>
-            <td>compnos</td>
-            <td>naturecode</td>
-            <td>incident_type_description</td>
-            <td>main_crimecode</td>
-            <td>reptdistrict</td>
-            <td>reportingarea</td>
-            <td>fromdate</td>
-            <td>weapontype</td>
-            <td>shooting</td>
-            <td>domestic</td>
-            <td>shift</td>
-            <td>year</td>
-            <td>month</td>
-            <td>day_weak</td>
-            <td>ucrpart</td>
-            <td>x</td>
-            <td>y</td>
-            <td>streetname</td>
-            <td>xstreetname</td>
-            <td>location</td>
-        </tr>
-        <tr *ngFor="let case of cases">
-            <td>{{case._id}}</td>
-            <td>{{case.compnos}}</td>
-            <td>{{case.naturecode}}</td>
-            <td>{{case.incident_type_description}}</td>
-            <td>{{case.main_crimecode}}</td>
-            <td>{{case.reptdistrict}}</td>
-            <td>{{case.reportingarea}}</td>
-            <td>{{case.fromdate}}</td>
-            <td>{{case.weapontype}}</td>
-            <td>{{case.shooting}}</td>
-            <td>{{case.domestic}}</td>
-            <td>{{case.shift}}</td>
-            <td>{{case.year}}</td>
-            <td>{{case.month}}</td>
-            <td>{{case.day_weak}}</td>
-            <td>{{case.ucrpart}}</td>
-            <td>{{case.x}}</td>
-            <td>{{case.y}}</td>
-            <td>{{case.streetname}}</td>
-            <td>{{case.xstreetname}}</td>
-            <td>{{case.location}}</td>
-        </tr>
-    </table>
+    <md-list color="primary" *ngFor="let case of cases">
+        <md-list-item>id: {{case._id}} </md-list-item>
+        <md-list-item>compnos: {{case.compnos}}</md-list-item>
+        <md-list-item>naturecode: {{case.naturecode}}</md-list-item>
+        <md-list-item>incident_type_description: {{case.incident_type_description}}</md-list-item>
+        <md-list-item>main_crimecode: {{case.main_crimecode}}</md-list-item>
+        <md-list-item>reptdistrict: {{case.reptdistrict}}</md-list-item>
+        <md-list-item>reportingarea: {{case.reportingarea}}</md-list-item>
+        <md-list-item>fromdate: {{case.fromdate}}</md-list-item>
+        <md-list-item>weapontype: {{case.weapontype}}</md-list-item>
+        <md-list-item>shooting {{case.shooting}}</md-list-item>
+        <md-list-item>shift {{case.shift}}</md-list-item>
+        <md-list-item>year {{case.year}}</md-list-item>
+        <md-list-item>month {{case.month}}</md-list-item>
+        <md-list-item>day_weak {{case.day_weak}}</md-list-item>
+        <md-list-item>ucrpart {{case.ucrpart}}</md-list-item>
+        <md-list-item>x {{case.x}}</md-list-item>
+        <md-list-item>y {{case.y}}</md-list-item>
+        <md-list-item>streetname {{case.streetname}}</md-list-item>
+        <md-list-item>xstreetname {{case.xstreetname}}</md-list-item>
+        <md-list-item>location {{case.location}}</md-list-item>
+    </md-list>
 </div>
