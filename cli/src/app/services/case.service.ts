@@ -1,16 +1,12 @@
-import { Injectable } from '@angular/core';
-import { Case }       from '../model/case';
-import { Http }       from '@angular/http';
-import                'rxjs/add/operator/toPromise';
+import { Injectable }          from '@angular/core';
+import { Case }                from '../model/case';
+import { Http }                from '@angular/http';
+import { ErrorHandlerService } from '../services/error-handler.service';
+import                         'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class CaseService {
-    constructor(private http: Http) {}
-
-    private handleError(error: any): Promise<any> {
-        console.error('An error occurred: ', error);
-        return Promise.reject(error.message || error)
-    }
+    constructor(private http: Http, private handleError: ErrorHandlerService) {}
 
     getCases(): Promise<Case[]> {
         const url = `/cases`;
@@ -20,7 +16,7 @@ export class CaseService {
         return this.http.get(url)
             .toPromise()
             .then(response => response.json() as Case[])
-            .catch(this.handleError)
+            .catch(this.handleError.handlePromise)
     }
 
     getCase(param: string): Promise<Case> {
@@ -31,6 +27,6 @@ export class CaseService {
         return this.http.get(url)
             .toPromise()
             .then(response => response.json() as Case)
-            .catch(this.handleError);
+            .catch(this.handleError.handlePromise);
     }
 }
