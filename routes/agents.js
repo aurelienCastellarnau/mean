@@ -18,11 +18,11 @@ router.get("/", function(req, res){
     agents
         .find()
         .select('-password')
-        .then(function(err, agents) {
+        .then(function(err, a) {
             if (err) {
                 return res.send(err)
             }
-            res.json(agents)
+            res.json(a)
     })
 })
 
@@ -30,18 +30,18 @@ router.get("/:id", function(req, res){
     let param
 
     param = req.params.id
-    agents.findById(param, function(err, agents) {
+    agents.findById(param, function(err, a) {
         if (err) {
             return res.send(err)
         }
-        res.json(agents)
+        res.json(a)
     })
 
 })
 
 router.post("/create", function (req, res){
     let agent
-    const role = req.cookies.role
+    const role = req.decoded._doc.role
 
     if (role) {
         if ("CHEF" !== role && "DETECTIVE" !== role) {
@@ -49,11 +49,11 @@ router.post("/create", function (req, res){
         } else {
             agent = new agents(req.body)
             agent
-            .save(function(err, agent) {
+            .save(function(err, a) {
                 if (err) {
                     return res.status(401).send(err)
                 }
-                res.json(agent)
+                res.json(a)
             })
         }
     } else {
@@ -66,25 +66,25 @@ router.post("/create", function (req, res){
 
 router.put("/:id/edit", function(req, res){
     const id = req.params.id;
-    const role = req.cookies.role
+    const role = req.decoded._doc.role
 
     if (role) {
         if ("CHEF" !== role && "DETECTIVE" !== role) {
             res.json({ success: false, message: "you don't have rights to do this"})
         } else {
-            agents.findById(id, function(err, agent) {
+            agents.findById(id, function(err, a) {
                 if (err) {
                     return res.send(err)
                 }
-                for (elem in agent) {
-                    agent[elem] = req.body[elem] || agent[elem]
+                for (elem in a) {
+                    a[elem] = req.body[elem] || a[elem]
                 }
 
-                agent.save(function(err, current){
+                a.save(function(err, a){
                     if (err) {
                         return res.send(err)
                     }
-                    res.send(current);
+                    res.send(a);
                 })
             })
         }
@@ -98,7 +98,7 @@ router.put("/:id/edit", function(req, res){
 
 router.delete('/:id', function(req,res){
     const id    = req.params.id;
-    const role  = req.cookies.role;
+    const role  = req.decoded._doc.role
 
     if (role) {
         if ('CHEF' !== role) {

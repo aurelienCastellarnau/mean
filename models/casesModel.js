@@ -2,26 +2,73 @@ const mongoose = require('mongoose')
 const Schema   = mongoose.Schema;
 
 const Cases = new Schema({
-            compnos:                   Number,
-            naturecode:                String,
-            incident_type_description: String,
-            main_crimecode:            String,
-            reptdistrict:              String,
-            reportingarea:             Number,
-            fromdate:                  String,
-            weapontype:                String,
-            shooting:                  String,
-            domestic:                  String,
-            shift:                     String,
-            year:                      Number,
-            month:                     Number,
-            day_weak:                  String,
-            ucrpart:                   String,
-            x:                         Number,
-            y:                         Number,
-            streetname:                String,
-            xstreetname:               String,
-            location:                  String
+            compnos: {
+                  type: Number,
+                  required: true
+            },
+            naturecode: {
+                  type: String,
+                  required: true
+            },
+            incident_type_description: {
+                  type: String,
+                  required: true
+            },
+            main_crimecode: {
+                  type: String,
+                  required: true
+            },
+            reptdistrict: {
+                  type: String,
+                  required: true
+            },
+            reportingarea: {
+                  type: Number,
+            },
+            fromdate: {
+                  type: String,
+            },
+            weapontype: {
+                  type: String,
+            },
+            shooting: {
+                  type: String,
+            },
+            domestic: {
+                  type: String,
+            },
+            shift: {
+                  type: String,
+            },
+            year: {
+                  type: Number,
+            },
+            month: {
+                  type: Number,
+            },
+            day_weak: {
+                  type: String,
+            },
+            ucrpart: {
+                  type: String,
+            },
+            x: {
+                  type: Number,
+            },
+            y: {
+                  type: Number,
+            },
+            streetname: {
+                  type: String,
+                  required: true
+            },
+            xstreetname: {
+                  type: String,
+            },
+            location: {
+                  type: String,
+                  required: true
+            }
       },
       {
             collection:       'cases'

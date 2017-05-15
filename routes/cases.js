@@ -13,15 +13,16 @@ router.use(function timelog (req, res, next){
     next()
 })
 //petit middleware qui permet la vérif des token
+//elle renvoie dans req.decoded le token décodé
 router.use(verify.token)
 
-router.get("/", function(req, res, decoded){
-    console.log(req.decoded)
-    cases.find(function(err, cases) {
+router.get("/", function(req, res){
+    console.log(req.decoded._doc)
+    cases.find(function(err, c) {
         if (err) {
             return res.send(err)
         }
-    res.json(cases)
+    res.json(c)
     })
 })
 
@@ -29,18 +30,18 @@ router.get("/:id", function(req, res){
     let param
 
     param = req.params.id
-    cases.findById(param, function(err, cases) {
+    cases.findById(param, function(err, c) {
         if (err) {
         return res.send(err)
         }
-        res.json(cases)
+        res.json(c)
     })
 
 })
 
 router.post("/create", function (req, res) {
     let newCase
-    const role = req.cookies.role
+    const role = req.decoded._doc.role
 
     if (role) {
         if ("CHEF" !== role && "DETECTIVE" !== role) {
@@ -48,11 +49,11 @@ router.post("/create", function (req, res) {
         } else {
             newCase = new cases(req.body)
             newCase
-            .save(function(err, newCase) {
+            .save(function(err, c) {
                 if (err) {
                     return res.status(401).send(err)
                 }
-                res.json(newCase)
+                res.json(c)
             })
         }
     } else {
@@ -65,7 +66,7 @@ router.post("/create", function (req, res) {
 
 router.post("/:id/edit", function(req, res){
     const id = req.params.id;
-    const role = req.cookies.role
+    const role = req.decoded._doc.role
 
     if (role) {
         if ("CHEF" !== role && "DETECTIVE" !== role) {
@@ -79,11 +80,11 @@ router.post("/:id/edit", function(req, res){
                     c[elem] = req.body[elem] || c[elem]
                 }
 
-                c.save(function(err, current){
+                c.save(function(err, c){
                     if (err) {
                         return res.send(err)
                     }
-                    res.send(current);
+                    res.send(c);
                 })
             })
         }
@@ -97,7 +98,7 @@ router.post("/:id/edit", function(req, res){
 
 router.delete('/:id', function(req,res){
     let id      = req.params.id;
-    const role  = req.cookies.role;
+    const role  = req.decoded._doc.role
 
     if (role) {
         if ('CHEF' !== role) {
