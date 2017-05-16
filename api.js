@@ -5,7 +5,8 @@ const express      = require('express'),
       mongoose     = require('mongoose'),
       app          = module.exports = express(),
       conf         = require('./config.js'),
-      cookieParser = require('cookie-parser')
+      cookieParser = require('cookie-parser'),
+      client       = require('./utils/elasticsearch'),
       router       = require('./routes/')(app);
 
 app.use(bodyParser.json());
@@ -15,6 +16,26 @@ app.set('superSecret', conf.secret);
 mongoose.Promise = require('bluebird');
 mongoose.connect(conf.dsn);
 const db = mongoose.connection;
+
+//temporaire, permet de checker la connexion à elasticsearch
+client.ping({
+  // ping usually has a 3000ms timeout
+  requestTimeout: 1000
+}, function (error) {
+  if (error) {
+    console.trace('elasticsearch cluster is down!');
+  } else {
+    console.log('All is well');
+  }
+});
+
+client.search({
+  q: 'pants'
+}).then(function (body) {
+  var hits = body.hits.hits;
+}, function (error) {
+  console.trace(error.message);
+});
 
 db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', function (){
