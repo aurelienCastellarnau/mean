@@ -1,5 +1,5 @@
 export class Case {
-  __id:                       Number;
+  __id:                      Number;
   compnos:                   Number;
   naturecode:                String;
   incident_type_description: String;

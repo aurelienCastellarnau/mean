@@ -2,6 +2,7 @@ import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CaseDetailComponent }  from './components/case-detail.component';
 import { CasesComponent }       from './components/cases.component';
+import { IdentityComponent }    from './components/identity.component';
 import { SearchCaseComponent }  from './components/search-case.component';
 
 const routes: Routes = [
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'cases',
     component: CasesComponent
+  },
+  {
+    path: 'identity',
+    component: IdentityComponent
   },
 ];
 
