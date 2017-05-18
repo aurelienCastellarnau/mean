@@ -1,5 +1,4 @@
 const mongoose     = require('mongoose'),
-      mongoosastic = require('mongoosastic'),
       Schema       = mongoose.Schema
 
 const Agents = new Schema({
@@ -28,7 +27,5 @@ const Agents = new Schema({
 {
     collection: 'agents',
 })
-
-Agents.plugin(mongoosastic)
 
 module.exports = mongoose.model('Agents', Agents)

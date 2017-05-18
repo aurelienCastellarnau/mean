@@ -1,5 +1,4 @@
 const mongoose     = require('mongoose'),
-      mongoosastic = require('mongoosastic'),
       Schema       = mongoose.Schema;
 
 const Cases = new Schema({
@@ -74,7 +73,5 @@ const Cases = new Schema({
       {
             collection:       'cases'
       });
-
-Cases.plugin(mongoosastic)
 
 module.exports = mongoose.model('Cases', Cases);
