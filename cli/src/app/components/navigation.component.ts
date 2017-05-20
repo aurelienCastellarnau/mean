@@ -24,7 +24,10 @@ export class NavigationComponent {
         ){}
 
     openIdentity(){
-        let identityRef = this.dialog.open(IdentityComponent);
+        let identityRef = this.dialog.open(IdentityComponent, {
+              height: '250px',
+              width: '600px',
+        });
         identityRef.afterClosed().subscribe(result => {
             this.option = result;
         })
