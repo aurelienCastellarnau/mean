@@ -11,11 +11,9 @@ import { CaseDetailComponent }     from './components/case-detail.component';
 import { CasesComponent }          from './components/cases.component';
 import { SearchCaseComponent }     from './components/search-case.component';
 import { NavigationComponent }     from './components/navigation.component';
-import { IdentityComponent }       from './components/identity.component';
 import { Case }                    from './model/case';
 import { Agent }                   from './model/agent';
 import { CaseService }             from './services/case.service';
-import { TokenService }            from './services/token.service';
 import { ErrorHandlerService }     from './services/error-handler.service';
 
 @NgModule({
@@ -33,16 +31,11 @@ import { ErrorHandlerService }     from './services/error-handler.service';
     CaseDetailComponent,
     SearchCaseComponent,
     NavigationComponent,
-    IdentityComponent
   ],
   providers: [
     CaseService,
-    TokenService,
     ErrorHandlerService,
     MdIconRegistry,
-  ],
-  entryComponents: [
-    IdentityComponent,
   ],
   bootstrap: [MeanComponent]
 })

@@ -2,7 +2,8 @@ import { Component }             from '@angular/core';
 import { Location }              from '@angular/common';
 import { RouterModule }          from '@angular/router';
 import { MdDialog, MdDialogRef } from '@angular/material';
-import { IdentityComponent }     from './identity.component';
+import { Agent }                 from '../model/agent';
+import { AgentService }          from '../services/agent.service';
 /*
 ** clues...
 import { RequestOptions }      from '@angular/http';
@@ -16,22 +17,14 @@ import { TokenService }        from '../services/token.service';
   styleUrls:   ['../style/navigation.component.css']
 })
 export class NavigationComponent {
+    currentUser: Agent;
     option: string;
 
     constructor(
         private location: Location,
         public dialog: MdDialog,
-        ){}
-
-    openIdentity(){
-        let identityRef = this.dialog.open(IdentityComponent, {
-              height: '250px',
-              width: '600px',
-        });
-        identityRef.afterClosed().subscribe(result => {
-            this.option = result;
-        })
-
+        ){
+            this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
     goBack(){
