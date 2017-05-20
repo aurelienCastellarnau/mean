@@ -41,6 +41,9 @@ import { ErrorHandlerService }     from './services/error-handler.service';
     ErrorHandlerService,
     MdIconRegistry,
   ],
+  entryComponents: [
+    IdentityComponent,
+  ],
   bootstrap: [MeanComponent]
 })
 export class MeanModule{}

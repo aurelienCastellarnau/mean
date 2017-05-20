@@ -1,6 +1,8 @@
-import { Component }           from '@angular/core';
-import { Location }            from '@angular/common';
-import { RouterModule }        from '@angular/router';
+import { Component }             from '@angular/core';
+import { Location }              from '@angular/common';
+import { RouterModule }          from '@angular/router';
+import { MdDialog, MdDialogRef } from '@angular/material';
+import { IdentityComponent }     from './identity.component';
 /*
 ** clues...
 import { RequestOptions }      from '@angular/http';
@@ -14,7 +16,20 @@ import { TokenService }        from '../services/token.service';
   styleUrls:   ['../style/navigation.component.css']
 })
 export class NavigationComponent {
-    constructor(private location: Location){}
+    option: string;
+
+    constructor(
+        private location: Location,
+        public dialog: MdDialog,
+        ){}
+
+    openIdentity(){
+        let identityRef = this.dialog.open(IdentityComponent);
+        identityRef.afterClosed().subscribe(result => {
+            this.option = result;
+        })
+
+    }
 
     goBack(){
       this.location.back()

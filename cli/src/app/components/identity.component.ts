@@ -1,7 +1,8 @@
-import { Component, OnInit }    from '@angular/core';
-import { Agent }                from '../model/agent';
-import { TokenService }         from '../services/token.service'
-import { ErrorHandlerService }  from '../services/error-handler.service';
+import { Component, OnInit }     from '@angular/core';
+import { Agent }                 from '../model/agent';
+import { TokenService }          from '../services/token.service'
+import { ErrorHandlerService }   from '../services/error-handler.service';
+import { MdDialog, MdDialogRef } from '@angular/material';
 
 @Component({
     selector:     'identity',
@@ -13,7 +14,8 @@ export class IdentityComponent {
     agent: Agent[];
     constructor(
         private TokenService: TokenService,
-        private errorHandler: ErrorHandlerService
+        private errorHandler: ErrorHandlerService,
+        public dialogRef: MdDialogRef<IdentityComponent>
         ){}
 
     login(): void {

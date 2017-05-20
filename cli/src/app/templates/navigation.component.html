@@ -8,7 +8,7 @@
       <md-toolbar layout-margin class="md-tall md-hue-2" color="primary">
         <button md-icon-button (click)="goBack()"><md-icon>backspace</md-icon></button>
         <md-menu x-position='after' #routing="mdMenu">
-          <button md-menu-item md-button (click)="openIdentity()">Authentification</button>
+          <button md-button (click)="openIdentity()">Authentification</button>
           <button md-menu-item routerLink="/profile">Profile</button>
         </md-menu>
         <button md-icon-button [mdMenuTriggerFor]="routing"><md-icon>mood</md-icon></button>

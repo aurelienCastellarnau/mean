@@ -18,10 +18,6 @@ const routes: Routes = [
     path: 'cases',
     component: CasesComponent
   },
-  {
-    path: 'identity',
-    component: IdentityComponent
-  },
 ];
 
 @NgModule({
