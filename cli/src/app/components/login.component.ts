@@ -31,10 +31,8 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
                     this.router.navigate([this.returnUrl]);
-                    console.log(this.returnUrl);
                 },
                 error => {
-                    console.log("ALARM ERROR");
                     this.loading = false;
                 })
     }

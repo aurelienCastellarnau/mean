@@ -6,11 +6,12 @@ import { SearchCaseComponent }  from './components/search-case.component';
 import { NavigationComponent }  from './components/navigation.component';
 import { LoginComponent }       from './components/login.component';
 import { AuthGuard }            from './guards/auth.guard';
+import { HomeComponent }        from './components/home.component';
 
 const routes: Routes = [
   {
     path:'',
-    component: NavigationComponent,
+    component: HomeComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -32,6 +33,11 @@ const routes: Routes = [
     component: CasesComponent,
     canActivate: [AuthGuard]
   },
+  // {
+  //   path: 'agents',
+  //   component: AgentsComponent,
+  //   canActivate: [AuthGuard]
+  // },
   {
     path: '**',
     redirectTo: ''

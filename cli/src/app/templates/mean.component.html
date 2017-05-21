@@ -3,7 +3,29 @@
   -- Component: mean.component.ts
   -->
 <md-toolbar color="accent">
-  <span>{{title}}</span>
+    <button md-icon-button mdTooltip="navbar" (click)="sidenav.toggle()"><md-icon>list</md-icon></button>
+    <span>{{title}}</span>
 </md-toolbar>
+<div class="mean-content">
+<md-sidenav-container layout-margin>
+<md-sidenav layout-margin #sidenav mode="side" opened="true">
+    <md-toolbar layout-margin class="md-tall md-hue-3" color="primary">
+    <span>Menu</span>
+    <md-toolbar-row>
+    <button md-icon-button (click)="goBack()"><md-icon>backspace</md-icon></button>
+    </md-toolbar-row>
+    <md-toolbar-row>
+        <button md-icon-button mdTooltip="Cases" routerLink="/cases"><md-icon>work</md-icon></button>
+    </md-toolbar-row>
+    <md-toolbar-row>
+        <button md-icon-button mdTooltip="Agents" routerLink="/agents"><md-icon>assignment_ind</md-icon></button>
+    </md-toolbar-row>
+    <md-toolbar-row>
+        <button md-icon-button mdTooltip="Déconnexion" [routerLink]="['/login']"><md-icon>lock</md-icon></button><br />
+    </md-toolbar-row>
+    </md-toolbar>
+</md-sidenav>
 <router-outlet></router-outlet>
+</md-sidenav-container>
+</div>
 <!--<navigation></navigation>-->
