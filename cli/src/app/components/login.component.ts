@@ -5,7 +5,7 @@ import { AuthenticationService } from '../services/auth.service';
 
 @Component({
     moduleId: module.id,
-    templateUrl: 'login.component.html'
+    templateUrl: '../templates/login.component.html'
 })
 
 export class LoginComponent implements OnInit {
@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
                     this.router.navigate([this.returnUrl]);
+                    console.log(this.returnUrl);
                 },
                 error => {
                     console.log("ALARM ERROR");

@@ -1,6 +1,6 @@
 <h2>Login</h2>
 <form name="loginForm" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
-    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid}">
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !agentcode.valid}">
         <md-input-container>
             <input mdInput placeholder="Agent Code" name="agentcode" [(ngModel)]="model.agentcode" #agentcode="ngModel" required>
         </md-input-container>

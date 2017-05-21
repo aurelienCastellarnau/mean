@@ -15,6 +15,7 @@ export class AuthenticationService{
         return this.http.post(url, { agentCode: agentCode, password: password })
                         .map((response: Response) => {
                             let agent = response.json();
+                            console.log(agent);
                             if (agent && agent.token) {
                                 localStorage.setItem('currentUser', JSON.stringify(agent));
                             }
