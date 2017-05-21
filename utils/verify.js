@@ -5,8 +5,8 @@ module.exports = {
     //ici on vérifie que le token a bien été set et qu'il est valide.
     token : function (req, res, next) {
         let token
-
-        token = req.cookies.token
+        console.log(req.headers.authorization);
+        token = req.headers.authorization
         if (token){
             jwt.verify(token, app.get('superSecret'), function(err, decoded) {
                 if (err) {
