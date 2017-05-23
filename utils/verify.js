@@ -4,8 +4,9 @@ const jwt     = require('jsonwebtoken'),
 module.exports = {
     //ici on vérifie que le token a bien été set et qu'il est valide.
     token : function (req, res, next) {
-        token = req.cookies.token
-
+        let token
+        console.log(req.headers.authorization);
+        token = req.headers.authorization
         if (token){
             jwt.verify(token, app.get('superSecret'), function(err, decoded) {
                 if (err) {

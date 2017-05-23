@@ -5,7 +5,7 @@ const express      = require('express'),
       mongoose     = require('mongoose'),
       app          = module.exports = express(),
       conf         = require('./config.js'),
-      cookieParser = require('cookie-parser')
+      cookieParser = require('cookie-parser'),
       router       = require('./routes/')(app);
 
 app.use(bodyParser.json());

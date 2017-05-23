@@ -8,6 +8,7 @@ import { MdListModule }            from '@angular/material';
 import { MdButtonModule }          from '@angular/material';
 import { MdIconModule }            from '@angular/material';
 import { MdToolbarModule }         from '@angular/material';
+import { MaterialModule }          from '@angular/material';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { MdToolbarModule }         from '@angular/material';
         MdGridListModule,
         MdListModule,
         MdInputModule,
+        MaterialModule,
     ],
     exports: [
         MdCardModule,
@@ -32,6 +34,7 @@ import { MdToolbarModule }         from '@angular/material';
         MdGridListModule,
         MdListModule,
         MdInputModule,
+        MaterialModule,
     ]
 })
 export class MeanMaterialModule {}

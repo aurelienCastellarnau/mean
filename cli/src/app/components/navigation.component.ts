@@ -1,6 +1,9 @@
-import { Component }           from '@angular/core';
-import { Location }            from '@angular/common';
-import { RouterModule }        from '@angular/router';
+import { Component }             from '@angular/core';
+import { Location }              from '@angular/common';
+import { RouterModule }          from '@angular/router';
+import { MdDialog, MdDialogRef } from '@angular/material';
+import { Agent }                 from '../model/agent';
+import { AgentService }          from '../services/agent.service';
 /*
 ** clues...
 import { RequestOptions }      from '@angular/http';
@@ -14,7 +17,15 @@ import { TokenService }        from '../services/token.service';
   styleUrls:   ['../style/navigation.component.css']
 })
 export class NavigationComponent {
-    constructor(private location: Location){}
+    currentUser: Agent;
+    option: string;
+
+    constructor(
+        private location: Location,
+        public dialog: MdDialog,
+        ){
+            this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    }
 
     goBack(){
       this.location.back()

@@ -17,7 +17,7 @@ router.use(function timelog (req, res, next){
 //on check si la connexion est bonne, si elle est bonne on set 2 cookies, le role et le token
 router.post("/", function(req, res) {
     agent.findOne({
-        agentcode: req.body.id
+        agentcode: req.body.agentCode
     }, function(err, agent) {
         if (err) throw err;
 
@@ -34,10 +34,13 @@ router.post("/", function(req, res) {
                 expiresIn : 60*60*24 // expires in 24 hours
                 });
                 // return token and role for auth
-                res
-                .cookie("token", token, {maxAge: 60*60*24})
-                .json({
-                    status: "OK"
+                res.json({
+                    __id: agent.__id,
+                    agentCode: agent.agentcode,
+                    firstname: agent.firstname,
+                    lastname: agent.lastname,
+                    role: agent.role,
+                    token: token
                 })
             }
         }
