@@ -1,27 +1,27 @@
-<!--
-  -- <navigation></navigation>
-  -- Component: navigation.component.ts
-  -->
-<div class="hi">
-  <h1> HI {{ currentUser.firstname }}</h1>
-</div>
-<div class="mean-content">
-  <md-sidenav-container layout-margin>
-<!--     <md-sidenav layout-margin #sidenav mode="push" opened="false">
-      <md-toolbar layout-margin class="md-tall md-hue-2" color="primary">
-        <button md-icon-button (click)="goBack()"><md-icon>backspace</md-icon></button>
-        <md-menu x-position='after' #routing="mdMenu">
-          <button md-button (click)="openIdentity()">Authentification</button>
-          <button md-menu-item routerLink="/profile">Profile</button>
-        </md-menu>
-        <button md-icon-button [mdMenuTriggerFor]="routing"><md-icon>mood</md-icon></button>
-      </md-toolbar>
-    </md-sidenav> -->
-    <button md-mini-fab (click)="sidenav.toggle()">
-       <md-icon>label</md-icon>
-    </button>
-    <button md-raised-button color="accent" routerLink="/search">Search</button>
-    <button md-raised-button color="accent" routerLink="/cases">Cases</button>
+
+<md-toolbar color="accent">
+    <button md-icon-button mdTooltip="navbar" (click)="sidenav.toggle()"><md-icon>list</md-icon></button>
+    <span>{{title}}</span>
+</md-toolbar>
+<div class="content">
+    <md-sidenav-container layout-margin>
+        <md-sidenav layout-margin #sidenav mode="side" opened="true">
+            <md-toolbar layout-margin class="md-tall md-hue-3" color="primary">
+            <span>Menu</span>
+            <md-toolbar-row>
+            <button md-icon-button (click)="goBack()"><md-icon>backspace</md-icon></button>
+            </md-toolbar-row>
+            <md-toolbar-row>
+                <button md-icon-button mdTooltip="Cases" routerLink="/cases"><md-icon>work</md-icon></button>
+            </md-toolbar-row>
+            <md-toolbar-row>
+                <button md-icon-button mdTooltip="Agents" routerLink="/agents"><md-icon>assignment_ind</md-icon></button>
+            </md-toolbar-row>
+            <md-toolbar-row>
+                <button md-icon-button mdTooltip="Déconnexion" [routerLink]="['/login']"><md-icon>lock</md-icon></button><br />
+            </md-toolbar-row>
+            </md-toolbar>
+        </md-sidenav>
     <router-outlet></router-outlet>
-   </md-sidenav-container>
+    </md-sidenav-container>
 </div>

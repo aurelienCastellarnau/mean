@@ -1,9 +1,30 @@
-md-sidenav-container {
+md-sidenav-container 
+{
   width: auto;
-  height: 300px;
+  height: 100%;
 }
 
-md-sidenav {
+md-sidenav 
+{
   min-width: 300px;
-  height: 300px;
+  height: 100%;
+}
+md-sidenav,
+md-sidenav.md-locked-open,
+md-sidenav.md-closed.md-locked-open-add-active {
+    min-width: 50px !important;
+    width: 50vw !important;
+    max-width: 100px !important;
+}
+
+.mat-sidenav-container
+{
+    height: 200em !important;
+    overflow: none !important;
+}
+
+.mat-sidenav
+{
+    height: auto;
+    overflow: none;
 }

@@ -23,7 +23,7 @@ router.get("/", function(req, res){
             return res.send(err)
         }
     res.json(c)
-    })
+    }).limit(100)
 })
 
 router.get("/:id", function (req, res) {
