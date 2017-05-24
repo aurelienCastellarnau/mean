@@ -17,14 +17,14 @@ import { TokenService }        from '../services/token.service';
   styleUrls:   ['../style/navigation.component.css']
 })
 export class NavigationComponent {
+    title = 'Police Cases Analytics ~ A Mean 4.0 Project';
     currentUser: Agent;
     option: string;
-
     constructor(
         private location: Location,
         public dialog: MdDialog,
         ){
-            this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+          this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
     goBack(){

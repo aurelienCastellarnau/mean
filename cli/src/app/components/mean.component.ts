@@ -9,6 +9,4 @@ import { NavigationComponent }   from './navigation.component';
 })
 
 export class MeanComponent {
-    title = 'Police Cases Analytics ~ A Mean 2.0 Project';
-
 }
