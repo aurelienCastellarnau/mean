@@ -14,10 +14,10 @@ router.use(function timelog(req, res, next) {
 })
 //petit middleware qui permet la vérif des token
 //elle renvoie dans req.decoded le token décodé
-router.use(verify.token)
+//router.use(verify.token)
 
 router.get("/", function(req, res){
-    console.log(req.decoded._doc)
+    //console.log(req.decoded._doc)
     Cases.find(function(err, c) {
         if (err) {
             return res.send(err)

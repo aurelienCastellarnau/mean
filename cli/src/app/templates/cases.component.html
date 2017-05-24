@@ -11,27 +11,76 @@
   -- l'initialisation de la vue à tout
   -- les coups.
   -->
-<div *ngIf="cases">
-    <md-list color="primary" *ngFor="let case of cases">
-        <md-list-item>id: {{case._id}} </md-list-item>
-        <md-list-item>compnos: {{case.compnos}}</md-list-item>
-        <md-list-item>naturecode: {{case.naturecode}}</md-list-item>
-        <md-list-item>incident_type_description: {{case.incident_type_description}}</md-list-item>
-        <md-list-item>main_crimecode: {{case.main_crimecode}}</md-list-item>
-        <md-list-item>reptdistrict: {{case.reptdistrict}}</md-list-item>
-        <md-list-item>reportingarea: {{case.reportingarea}}</md-list-item>
-        <md-list-item>fromdate: {{case.fromdate}}</md-list-item>
-        <md-list-item>weapontype: {{case.weapontype}}</md-list-item>
-        <md-list-item>shooting {{case.shooting}}</md-list-item>
-        <md-list-item>shift {{case.shift}}</md-list-item>
-        <md-list-item>year {{case.year}}</md-list-item>
-        <md-list-item>month {{case.month}}</md-list-item>
-        <md-list-item>day_weak {{case.day_weak}}</md-list-item>
-        <md-list-item>ucrpart {{case.ucrpart}}</md-list-item>
-        <md-list-item>x {{case.x}}</md-list-item>
-        <md-list-item>y {{case.y}}</md-list-item>
-        <md-list-item>streetname {{case.streetname}}</md-list-item>
-        <md-list-item>xstreetname {{case.xstreetname}}</md-list-item>
-        <md-list-item>location {{case.location}}</md-list-item>
-    </md-list>
-</div>
+  <!-- 
+    la div est la juste pour que je puisse choper le tout plus facilement
+    on pourra faire plus propre je pense. 
+    Edit : paquets npm trouvés pour le scroll faudra test
+    -->
+  <div id="caseList">
+    <div *ngIf="cases[0]">
+        <md-list color="primary" *ngFor="let case of cases[0]">
+            <md-list-item>id: {{case._id}} </md-list-item>
+            <md-list-item>compnos: {{case.compnos}}</md-list-item>
+            <md-list-item>naturecode: {{case.naturecode}}</md-list-item>
+            <md-list-item>incident_type_description: {{case.incident_type_description}}</md-list-item>
+            <md-list-item>main_crimecode: {{case.main_crimecode}}</md-list-item>
+            <md-list-item>reptdistrict: {{case.reptdistrict}}</md-list-item>
+            <md-list-item>reportingarea: {{case.reportingarea}}</md-list-item>
+            <md-list-item>fromdate: {{case.fromdate}}</md-list-item>
+            <md-list-item>weapontype: {{case.weapontype}}</md-list-item>
+            <md-list-item>shooting {{case.shooting}}</md-list-item>
+            <md-list-item>shift {{case.shift}}</md-list-item>
+            <md-list-item>year {{case.year}}</md-list-item>
+            <md-list-item>month {{case.month}}</md-list-item>
+            <md-list-item>day_weak {{case.day_weak}}</md-list-item>
+            <md-list-item>ucrpart {{case.ucrpart}}</md-list-item>
+            <md-list-item>x {{case.x}}</md-list-item>
+            <md-list-item>y {{case.y}}</md-list-item>
+            <md-list-item>streetname {{case.streetname}}</md-list-item>
+            <md-list-item>xstreetname {{case.xstreetname}}</md-list-item>
+            <md-list-item>location {{case.location}}</md-list-item>
+        </md-list>
+    </div>
+  </div>
+  <script>
+    //pour savoir a quel x de Case[x][y] on s'intéresse
+    var incr = 1;
+    //la méthode la plus bateau que j'ai trouvé
+    //MAIS au moins avec ça on est surs de pas avir de  quacks avec window
+    angular.element($window).bind("scroll", function() {
+      var windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
+      var body = document.body;
+      var html = document.documentElement;
+      var docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight,  html.scrollHeight, html.offsetHeight);
+      windowBottom = windowHeight + window.pageYOffset;
+      if (windowBottom >= docHeight) {
+          //par contre  c'est sur je me repenche sur la modif de DOM 
+          // je suis que y'a mieux que du js natif...
+          document.getElementById("caseList").innerHTML += "\<div *ngIf=\"cases[" + incr + "]\">\
+            \<md-list color=\"primary\" *ngFor=\"let case of cases[" + incr + "]\">\
+            \<md-list-item>id: {{case._id}} \</md-list-item>\
+            \<md-list-item>compnos: {{case.compnos}}\</md-list-item>\
+            \<md-list-item>naturecode: {{case.naturecode}}\</md-list-item>\
+            \<md-list-item>incident_type_description: {{case.incident_type_description}}\</md-list-item>\
+            \<md-list-item>main_crimecode: {{case.main_crimecode}}\</md-list-item>\
+            \<md-list-item>reptdistrict: {{case.reptdistrict}}\</md-list-item>\
+            \<md-list-item>reportingarea: {{case.reportingarea}}\</md-list-item>\
+            \<md-list-item>fromdate: {{case.fromdate}}\</md-list-item>\
+            \<md-list-item>weapontype: {{case.weapontype}}\</md-list-item>\
+            \<md-list-item>shooting {{case.shooting}}\</md-list-item>\
+            \<md-list-item>shift {{case.shift}}\</md-list-item>\
+            \<md-list-item>year {{case.year}}\</md-list-item>\
+            \<md-list-item>month {{case.month}}\</md-list-item>\
+            \<md-list-item>day_weak {{case.day_weak}}\</md-list-item>\
+            \<md-list-item>ucrpart {{case.ucrpart}}\</md-list-item>\
+            \<md-list-item>x {{case.x}}\</md-list-item>\
+            \<md-list-item>y {{case.y}}\</md-list-item>\
+            \<md-list-item>streetname {{case.streetname}}\</md-list-item>\
+            \<md-list-item>xstreetname {{case.xstreetname}}\</md-list-item>\
+            \<md-list-item>location {{case.location}}\</md-list-item>\
+        \</md-list>\
+    \</div>";
+          incr++;
+      }
+    });
+  </script>

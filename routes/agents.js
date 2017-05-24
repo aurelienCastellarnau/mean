@@ -40,8 +40,8 @@ router.get("/:id", function(req, res){
 })
 
 router.post("/create", function (req, res){
-    const role = req.decoded._doc.role
     let agent
+    const role = req.decoded._doc.role
 
     if (role) {
         if ("CHEF" !== role && "DETECTIVE" !== role) {
