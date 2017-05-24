@@ -2,21 +2,18 @@
   -- <navigation></navigation>
   -- Component: navigation.component.ts
   -->
-<div class="hi">
-  <h1> HI {{ currentUser.firstname }}</h1>
-</div>
 <div class="mean-content">
   <md-sidenav-container layout-margin>
-<!--     <md-sidenav layout-margin #sidenav mode="push" opened="false">
+    <md-sidenav layout-margin #sidenav mode="push" opened="true">
       <md-toolbar layout-margin class="md-tall md-hue-2" color="primary">
         <button md-icon-button (click)="goBack()"><md-icon>backspace</md-icon></button>
         <md-menu x-position='after' #routing="mdMenu">
-          <button md-button (click)="openIdentity()">Authentification</button>
+          <button md-menu-item routerLink="/identity">Authentification</button>
           <button md-menu-item routerLink="/profile">Profile</button>
         </md-menu>
         <button md-icon-button [mdMenuTriggerFor]="routing"><md-icon>mood</md-icon></button>
       </md-toolbar>
-    </md-sidenav> -->
+    </md-sidenav>
     <button md-mini-fab (click)="sidenav.toggle()">
        <md-icon>label</md-icon>
     </button>

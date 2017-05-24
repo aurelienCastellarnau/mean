@@ -4,7 +4,7 @@ const config = {
     "database": 'mongodb',
     "addr":     '127.0.0.1',
     "dbport":   '27017',
-    "dbname":   'mean',
+    "dbname":   'test',
     "clipath":  path.join(__dirname, 'cli', 'dist'),
     "secret":   'Je5u1sUnT0keN'
 };

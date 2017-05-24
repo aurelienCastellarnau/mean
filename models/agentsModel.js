@@ -1,5 +1,5 @@
-const mongoose     = require('mongoose'),
-      Schema       = mongoose.Schema
+const mongoose = require('mongoose');
+const Schema   = mongoose.Schema;
 
 const Agents = new Schema({
     agentcode:  {
@@ -28,4 +28,4 @@ const Agents = new Schema({
     collection: 'agents',
 })
 
-module.exports = mongoose.model('Agents', Agents)
+module.exports = mongoose.model('Agents', Agents);

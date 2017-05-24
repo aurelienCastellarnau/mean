@@ -11,15 +11,9 @@ import { CaseDetailComponent }     from './components/case-detail.component';
 import { CasesComponent }          from './components/cases.component';
 import { SearchCaseComponent }     from './components/search-case.component';
 import { NavigationComponent }     from './components/navigation.component';
-import { LoginComponent }          from './components/login.component';
-import { HomeComponent }           from './components/home.component';
 import { Case }                    from './model/case';
-import { Agent }                   from './model/agent';
 import { CaseService }             from './services/case.service';
-import { AgentService }            from './services/agent.service';
 import { ErrorHandlerService }     from './services/error-handler.service';
-import { AuthenticationService }   from './services/auth.service';
-import { AuthGuard }               from './guards/auth.guard';
 
 @NgModule({
   imports: [
@@ -36,16 +30,11 @@ import { AuthGuard }               from './guards/auth.guard';
     CaseDetailComponent,
     SearchCaseComponent,
     NavigationComponent,
-    LoginComponent,
-    HomeComponent
   ],
   providers: [
-    CaseService,
+    CaseService, 
     ErrorHandlerService,
     MdIconRegistry,
-    AuthGuard,
-    AuthenticationService,
-    AgentService,
   ],
   bootstrap: [MeanComponent]
 })

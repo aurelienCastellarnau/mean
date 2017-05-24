@@ -1,6 +1,6 @@
-import { Component }             from '@angular/core';
-import { Case }                  from '../model/case';
-import { NavigationComponent }   from './navigation.component';
+import { Component }           from '@angular/core';
+import { Case }                from '../model/case';
+import { NavigationComponent } from './navigation.component';
 
 @Component({
   selector:    'mean-root',
@@ -9,6 +9,5 @@ import { NavigationComponent }   from './navigation.component';
 })
 
 export class MeanComponent {
-    title = 'Police Cases Analytics ~ A Mean 2.0 Project';
-
+  title = 'Police Cases Analytics ~ A Mean 2.0 Project';
 }

@@ -1,8 +1,8 @@
-import { Component, OnInit }   from '@angular/core';
-import { Case }                from '../model/Case';
-import { MeanMaterialModule }  from '../mean-material.module';
-import { CaseService }         from '../services/case.service';
-import { ErrorHandlerService } from '../services/error-handler.service';
+import { Component, OnInit, /*HostListener*/ }   from '@angular/core';
+import { Case }                              from '../model/Case';
+import { MeanMaterialModule }                from '../mean-material.module';
+import { CaseService }                       from '../services/case.service';
+import { ErrorHandlerService }               from '../services/error-handler.service';
 
 @Component({
     selector:    'cases',
@@ -10,11 +10,17 @@ import { ErrorHandlerService } from '../services/error-handler.service';
     providers:   [CaseService, ErrorHandlerService]
 })
 export class CasesComponent implements OnInit {
-    cases:                    Case[];
+    cases:                    Case[][];
     constructor(
         private CaseService:  CaseService,
         private errorHandler: ErrorHandlerService,
     ){}
+    /*
+    ** @HostListener('scroll', ['$event'])
+    ** onScroll(event) {
+    **    // sais pas encore
+    ** }
+    */
 
     getCases(): void {
         this.CaseService.getCases()
