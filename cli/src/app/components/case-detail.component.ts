@@ -18,8 +18,9 @@ export class CaseDetailComponent implements OnInit {
 
   ngOnInit(): void {
     let that = this;
-    this.route.params
 
+    console.log("[stack-trace] calling on ngOnInit with param: ", this.route.params)
+    this.route.params
     .switchMap((params: Params) => this.CaseService.getCase(params['param']))
     .subscribe(function(c){
       console.log("suscribing:", c)

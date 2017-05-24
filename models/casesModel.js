@@ -73,5 +73,4 @@ const Cases = new Schema({
       {
             collection:       'cases'
       });
-
 module.exports = mongoose.model('Cases', Cases);
