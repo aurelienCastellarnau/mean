@@ -10,6 +10,7 @@
     "elasticsearch": "^13.0.1",
     "express": "^4.15.2",
     "fs": "0.0.1-security",
+    "get-json": "0.0.3",
     "jsonwebtoken": "^7.4.0",
     "lodash": "^4.17.4",
     "mongodb": "^2.2.26",

@@ -3,7 +3,8 @@ const express = require('express'),
     jwt = require('jsonwebtoken'),
     app = require('../api'),
     verify = require('../utils/verify'),
-    Cases = require('../models/casesModel');
+    Cases = require('../models/casesModel'),
+    ESClient = require('../utils/elasticsearch.js');
 
 router.use(function timelog(req, res, next) {
     let now
@@ -12,31 +13,62 @@ router.use(function timelog(req, res, next) {
     console.log('[ROUTING] /cases -- Time: ', now.toLocaleString())
     next()
 })
+
+router.use(function elasticsearchIndexCases(req, res, next) {
+    Cases.find({}, {'_id': 0}, function (err, c) {
+        if (err) {
+            console.log("[ES in /cases routes] indexation error: ", err)
+        } else {
+            for(let key in c) {
+                ESClient.index({
+                    index: 'cases',
+                    id: key,
+                    type: 'cases',
+                    body: c[key]
+                }, function(err, resp, status){
+                    console.log("[ElasticSearch Cases indexation: ", resp)
+                });
+            }
+        }
+   }).limit(100)
+})
+
 //petit middleware qui permet la vérif des token
 //elle renvoie dans req.decoded le token décodé
 router.use(verify.token)
 
-router.get("/", function(req, res){
+router.get("/", function (req, res) {
     console.log(req.decoded._doc)
-    Cases.find(function(err, c) {
-        if (err) {
-            return res.send(err)
-        }
-    res.json(c)
-    }).limit(100)
-})
-
-router.get("/:id", function (req, res) {
-    let param
-
-    param = req.params.id
-    Cases.findById(param, function(err, c) {
+    Cases.find(function (err, c) {
         if (err) {
             return res.send(err)
         }
         res.json(c)
-    })
+    }).limit(100)
+})
 
+router.get("/:param", function (req, res) {
+    let param = [];
+    let keywords = [];
+    let query = Cases.find();
+
+    if ((param = req.params.param) == "")
+        res.send("no parameters in query")
+    param = param.split(",");
+    console.log("[API stacktrace] GET /cases/:param with param: ", param)
+    for (let i = 0; i < param.length; i++) {
+        let word = param[i].trim()
+        keywords[i] = { naturecode: word };
+    }
+    console.log("mots clés: ", keywords)
+    query.or(keywords)
+    query.exec(function (err, c) {
+        if (err) {
+            return res.send(500, err)
+        }
+        console.log("[API stacktrace] result from textsearch: ", c)
+        res.json(c)
+    })
 })
 
 router.post("/create", function (req, res) {
@@ -49,12 +81,12 @@ router.post("/create", function (req, res) {
         } else {
             newCase = new cases(req.body)
             newCase
-            .save(function(err, c) {
-                if (err) {
-                    return res.status(401).send(err)
-                }
-                res.json(c)
-            })
+                .save(function (err, c) {
+                    if (err) {
+                        return res.status(401).send(err)
+                    }
+                    res.json(c)
+                })
         }
     } else {
         res.status(403).json({
@@ -64,7 +96,7 @@ router.post("/create", function (req, res) {
     }
 })
 
-router.put("/:id/edit", function(req, res){
+router.put("/:id/edit", function (req, res) {
     const id = req.params.id;
     const role = req.decoded._doc.role
 
@@ -72,7 +104,7 @@ router.put("/:id/edit", function(req, res){
         if ("CHEF" !== role && "DETECTIVE" !== role) {
             res.json({ success: false, message: "you don't have rights to do this" })
         } else {
-            cases.findById(id, function(err, c) {
+            cases.findById(id, function (err, c) {
                 if (err) {
                     return res.send(err)
                 }
@@ -80,7 +112,7 @@ router.put("/:id/edit", function(req, res){
                     c[elem] = req.body[elem] || c[elem]
                 }
 
-                c.save(function(err, c){
+                c.save(function (err, c) {
                     if (err) {
                         return res.send(err)
                     }
@@ -96,9 +128,9 @@ router.put("/:id/edit", function(req, res){
     }
 })
 
-router.delete('/:id', function(req,res){
-    let id      = req.params.id;
-    const role  = req.decoded._doc.role
+router.delete('/:id', function (req, res) {
+    let id = req.params.id;
+    const role = req.decoded._doc.role
 
     if (role) {
         if ('CHEF' !== role) {
