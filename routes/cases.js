@@ -14,35 +14,18 @@ router.use(function timelog(req, res, next) {
     next()
 })
 
-router.use(function elasticsearchIndexCases(req, res, next) {
-    Cases.find({}, {'_id': 0}, function (err, c) {
-        if (err) {
-            console.log("[ES in /cases routes] indexation error: ", err)
-        } else {
-            for(let key in c) {
-                ESClient.index({
-                    index: 'cases',
-                    id: key,
-                    type: 'cases',
-                    body: c[key]
-                }, function(err, resp, status){
-                    console.log("[ElasticSearch Cases indexation: ", resp)
-                });
-            }
-        }
-   }).limit(100)
-})
-
 //petit middleware qui permet la vérif des token
 //elle renvoie dans req.decoded le token décodé
 router.use(verify.token)
 
 router.get("/", function (req, res) {
-    console.log(req.decoded._doc)
+    console.log("[API stacktrace] GET /cases", req.decoded._doc)
     Cases.find(function (err, c) {
         if (err) {
+            console.log("[API stacktrace] Error rised on GET /cases")
             return res.send(err)
         }
+        console.log("[API stacktrace] GET /cases success")
         res.json(c)
     }).limit(100)
 })

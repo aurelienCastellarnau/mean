@@ -5,11 +5,13 @@ const express      = require('express'),
       mongoose     = require('mongoose'),
       app          = module.exports = express(),
       conf         = require('./config.js'),
+      elasticS     = require('./services/elastic.js'),
       cookieParser = require('cookie-parser'),
       router       = require('./routes/')(app);
 
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(elasticS.init);
 app.set('superSecret', conf.secret);
 
 mongoose.Promise = require('bluebird');
