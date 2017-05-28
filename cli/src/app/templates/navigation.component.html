@@ -12,19 +12,26 @@
             <button md-icon-button (click)="goBack()"><md-icon>backspace</md-icon></button>
             </md-toolbar-row>
             <md-toolbar-row>
+                <button md-icon-button mdTooltip="Search Case" routerLink="/search"><md-icon>search</md-icon></button>
+            </md-toolbar-row>
+            <md-toolbar-row>
                 <button md-icon-button mdTooltip="Cases" routerLink="/cases"><md-icon>work</md-icon></button>
             </md-toolbar-row>
             <md-toolbar-row>
-                <button md-icon-button mdTooltip="Cases" routerLink="/search"><md-icon>search</md-icon></button>
+                <button md-icon-button mdTooltip="Agents" routerLink="/agents"><md-icon>assignment_ind</md-icon></button>
             </md-toolbar-row>
             <md-toolbar-row>
-                <button md-icon-button mdTooltip="Agents" routerLink="/agents"><md-icon>assignment_ind</md-icon></button>
+                <button md-icon-button [mdMenuTriggerFor]="routing"><md-icon>add</md-icon></button>
             </md-toolbar-row>
             <md-toolbar-row>
                 <button md-icon-button mdTooltip="Déconnexion" [routerLink]="['/login']"><md-icon>lock</md-icon></button><br />
             </md-toolbar-row>
             </md-toolbar>
         </md-sidenav>
+        <md-menu x-position='after' #routing="mdMenu">
+                       <button md-menu-item routerLink="/create/agent">Agent</button>
+                       <button md-menu-item routerLink="/create/case">Case</button>
+        </md-menu>
     <router-outlet></router-outlet>
     </md-sidenav-container>
 </div>

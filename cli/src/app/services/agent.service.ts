@@ -1,18 +1,21 @@
-import { Injectable }                              from '@angular/core';
+import { Injectable, OnInit }                      from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Agent }                                   from '../model/agent';
+import { ErrorHandlerService } from '../services/error-handler.service';
 
 @Injectable()
 export class AgentService {
+    url = '/agents';
+
     constructor(
         private http: Http,
-        private url: "/agents/"
+        private errorHandler: ErrorHandlerService,
     ) { }
 
     getAll() {
         console.log("[stacktrace-mean] call on Agentservice getAll()")
         return this.http.get(this.url, this.jwt())
-                        .map((response: Response) => response.json());
+                        .map((response: Response) => response.json())
     }
 
     getById(__id: string) {
@@ -22,7 +25,7 @@ export class AgentService {
     }
 
     create(agent: Agent) {
-        return this.http.post(this.url + 'register', agent, this.jwt());
+        return this.http.post(this.url + '/create', agent, this.jwt());
     }
 
     update(agent: Agent, __id: string) {
