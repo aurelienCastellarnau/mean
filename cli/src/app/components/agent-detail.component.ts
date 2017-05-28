@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute}           from '@angular/router';
+import { ActivatedRoute, Params}           from '@angular/router';
 import { Agent }                     from '../model/agent';
 import { AgentService }              from '../services/agent.service';
 
@@ -9,7 +9,7 @@ import { AgentService }              from '../services/agent.service';
 })
 
 export class AgentDetailComponent implements OnInit {
-  @Input() agent:         Agent[];
+  @Input() agent:         Agent;
   id:                     string;
 
   constructor(
@@ -17,14 +17,16 @@ export class AgentDetailComponent implements OnInit {
     private route:       ActivatedRoute
   ) {}
 
-  ngOnInit() {
+ngOnInit(): void {
+    let that = this;
+
     console.log("[stack-trace] calling on ngOnInit with param: ", this.route.params)
-    this.route.params.subscribe(params => {
-       this.id = params['param'];
-       console.log(params['param']);
-    });
-    // this.AgentService.getById(this.id)
-    //     .subscribe(agent => { this.agent = agent; console.log(agent);});
-    // }
-    }
+    this.route.params
+    .switchMap((params: Params) => this.AgentService.getById(params['param']))
+    .subscribe(a => {
+      console.log("suscribing:", a)
+      this.agent = a
+      console.log(this.agent)
+    })
+  }
 }

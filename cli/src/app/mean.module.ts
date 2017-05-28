@@ -25,6 +25,7 @@ import { AuthGuard }               from './guards/auth.guard';
 import { AgentDetailComponent }    from './components/agent-detail.component';
 import { RegisterAgentComponent }  from './components/agent-register.component';
 import { AlertComponent }          from './components/alert.component';
+import { EditAgentComponent }      from './components/agent-edit.component';
 
 @NgModule({
   imports: [
@@ -46,7 +47,8 @@ import { AlertComponent }          from './components/alert.component';
     AgentComponent,
     AgentDetailComponent,
     RegisterAgentComponent,
-    AlertComponent
+    AlertComponent,
+    EditAgentComponent
   ],
   providers: [
     CaseService,

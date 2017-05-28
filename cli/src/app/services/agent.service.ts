@@ -18,10 +18,21 @@ export class AgentService {
                         .map((response: Response) => response.json())
     }
 
-    getById(__id: string) {
-        console.log("[stacktrace-mean] call on Agentservice getById() with id: ", __id);
-        return this.http.get(this.url + __id, this.jwt())
-                        .map((response: Response) => response.json());
+    // getById(__id: string) {
+    //     console.log("[stacktrace-mean] call on Agentservice getById() with id: ", __id);
+    //     return this.http.get(this.url, this.jwt())
+    //                     .map((response: Response) => response.json());
+    // }
+
+    getById(param: string): Promise<Agent> {
+        const url = `/agents/${param}`;
+        let c:      Agent;
+
+        console.log("[stacktrace-mean] call on CaseService: getCase() with param: ", param)
+        return this.http.get(url, this.jwt())
+            .toPromise()
+            .then(response => response.json() as Agent)
+            .catch(this.errorHandler.handlePromise);
     }
 
     create(agent: Agent) {
@@ -29,7 +40,7 @@ export class AgentService {
     }
 
     update(agent: Agent, __id: string) {
-        return this.http.put(this.url + __id + '/edit', agent, this.jwt());
+        return this.http.put(this.url + '/' + __id + '/edit', agent, this.jwt());
     }
 
     delete(__id: string) {

@@ -1,43 +1,43 @@
 <div *ngIf='case'>
-  <legend>Define a case:</legend>
+  <legend>case {{ case._id }}:</legend>
     <label for="compnos">compnos:</label>
-    <input [(ngModel)]="case.compnos" name="compnos" type="Number"/>
+    <span name="compnos" type="Number">{{ case.compnos }}</span><br/>
     <label for="naturecode">naturecode:</label>
-    <input [(ngModel)]="case.naturecode" name="naturecode" type="text"/>
+    <span  name="naturecode" type="text">{{ case.naturecode }}</span><br/>
     <label for="incident_type_description">incident_type_description:</label>
-    <input [(ngModel)]="case.incident_type_description" name="incident_type_description" type="text"/>
+    <span  name="incident_type_description" type="text">{{ case.incident_type_description }}</span><br/>
     <label for="main_crimecode">main_crimecode:</label>
-    <input [(ngModel)]="case.main_crimecode" name="main_crimecode" type="text"/>
+    <span  name="main_crimecode" type="text">{{ case.main_crimecode }}</span><br/>
     <label for="reptdistrict">reptdistrict:</label>
-    <input [(ngModel)]="case.reptdistrict" name="reptdistrict" type="text"/>
+    <span  name="reptdistrict" type="text">{{ case.reptdistrict }}</span><br/>
     <label for="reportingarea">reportingarea:</label>
-    <input [(ngModel)]="case.reportingarea" name="reportingarea" type="number"/>
+    <span  name="reportingarea" type="number">{{ case.reportingarea }}</span><br/>
     <label for="fromdate">fromdate:</label>
-    <input [(ngModel)]="case.fromdate" name="fromdate" type="text"/>
+    <span  name="fromdate" type="text">{{ case.fromdate }}</span><br/>
     <label for="weapontype">weapontype:</label>
-    <input [(ngModel)]="case.weapontype" name="weapontype" type="text"/>
+    <span  name="weapontype" type="text">{{case.weapontype}}</span><br/>
     <label for="shooting">shooting:</label>
-    <input [(ngModel)]="case.shooting" name="shooting" type="text"/>
+    <span  name="shooting" type="text">{{case.shooting}}</span><br/>
     <label for="domestic">domestic:</label>
-    <input [(ngModel)]="case.domestic" name="domestic" type="text"/>
+    <span  name="domestic" type="text">{{case.domestic}}</span><br/>
     <label for="shift">shift:</label>
-    <input [(ngModel)]="case.shift" name="shift" type="text"/>
+    <span name="shift" type="text">{{case.shift}}</span><br/>
     <label for="year">year:</label>
-    <input [(ngModel)]="case.year" name="year" type="number"/>
+    <span name="year" type="number">{{case.year}}</span><br/>
     <label for="month">month:</label>
-    <input [(ngModel)]="case.month" name="month" type="number"/>
+    <span name="month" type="number">{{case.month}}</span><br/>
     <label for="day_weak">day_weak:</label>
-    <input [(ngModel)]="case.day_weak" name="day_weak" type="text"/>
+    <span  name="day_weak" type="text">{{case.day_weak}}</span><br/>
     <label for="ucrpart">ucrpart:</label>
-    <input [(ngModel)]="case.ucrpart" name="ucrpart" type="text"/>
+    <span name="ucrpart" type="text">{{case.ucrpart}}</span><br/>
     <label for="x">x:</label>
-    <input [(ngModel)]="case.x" name="x" type="number"/>
+    <span  type="number">{{case.x}}</span><br/>
     <label for="y">y:</label>
-    <input [(ngModel)]="case.y" name="y" type="number"/>
+    <span  type="number">{{case.y}}</span><br/>
     <label for="streetname">streetname:</label>
-    <input [(ngModel)]="case.streetname" name="streetname" type="text"/>
+    <span  name="streetname" type="text">{{case.streetname}}</span><br/>
     <label for="xstreetname">xstreetname:</label>
-    <input [(ngModel)]="case.xstreetname" name="xstreetname" type="text"/>
+    <span  name="xstreetname" type="text">{{case.xstreetname}}</span><br/>
     <label for="location">location:</label>
-    <input [(ngModel)]="case.location" name="location" type="text"/>
+    <span  name="location" type="text">{{case.location}}</span><br/>
 </div>

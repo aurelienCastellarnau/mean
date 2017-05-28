@@ -10,6 +10,7 @@ import { HomeComponent }          from './components/home.component';
 import { AgentComponent }         from './components/agents.component';
 import { AgentDetailComponent }   from './components/agent-detail.component';
 import { RegisterAgentComponent } from './components/agent-register.component';
+import { EditAgentComponent }     from './components/agent-edit.component';
 
 const routes: Routes = [
   {
@@ -49,6 +50,11 @@ const routes: Routes = [
   {
     path: 'agents/:param',
     component: AgentDetailComponent,
+    canActivate: [AuthGuard]
+  },
+   {
+    path: 'agents/:param/edit',
+    component: EditAgentComponent,
     canActivate: [AuthGuard]
   },
   {

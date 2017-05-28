@@ -69,7 +69,7 @@ router.post("/create", function (req, res){
 router.put("/:id/edit", function(req, res){
     const id = req.params.id;
     const role = req.decoded._doc.role
-
+    console.log('edit');
     if (role) {
         if ("CHEF" !== role && "DETECTIVE" !== role) {
             res.json({ success: false, message: "you don't have rights to do this"})

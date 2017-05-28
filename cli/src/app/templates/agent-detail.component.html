@@ -1,5 +1,6 @@
-<!-- <span [(ngModel)]="agent.__id" name="compnos" type="Number"></span>
- -->
-<div class="row">
- <span class="alert alert-error">OK</span>
+<div *ngIf='agent'>
+        <button routerLink="/agents/{{ agent._id }}/edit">EDIT</button><br/>
+        <span>{{ agent._id }}</span><br/>
+        <span>{{ agent.firstname }} {{agent.lastname}}</span><br/>
+        <span>{{ agent.role }}</span>
 </div>
