@@ -24,7 +24,7 @@ export class RegisterCaseComponent {
             .subscribe(
                 data => {
                     this.alertService.success('Registration succesful', true);
-                    this.router.navigate(['/agents/']);
+                    this.router.navigate(['/cases/']);
                 },
                 error => {
                     console.log("ERROR QUI CLAQUE");

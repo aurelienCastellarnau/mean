@@ -31,8 +31,17 @@ export class CaseService {
     }
 
     create(Case: Case) {
+        return this.http.post('/cases/create', Case, this.jwt());
+    }
+
+    update(Case: Case, __id: string) {
         const url = '/cases';
-        return this.http.post(url + '/create', Case, this.jwt());
+        return this.http.put(url + '/' + __id + '/edit', Case, this.jwt());
+    }
+
+    delete(__id: string) {
+        const url = '/cases';
+        return this.http.delete(url + '/' + __id, this.jwt());
     }
 
     private jwt() {

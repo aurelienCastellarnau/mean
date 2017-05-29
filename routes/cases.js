@@ -92,7 +92,7 @@ router.post("/create", function (req, res) {
         if ("CHEF" !== role && "DETECTIVE" !== role) {
             res.json({ success: false, message: "you don't have rights to do this" })
         } else {
-            newCase = new cases(req.body)
+            newCase = new Cases(req.body)
             newCase
                 .save(function (err, c) {
                     if (err) {
