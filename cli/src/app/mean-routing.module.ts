@@ -11,6 +11,7 @@ import { AgentComponent }         from './components/agents.component';
 import { AgentDetailComponent }   from './components/agent-detail.component';
 import { RegisterAgentComponent } from './components/agent-register.component';
 import { EditAgentComponent }     from './components/agent-edit.component';
+import { RegisterCaseComponent }  from './components/case-register.component';
 
 const routes: Routes = [
   {
@@ -32,11 +33,11 @@ const routes: Routes = [
     component: CaseDetailComponent,
     canActivate: [AuthGuard]
   },
-  // {
-  //   path: 'create/case',
-  //   component: CreateCaseComponent,
-  //   canActivate: [AuthGuard]
-  // },
+  {
+    path: 'create/case',
+    component: RegisterCaseComponent,
+    canActivate: [AuthGuard]
+  },
   {
     path: 'cases',
     component: CasesComponent,

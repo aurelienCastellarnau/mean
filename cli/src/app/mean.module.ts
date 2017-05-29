@@ -26,6 +26,7 @@ import { AgentDetailComponent }    from './components/agent-detail.component';
 import { RegisterAgentComponent }  from './components/agent-register.component';
 import { AlertComponent }          from './components/alert.component';
 import { EditAgentComponent }      from './components/agent-edit.component';
+import { RegisterCaseComponent }  from './components/case-register.component';
 
 @NgModule({
   imports: [
@@ -48,7 +49,8 @@ import { EditAgentComponent }      from './components/agent-edit.component';
     AgentDetailComponent,
     RegisterAgentComponent,
     AlertComponent,
-    EditAgentComponent
+    EditAgentComponent,
+    RegisterCaseComponent
   ],
   providers: [
     CaseService,

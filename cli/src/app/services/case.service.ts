@@ -30,6 +30,11 @@ export class CaseService {
             .catch(this.handleError.handlePromise);
     }
 
+    create(Case: Case) {
+        const url = '/cases';
+        return this.http.post(url + '/create', Case, this.jwt());
+    }
+
     private jwt() {
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser && currentUser.token) {
