@@ -19,7 +19,7 @@ const routes: Routes = [
   {
     path:'',
     component: HomeComponent,
-    canActivate: [AuthGuard, RoleGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',
@@ -28,12 +28,12 @@ const routes: Routes = [
   {
     path: 'search',
     component: SearchCaseComponent,
-    canActivate: [AuthGuard, RoleGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'cases/:param',
     component: CaseDetailComponent,
-    canActivate: [AuthGuard, RoleGuard]
+    canActivate: [AuthGuard]
   },
    {
     path: 'cases/:param/edit',
@@ -48,17 +48,17 @@ const routes: Routes = [
   {
     path: 'cases',
     component: CasesComponent,
-    canActivate: [AuthGuard, RoleGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'agents',
     component: AgentComponent,
-    canActivate: [AuthGuard, RoleGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'agents/:param',
     component: AgentDetailComponent,
-    canActivate: [AuthGuard, RoleGuard]
+    canActivate: [AuthGuard]
   },
    {
     path: 'agents/:param/edit',
