@@ -4,4 +4,5 @@ export class Agent {
     firstname: string;
     lastname:  string;
     role:      string;
+    status:    string;
 }

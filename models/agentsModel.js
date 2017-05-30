@@ -19,10 +19,14 @@ const Agents = new Schema({
         required: true
     },
     role:       {
-                    type: String,
-                    enum: ['CHEF', 'DETECTIVE', 'AGENT'],
-                    required: true
+        type: String,
+        enum: ['CHEF', 'DETECTIVE', 'AGENT'],
+        required: true
                 },
+    status:     {
+        type: String,
+        required: true
+    }
 },
 {
     collection: 'agents',
