@@ -6,10 +6,10 @@ import { Location }      from '@angular/common';
 
 @Component({
     moduleId: module.id,
-    templateUrl: '../templates/agent-register.component.html'
+    templateUrl: '../templates/case-register.component.html'
 })
 
-export class EditAgentComponent implements OnInit{
+export class EditCaseComponent implements OnInit{
     model: any = {};
     private sub: any;
     id: string;
@@ -27,7 +27,7 @@ export class EditAgentComponent implements OnInit{
             .subscribe(
                 data => {
                     this.alertService.success('Registration succesful', true);
-                    this.router.navigate(['/agents/']);
+                    this.router.navigate(['/cases/']);
                 },
                 error => {
                     console.log("ERROR QUI CLAQUE");
@@ -43,7 +43,7 @@ export class EditAgentComponent implements OnInit{
 
     console.log("[stack-trace] calling on ngOnInit with param: ", this.route.params)
     this.route.params
-    .switchMap((params: Params) => this.CaseService.getById(params['param']))
+    .switchMap((params: Params) => this.CaseService.getCase(params['param']))
     .subscribe(function(c){
       console.log("suscribing:", c)
       that.model = c

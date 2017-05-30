@@ -6,18 +6,20 @@ import { SearchCaseComponent }    from './components/search-case.component';
 import { NavigationComponent }    from './components/navigation.component';
 import { LoginComponent }         from './components/login.component';
 import { AuthGuard }              from './guards/auth.guard';
+import { RoleGuard }              from './guards/role.guard';
 import { HomeComponent }          from './components/home.component';
 import { AgentComponent }         from './components/agents.component';
 import { AgentDetailComponent }   from './components/agent-detail.component';
 import { RegisterAgentComponent } from './components/agent-register.component';
 import { EditAgentComponent }     from './components/agent-edit.component';
 import { RegisterCaseComponent }  from './components/case-register.component';
+import { EditCaseComponent }      from './components/cases-edit.component';
 
 const routes: Routes = [
   {
     path:'',
     component: HomeComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, RoleGuard]
   },
   {
     path: 'login',
@@ -26,42 +28,47 @@ const routes: Routes = [
   {
     path: 'search',
     component: SearchCaseComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, RoleGuard]
   },
   {
     path: 'cases/:param',
     component: CaseDetailComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, RoleGuard]
+  },
+   {
+    path: 'cases/:param/edit',
+    component: EditCaseComponent,
+    canActivate: [AuthGuard, RoleGuard]
   },
   {
     path: 'create/case',
     component: RegisterCaseComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, RoleGuard]
   },
   {
     path: 'cases',
     component: CasesComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, RoleGuard]
   },
   {
     path: 'agents',
     component: AgentComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, RoleGuard]
   },
   {
     path: 'agents/:param',
     component: AgentDetailComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, RoleGuard]
   },
    {
     path: 'agents/:param/edit',
     component: EditAgentComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, RoleGuard]
   },
   {
     path: 'create/agent',
     component: RegisterAgentComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, RoleGuard]
   },
   {
     path: '**',

@@ -1,5 +1,5 @@
 <div *ngIf='case'>
-  <legend>case {{ case._id }}:</legend>
+  <legend>case {{ case._id }}:</legend> <button routerLink="/cases/{{ case._id }}/edit">EDIT</button>
     <label for="compnos">compnos:</label>
     <span name="compnos" type="Number">{{ case.compnos }}</span><br/>
     <label for="naturecode">naturecode:</label>
@@ -40,5 +40,4 @@
     <span  name="xstreetname" type="text">{{case.xstreetname}}</span><br/>
     <label for="location">location:</label>
     <span  name="location" type="text">{{case.location}}</span><br/>
-    <button>edit</button>
 </div>

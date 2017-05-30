@@ -117,7 +117,7 @@ router.put("/:id/edit", function (req, res) {
         if ("CHEF" !== role && "DETECTIVE" !== role) {
             res.json({ success: false, message: "you don't have rights to do this" })
         } else {
-            cases.findById(id, function (err, c) {
+            Cases.findById(id, function (err, c) {
                 if (err) {
                     return res.send(err)
                 }
