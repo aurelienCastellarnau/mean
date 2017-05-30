@@ -19,7 +19,8 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "mean",
       "styles": [
-        "styles.scss"
+        "styles.scss",
+        "../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

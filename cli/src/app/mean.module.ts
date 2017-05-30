@@ -13,13 +13,22 @@ import { SearchCaseComponent }     from './components/search-case.component';
 import { NavigationComponent }     from './components/navigation.component';
 import { LoginComponent }          from './components/login.component';
 import { HomeComponent }           from './components/home.component';
+import { AgentComponent }          from './components/agents.component';
 import { Case }                    from './model/case';
 import { Agent }                   from './model/agent';
 import { CaseService }             from './services/case.service';
 import { AgentService }            from './services/agent.service';
+import { AlertService }            from './services/alert.service';
 import { ErrorHandlerService }     from './services/error-handler.service';
 import { AuthenticationService }   from './services/auth.service';
 import { AuthGuard }               from './guards/auth.guard';
+import { RoleGuard }               from './guards/role.guard';
+import { AgentDetailComponent }    from './components/agent-detail.component';
+import { RegisterAgentComponent }  from './components/agent-register.component';
+import { AlertComponent }          from './components/alert.component';
+import { EditAgentComponent }      from './components/agent-edit.component';
+import { RegisterCaseComponent }   from './components/case-register.component';
+import { EditCaseComponent }       from './components/cases-edit.component';
 
 @NgModule({
   imports: [
@@ -37,15 +46,24 @@ import { AuthGuard }               from './guards/auth.guard';
     SearchCaseComponent,
     NavigationComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    AgentComponent,
+    AgentDetailComponent,
+    RegisterAgentComponent,
+    AlertComponent,
+    EditAgentComponent,
+    RegisterCaseComponent,
+    EditCaseComponent
   ],
   providers: [
     CaseService,
     ErrorHandlerService,
     MdIconRegistry,
     AuthGuard,
+    RoleGuard,
     AuthenticationService,
     AgentService,
+    AlertService
   ],
   bootstrap: [MeanComponent]
 })
