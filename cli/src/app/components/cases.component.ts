@@ -11,7 +11,7 @@ import { ErrorHandlerService } from '../services/error-handler.service';
 })
 export class CasesComponent implements OnInit {
     cases: Case[];
-    properties: String;
+    properties: Array<String>;
 
     constructor(
         private CaseService: CaseService,

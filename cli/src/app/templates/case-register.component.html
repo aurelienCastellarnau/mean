@@ -1,151 +1,191 @@
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-    <h2>Register new Case</h2>
+        <h2>Register new Case</h2>
     </div>
 </div>
-    <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
-        <div class="col-sm-3">
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !compnos.valid }" >
+<form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+    <div class="col-sm-3">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !compnos.valid }">
             <label for="compnos">compnos</label>
             <input type="text" class="form-control" name="compnos" [(ngModel)]="model.compnos" #compnos="ngModel" required />
             <div *ngIf="f.submitted && !compnos.valid" class="help-block">compnos is required</div>
         </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !naturecode.valid }">
+            <label for="naturecode">naturecode</label>
+            <input [(ngModel)]="model.naturecode"
+                   [typeahead]="properties[0].naturecode"
+                   name="naturecode"
+                   class="form-control">
+            <div *ngIf="f.submitted && !naturecode.valid" class="help-block">naturecode is required</div>
         </div>
-        <div class="col-sm-3">
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !naturecode.valid }">
-                <label for="naturecode">naturecode</label>
-                <input type="text" class="form-control" name="naturecode" [(ngModel)]="model.naturecode" #naturecode="ngModel" required />
-                <div *ngIf="f.submitted && !naturecode.valid" class="help-block">naturecode is required</div>
-            </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !incident_type_description.valid }">
+            <label for="incident_type_description">incident_type_description</label>
+            <input [(ngModel)]="model.incident_type_description"
+                   [typeahead]="properties[0].incident_type_description"
+                   name="incident_type_description"
+                   class="form-control">
+            <div *ngIf="f.submitted && !incident_type_description.valid" class="help-block">incident_type_description is required</div>
         </div>
-        <div class="col-sm-3">
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !incident_type_description.valid }">
-                <label for="incident_type_description">incident_type_description</label>
-                <input type="text" class="form-control" name="incident_type_description" [(ngModel)]="model.incident_type_description" #incident_type_description="ngModel" required />
-                <div *ngIf="f.submitted && !incident_type_description.valid" class="help-block">incident_type_description is required</div>
-            </div>
-        </div>
-        <div class="col-sm-3">
+    </div>
+    <div class="col-sm-3">
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !main_crimecode.valid }">
-            <label for="main_crimecode">main_crimecode</label>
-            <input type="text" class="form-control" name="main_crimecode" [(ngModel)]="model.main_crimecode" #main_crimecode="ngModel" required />
+            <label for="main_crimecode">main_crimecode</label>   
+            <input [(ngModel)]="model.main_crimecode"
+                   [typeahead]="properties[0].main_crimecode"
+                   name="main_crimecode"
+                   class="form-control">
             <div *ngIf="f.submitted && !main_crimecode.valid" class="help-block">main_crimecode is required</div>
         </div>
-        </div>
-                <div class="col-sm-3">
+    </div>
+    <div class="col-sm-3">
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !reptdistrict.valid }">
             <label for="reptdistrict">reptdistrict</label>
-            <input type="text" class="form-control" name="reptdistrict" [(ngModel)]="model.reptdistrict" #reptdistrict="ngModel" required />
+            <input [(ngModel)]="model.reptdistrict"
+                   [typeahead]="properties[0].reptdistrict"
+                   name="reptdistrict"
+                   class="form-control">
             <div *ngIf="f.submitted && !reptdistrict.valid" class="help-block">reptdistrict is required</div>
         </div>
-        </div>
-                <div class="col-sm-3">
+    </div>
+    <div class="col-sm-3">
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !reportingarea.valid }">
             <label for="reportingarea">reportingarea</label>
-            <input type="text" class="form-control" name="reportingarea" [(ngModel)]="model.reportingarea" #reportingarea="ngModel" required />
+            <input [(ngModel)]="model.reportingarea"
+                   [typeahead]="properties[0].reportingarea"
+                   name="reportingarea"
+                   class="form-control">
             <div *ngIf="f.submitted && !reportingarea.valid" class="help-block">reportingarea is required</div>
         </div>
-        </div>
-                <div class="col-sm-3">
+    </div>
+    <div class="col-sm-3">
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !fromdate.valid }">
             <label for="fromdate">fromdate</label>
             <input type="text" class="form-control" name="fromdate" [(ngModel)]="model.fromdate" #fromdate="ngModel" required />
             <div *ngIf="f.submitted && !fromdate.valid" class="help-block">fromdate is required</div>
         </div>
-        </div>
-                <div class="col-sm-3">
+    </div>
+    <div class="col-sm-3">
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !weapontype.valid }">
             <label for="weapontype">weapontype</label>
-            <input type="text" class="form-control" name="weapontype" [(ngModel)]="model.weapontype" #weapontype="ngModel" required />
+            <input [(ngModel)]="model.weapontype"
+                   [typeahead]="properties[0].weapontype"
+                   name="weapontype"
+                   class="form-control">
             <div *ngIf="f.submitted && !weapontype.valid" class="help-block">weapontype is required</div>
         </div>
-        </div>
-                <div class="col-sm-3">
+    </div>
+    <div class="col-sm-3">
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !shooting.valid }">
             <label for="shooting">shooting</label>
             <input type="text" class="form-control" name="shooting" [(ngModel)]="model.shooting" #shooting="ngModel" required />
             <div *ngIf="f.submitted && !shooting.valid" class="help-block">shooting is required</div>
         </div>
-        </div>
-                <div class="col-sm-3">
+    </div>
+    <div class="col-sm-3">
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !domestic.valid }">
             <label for="domestic">domestic</label>
             <input type="text" class="form-control" name="domestic" [(ngModel)]="model.domestic" #domestic="ngModel" required />
             <div *ngIf="f.submitted && !domestic.valid" class="help-block">domestic is required</div>
         </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !shift.valid }">
+            <label for="shift">case_shift</label>
+            <input [(ngModel)]="model.shift"
+                   [typeahead]="properties[0].shift"
+                   name="shift"
+                   class="form-control">
+            <div *ngIf="f.submitted && !shift.valid" class="help-block">shift is required</div>
         </div>
-                <div class="col-sm-3">
-                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !case_shift.valid }">
-            <label for="case_shift">case_shift</label>
-            <input type="text" class="form-control" name="case_shift" [(ngModel)]="model.case_shift" #case_shift="ngModel" required />
-            <div *ngIf="f.submitted && !case_shift.valid" class="help-block">case_shift is required</div>
-        </div>
-        </div>
-                <div class="col-sm-3">
-                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !year.valid }">
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !year.valid }">
             <label for="year">year</label>
             <input type="text" class="form-control" name="year" [(ngModel)]="model.year" #year="ngModel" required />
             <div *ngIf="f.submitted && !year.valid" class="help-block">year is required</div>
         </div>
-        </div>
-                <div class="col-sm-3">
-                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !month.valid }">
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !month.valid }">
             <label for="month">month</label>
             <input type="text" class="form-control" name="month" [(ngModel)]="model.month" #month="ngModel" required />
             <div *ngIf="f.submitted && !month.valid" class="help-block">month is required</div>
         </div>
-        </div>
-                <div class="col-sm-3">
-                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !day_weak.valid }">
-            <label for="day_weak">day_weak</label>
-            <input type="text" class="form-control" name="day_weak" [(ngModel)]="model.day_weak" #day_weak="ngModel" required />
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !day_week.valid }">
+            <label for="day_week">day_week</label>
+            <input [(ngModel)]="model.day_week"
+                   [typeahead]="properties[0].day_week"
+                   name="day_week"
+                   class="form-control">
             <div *ngIf="f.submitted && !day_weak.valid" class="help-block">day_weak is required</div>
         </div>
-        </div>
-                <div class="col-sm-3">
-                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !ucrpart.valid }">
-            <label for="ucrpart">ucrpart</label>
-            <input type="text" class="form-control" name="ucrpart" [(ngModel)]="model.ucrpart" #ucrpart="ngModel" required />
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !ucrpart.valid }">
+            <label for="ucrpart">ucrpart
+                <button type="button" class="btn btn-primary"
+                        [popover]="properties[0].ucrpart"
+                        placement="right">
+                        see all xstreetnames
+                </button>
+            </label>
+            <input [(ngModel)]="model.ucrpart"
+                   [typeahead]="properties[0].ucrpart"
+                   name="ucrpart"
+                   class="form-control">
             <div *ngIf="f.submitted && !ucrpart.valid" class="help-block">ucrpart is required</div>
         </div>
-        </div>
-        <div class="col-sm-3">
-                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !x.valid }">
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !x.valid }">
             <label for="x">x</label>
             <input type="text" class="form-control" name="x" [(ngModel)]="model.x" #x="ngModel" required />
             <div *ngIf="f.submitted && !x.valid" class="help-block">x is required</div>
         </div>
-        </div>
-                <div class="col-sm-3">
-                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !y.valid }">
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !y.valid }">
             <label for="y">y</label>
             <input type="text" class="form-control" name="y" [(ngModel)]="model.y" #y="ngModel" required />
             <div *ngIf="f.submitted && !y.valid" class="help-block">y is required</div>
         </div>
-        </div>
-                <div class="col-sm-3">
-                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !streetname.valid }">
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !streetname.valid }">
             <label for="streetname">streetname</label>
-            <input type="text" class="form-control" name="streetname" [(ngModel)]="model.streetname" #streetname="ngModel" required />
+            <input [(ngModel)]="model.streetname"
+                   [typeahead]="properties[0].streetname"
+                   name="streetname"
+                   class="form-control">
             <div *ngIf="f.submitted && !streetname.valid" class="help-block">streetname is required</div>
         </div>
-        </div>
-        <div class="col-sm-3">
-                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !xstreetname.valid }">
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !xstreetname.valid }">
             <label for="xstreetname">xstreetname</label>
-            <input type="text" class="form-control" name="xstreetname" [(ngModel)]="model.xstreetname" #xstreetname="ngModel" required />
+            <input [(ngModel)]="model.xstreetname"
+                   [typeahead]="properties[0].xstreetname"
+                   name="xstreetname"
+                   class="form-control">
             <div *ngIf="f.submitted && !xstreetname.valid" class="help-block">xstreetname is required</div>
+            
         </div>
-        </div>
-        <div class="col-sm-3">
+    </div>
+    <div class="col-sm-3">
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !location.valid }">
             <label for="location">location</label>
             <input type="text" class="form-control" name="location" [(ngModel)]="model.location" #location="ngModel" required />
             <div *ngIf="f.submitted && !location.valid" class="help-block">location is required</div>
         </div>
-        </div>
-        <div class="form-group">
-            <button class="btn btn-primary">Register</button>
-            <a (click)=goBack() class="btn btn-error">Cancel</a>
-        </div>
-    </form>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary">Register</button>
+        <a (click)=goBack() class="btn btn-error">Cancel</a>
+    </div>
+</form>
