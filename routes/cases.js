@@ -49,11 +49,39 @@ router.get("/", function (req, res) {
     }).limit(100)
 })
 
-router.get("/:id", function(req, res){
+router.get('/properties', function (req, res) {
+    let properties = [];
+
+    Cases.aggregate([
+        {
+            "$group": {
+                _id: null,
+                naturecode: { $addToSet: "$naturecode" },
+                incident_type_description: { $addToSet: "$incident_type_description" },
+                main_crimecode: { $addToSet: "$main_crimecode" },
+                reptdistrict: { $addToSet: "$reptdistrict" },
+                weapontype: { $addToSet: "$weapontype" },
+                shift: { $addToSet: "$shift" },
+                day_week: { $addToSet: "$day_week" },
+                ucrpart: { $addToSet: "$ucrpart" },
+                streetname: { $addToSet: "$streetname" }
+            }
+        }
+    ], function (err, properties) {
+        if (err) {
+            console.log("[API] GET /cases/properties failed: ", err)
+            res.status(500).json(err)
+        }
+        console.log("[API stacktrace] GET /properties success: ", properties)
+        res.status(200).json(properties)
+    })
+});
+
+router.get("/:id", function (req, res) {
     let param
     console.log("/id");
     param = req.params.id
-    Cases.findById(param, function(err, c) {
+    Cases.findById(param, function (err, c) {
         if (err) {
             return res.send(err)
         }
@@ -140,6 +168,8 @@ router.delete('/:id', function (req, res) {
             message: 'no role provided.'
         })
     }
-});
+})
+
+
 
 module.exports = router
