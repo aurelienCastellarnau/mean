@@ -36,7 +36,7 @@ export class AgentService {
     }
 
     create(agent: Agent) {
-        return this.http.post(this.url + '/create', agent, this.jwt());
+        return this.http.post('/register', agent);
     }
 
     update(agent: Agent, __id: string) {
