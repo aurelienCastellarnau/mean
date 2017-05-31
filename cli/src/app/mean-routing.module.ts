@@ -14,6 +14,7 @@ import { RegisterAgentComponent } from './components/agent-register.component';
 import { EditAgentComponent }     from './components/agent-edit.component';
 import { RegisterCaseComponent }  from './components/case-register.component';
 import { EditCaseComponent }      from './components/cases-edit.component';
+import { RegisterComponent }      from './components/register-agent.component';
 
 const routes: Routes = [
   {
@@ -69,6 +70,10 @@ const routes: Routes = [
     path: 'create/agent',
     component: RegisterAgentComponent,
     canActivate: [AuthGuard, RoleGuard]
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   },
   {
     path: '**',

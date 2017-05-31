@@ -57,32 +57,6 @@ router.get("/:id", function(req, res){
 
 })
 
-router.post("/create", function (req, res){
-    const role = req.decoded._doc.role
-    let agent
-
-    if (role) {
-        if ("CHEF" !== role && "DETECTIVE" !== role) {
-            res.json({ success: false, message: "you don't have rights to do this"})
-        } else {
-            agent = new agents(req.body)
-            console.log(agent)
-            agent
-            .save(function(err, a) {
-                if (err) {
-                    return res.status(401).send(err)
-                }
-                res.json(a)
-            })
-        }
-    } else {
-        res.status(403).json({
-            success: false,
-            message: 'no role provided.'
-        })
-    }
-})
-
 router.put("/:id/edit", function(req, res){
     const id = req.params.id;
     const role = req.decoded._doc.role

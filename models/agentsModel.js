@@ -21,7 +21,7 @@ const Agents = new Schema({
     role:       {
         type: String,
         enum: ['CHEF', 'DETECTIVE', 'AGENT'],
-        required: true
+        required: false
                 },
     status:     {
         type: String,
