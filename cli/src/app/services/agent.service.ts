@@ -35,6 +35,22 @@ export class AgentService {
             .catch(this.errorHandler.handlePromise);
     }
 
+    getProperties(): Promise<String> {
+        const url = '/agents/properties';
+        const that = this;
+
+        return this.http.get(url, this.jwt())
+            .toPromise()
+            .then(function(response){
+                 console.log(response)
+                 return response.json()            
+            })
+            .catch(function(err){
+                console.log(err)
+                that.errorHandler.handlePromise(err)
+            });
+    }
+
     create(agent: Agent) {
         return this.http.post(this.url + '/create', agent, this.jwt());
     }
