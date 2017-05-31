@@ -30,6 +30,20 @@ export class CaseService {
             .catch(this.handleError.handlePromise);
     }
 
+    create(Case: Case) {
+        return this.http.post('/cases/create', Case, this.jwt());
+    }
+
+    update(Case: Case, __id: string) {
+        const url = '/cases';
+        return this.http.put(url + '/' + __id + '/edit', Case, this.jwt());
+    }
+
+    delete(__id: string) {
+        const url = '/cases';
+        return this.http.delete(url + '/' + __id, this.jwt());
+    }
+
     private jwt() {
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser && currentUser.token) {

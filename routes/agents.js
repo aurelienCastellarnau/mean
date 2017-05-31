@@ -22,6 +22,7 @@ router.get("/", function(req, res){
             if (err) {
                 return res.send(err)
             }
+            console.log(a);
             res.json(a)
     })
 })
@@ -48,6 +49,7 @@ router.post("/create", function (req, res){
             res.json({ success: false, message: "you don't have rights to do this"})
         } else {
             agent = new agents(req.body)
+            console.log(agent)
             agent
             .save(function(err, a) {
                 if (err) {
@@ -67,7 +69,7 @@ router.post("/create", function (req, res){
 router.put("/:id/edit", function(req, res){
     const id = req.params.id;
     const role = req.decoded._doc.role
-
+    console.log('edit');
     if (role) {
         if ("CHEF" !== role && "DETECTIVE" !== role) {
             res.json({ success: false, message: "you don't have rights to do this"})

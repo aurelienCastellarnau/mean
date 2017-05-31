@@ -1,0 +1,6 @@
+<div *ngIf='agent'>
+        <button routerLink="/agents/{{ agent._id }}/edit">EDIT</button><br/>
+        <span>{{ agent._id }}</span><br/>
+        <span>{{ agent.firstname }} {{agent.lastname}}</span><br/>
+        <span>{{ agent.role }}</span>
+</div>

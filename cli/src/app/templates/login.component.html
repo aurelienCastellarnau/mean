@@ -1,4 +1,4 @@
-<div class="mean-content" style="text-align: center">
+<div class="mean-content">
     <h2>Login</h2>
     <form name="loginForm" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !agentcode.valid}">
@@ -15,6 +15,7 @@
         </div>
         <div class="form-group">
             <button md-raised-button [disabled]="loading">Login</button>
+            <button routerLink="/register"></button>
         </div>
     </form>
 </div>
