@@ -1,7 +1,8 @@
 import { Component, OnInit }   from '@angular/core';
-import { Agent }                from '../model/agent';
+import { Agent }               from '../model/agent';
 import { MeanMaterialModule }  from '../mean-material.module';
-import { AgentService }         from '../services/agent.service';
+import { AgentService }        from '../services/agent.service';
+import { ErrorHandlerService } from '../services/error-handler.service';     
 
 @Component({
     selector:    'agents',
@@ -9,9 +10,11 @@ import { AgentService }         from '../services/agent.service';
     providers: [AgentService]
 })
 export class AgentComponent implements OnInit {
-    agents: Agent[];
+    agents:                     Agent[];
+    properties:                 String;
     constructor(
-        private AgentService:  AgentService,
+        private AgentService:   AgentService,
+        private errorHandler:   ErrorHandlerService,
     ){}
 
     getAgents(): void {
@@ -19,8 +22,24 @@ export class AgentComponent implements OnInit {
             .subscribe(agents => { this.agents = agents; console.log(agents);});
     }
 
+    getProperties(): void {
+        const that = this;
+
+        this.AgentService.getProperties()
+            .then(function(properties){
+                console.log(properties)
+                that.properties = properties
+                console.log("[mean] Agents getProperties() succeed, properties loaded with: ", that.properties)
+            })
+            .catch(function(err){
+                console.log(err)
+                that.errorHandler.handlePromise(err)
+            })
+    }
+
     ngOnInit(): void {
         this.getAgents()
+        this.getProperties()
     }
 
 }
