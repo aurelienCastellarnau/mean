@@ -60,11 +60,13 @@ router.get('/properties', function (req, res) {
                 incident_type_description: { $addToSet: "$incident_type_description" },
                 main_crimecode: { $addToSet: "$main_crimecode" },
                 reptdistrict: { $addToSet: "$reptdistrict" },
+                reportingarea: { $addToSet: "$reportingarea" },
                 weapontype: { $addToSet: "$weapontype" },
                 shift: { $addToSet: "$shift" },
                 day_week: { $addToSet: "$day_week" },
                 ucrpart: { $addToSet: "$ucrpart" },
-                streetname: { $addToSet: "$streetname" }
+                streetname: { $addToSet: "$streetname" },
+                xstreetname: { $addToSet: "$xstreetname" }
             }
         }
     ], function (err, properties) {

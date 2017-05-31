@@ -14,6 +14,7 @@ import { RegisterAgentComponent } from './components/agent-register.component';
 import { EditAgentComponent }     from './components/agent-edit.component';
 import { RegisterCaseComponent }  from './components/case-register.component';
 import { EditCaseComponent }      from './components/cases-edit.component';
+import { PropertiesResolver }     from './services/propertiesResolver.service'
 
 const routes: Routes = [
   {
@@ -38,11 +39,13 @@ const routes: Routes = [
    {
     path: 'cases/:param/edit',
     component: EditCaseComponent,
+    resolve: { properties: PropertiesResolver },
     canActivate: [AuthGuard, RoleGuard]
   },
   {
     path: 'create/case',
     component: RegisterCaseComponent,
+    resolve: { properties: PropertiesResolver },
     canActivate: [AuthGuard, RoleGuard]
   },
   {

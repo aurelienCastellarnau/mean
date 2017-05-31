@@ -29,6 +29,7 @@ import { AlertComponent }          from './components/alert.component';
 import { EditAgentComponent }      from './components/agent-edit.component';
 import { RegisterCaseComponent }   from './components/case-register.component';
 import { EditCaseComponent }       from './components/cases-edit.component';
+import { PropertiesResolver }      from './services/propertiesResolver.service';
 
 @NgModule({
   imports: [
@@ -63,7 +64,8 @@ import { EditCaseComponent }       from './components/cases-edit.component';
     RoleGuard,
     AuthenticationService,
     AgentService,
-    AlertService
+    AlertService,
+    PropertiesResolver
   ],
   bootstrap: [MeanComponent]
 })
