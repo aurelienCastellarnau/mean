@@ -48,7 +48,7 @@ export class CaseService {
         return this.http.delete(url + '/' + __id, this.jwt());
     }
 
-    getProperties(): Promise<String> {
+    getProperties(): Promise<String[]> {
         const url = '/cases/properties';
         const that = this;
 
@@ -56,7 +56,7 @@ export class CaseService {
             .toPromise()
             .then(function(response){
                  console.log(response)
-                 return response.json()            
+                 return response.json() as String[]  
             })
             .catch(function(err){
                 console.log(err)
