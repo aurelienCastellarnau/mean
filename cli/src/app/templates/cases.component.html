@@ -1,37 +1,20 @@
-<!--
-  -- <cases></cases>
-  -- Component: case.component.ts
-  -->
-<button md-button (click)="getCases()">GET /cases</button>
-<!--
-  -- Ici je pense qu'on doit pouvoir
-  -- éviter les ngIf en utilisant
-  -- les hooks d'angular2.
-  -- Genre; je charge les cases avant
-  -- l'initialisation de la vue à tout
-  -- les coups.
-  -->
-<div *ngIf="cases">
-    <md-list color="primary" *ngFor="let case of cases">
-        <md-list-item>id: {{case._id}} </md-list-item>
-        <md-list-item>compnos: {{case.compnos}}</md-list-item>
-        <md-list-item>naturecode: {{case.naturecode}}</md-list-item>
-        <md-list-item>incident_type_description: {{case.incident_type_description}}</md-list-item>
-        <md-list-item>main_crimecode: {{case.main_crimecode}}</md-list-item>
-        <md-list-item>reptdistrict: {{case.reptdistrict}}</md-list-item>
-        <md-list-item>reportingarea: {{case.reportingarea}}</md-list-item>
-        <md-list-item>fromdate: {{case.fromdate}}</md-list-item>
-        <md-list-item>weapontype: {{case.weapontype}}</md-list-item>
-        <md-list-item>shooting {{case.shooting}}</md-list-item>
-        <md-list-item>shift {{case.shift}}</md-list-item>
-        <md-list-item>year {{case.year}}</md-list-item>
-        <md-list-item>month {{case.month}}</md-list-item>
-        <md-list-item>day_weak {{case.day_weak}}</md-list-item>
-        <md-list-item>ucrpart {{case.ucrpart}}</md-list-item>
-        <md-list-item>x {{case.x}}</md-list-item>
-        <md-list-item>y {{case.y}}</md-list-item>
-        <md-list-item>streetname {{case.streetname}}</md-list-item>
-        <md-list-item>xstreetname {{case.xstreetname}}</md-list-item>
-        <md-list-item>location {{case.location}}</md-list-item>
-    </md-list>
+<div class="show-cases">
+    <div class="row">
+        <div class="col-sm-6 col-md-offset-3">
+            <h1>MEAN CASES</h1>
+        </div>
+    </div>
+    <div class="row">
+            <div class="col-sm-3 col-md-offset-1" *ngFor="let case of cases" routerLink="/cases/{{ case._id }}" style="margin-bottom: 10px">
+                <md-card class="example-card">
+                <md-card-header>
+                    <md-card-title>{{ case.incident_type_description }} {{ case.compnos }}</md-card-title>
+                    <md-card-subtitle>{{ case.reportingarea }}</md-card-subtitle>
+                  </md-card-header>
+                  <md-card-content>
+                    case: {{ case.location }}
+                  </md-card-content>
+                </md-card>
+            </div>
+    </div>
 </div>

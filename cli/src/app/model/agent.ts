@@ -3,6 +3,6 @@ export class Agent {
     agentcode: number;
     firstname: string;
     lastname:  string;
-    password:  string;
     role:      string;
+    status:    string;
 }

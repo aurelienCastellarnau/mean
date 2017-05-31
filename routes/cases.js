@@ -14,24 +14,24 @@ router.use(function timelog(req, res, next) {
     next()
 })
 
-router.use(function elasticsearchIndexCases(req, res, next) {
-    Cases.find({}, {'_id': 0}, function (err, c) {
-        if (err) {
-            console.log("[ES in /cases routes] indexation error: ", err)
-        } else {
-            for(let key in c) {
-                ESClient.index({
-                    index: 'cases',
-                    id: key,
-                    type: 'cases',
-                    body: c[key]
-                }, function(err, resp, status){
-                    console.log("[ElasticSearch Cases indexation: ", resp)
-                });
-            }
-        }
-   }).limit(100)
-})
+// router.use(function elasticsearchIndexCases(req, res, next) {
+//     Cases.find({}, {'_id': 0}, function (err, c) {
+//         if (err) {
+//             console.log("[ES in /cases routes] indexation error: ", err)
+//         } else {
+//             for(let key in c) {
+//                 ESClient.index({
+//                     index: 'cases',
+//                     id: key,
+//                     type: 'cases',
+//                     body: c[key]
+//                 }, function(err, resp, status){
+//                     console.log("[ElasticSearch Cases indexation: ", resp)
+//                 });
+//             }
+//         }
+//    }).limit(100)
+// })
 
 //petit middleware qui permet la vérif des token
 //elle renvoie dans req.decoded le token décodé
@@ -47,28 +47,41 @@ router.get("/", function (req, res) {
     }).limit(100)
 })
 
-router.get("/:param", function (req, res) {
-    let param = [];
-    let keywords = [];
-    let query = Cases.find();
+// router.get("/:param", function (req, res) {
+//     let param = [];
+//     let keywords = [];
+//     let query = Cases.find();
 
-    if ((param = req.params.param) == "")
-        res.send("no parameters in query")
-    param = param.split(",");
-    console.log("[API stacktrace] GET /cases/:param with param: ", param)
-    for (let i = 0; i < param.length; i++) {
-        let word = param[i].trim()
-        keywords[i] = { naturecode: word };
-    }
-    console.log("mots clés: ", keywords)
-    query.or(keywords)
-    query.exec(function (err, c) {
+//     if ((param = req.params.param) == "")
+//         res.send("no parameters in query")
+//     param = param.split(",");
+//     console.log("[API stacktrace] GET /cases/:param with param: ", param)
+//     for (let i = 0; i < param.length; i++) {
+//         let word = param[i].trim()
+//         keywords[i] = { naturecode: word };
+//     }
+//     console.log("mots clés: ", keywords)
+//     query.or(keywords)
+//     query.exec(function (err, c) {
+//         if (err) {
+//             return res.send(500, err)
+//         }
+//         console.log("[API stacktrace] result from textsearch: ", c)
+//         res.json(c)
+//     })
+// })
+//
+router.get("/:id", function(req, res){
+    let param
+    console.log("/id");
+    param = req.params.id
+    Cases.findById(param, function(err, c) {
         if (err) {
-            return res.send(500, err)
+            return res.send(err)
         }
-        console.log("[API stacktrace] result from textsearch: ", c)
         res.json(c)
     })
+
 })
 
 router.post("/create", function (req, res) {
@@ -79,7 +92,7 @@ router.post("/create", function (req, res) {
         if ("CHEF" !== role && "DETECTIVE" !== role) {
             res.json({ success: false, message: "you don't have rights to do this" })
         } else {
-            newCase = new cases(req.body)
+            newCase = new Cases(req.body)
             newCase
                 .save(function (err, c) {
                     if (err) {
@@ -104,7 +117,7 @@ router.put("/:id/edit", function (req, res) {
         if ("CHEF" !== role && "DETECTIVE" !== role) {
             res.json({ success: false, message: "you don't have rights to do this" })
         } else {
-            cases.findById(id, function (err, c) {
+            Cases.findById(id, function (err, c) {
                 if (err) {
                     return res.send(err)
                 }

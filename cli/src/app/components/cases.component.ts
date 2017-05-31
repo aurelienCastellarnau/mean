@@ -20,6 +20,7 @@ export class CasesComponent implements OnInit {
         this.CaseService.getCases()
             .then(cases => this.cases = cases)
             .catch(this.errorHandler.handlePromise)
+
     }
 
     ngOnInit(): void {

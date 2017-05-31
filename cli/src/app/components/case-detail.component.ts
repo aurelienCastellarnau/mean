@@ -8,6 +8,7 @@ import { CaseService }              from '../services/case.service';
   selector:    'case-detail',
   templateUrl: '../templates/case-detail.component.html',
 })
+
 export class CaseDetailComponent implements OnInit {
   @Input() case:         Case;
   param:                 string;
