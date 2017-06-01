@@ -18,11 +18,12 @@ export class AgentService {
                         .map((response: Response) => response.json())
     }
 
-    // getById(__id: string) {
-    //     console.log("[stacktrace-mean] call on Agentservice getById() with id: ", __id);
-    //     return this.http.get(this.url, this.jwt())
-    //                     .map((response: Response) => response.json());
-    // }
+
+    getAdmin() {
+        console.log("[stacktrace-mean] call on Agentservice getAll()")
+        return this.http.get('/admin', this.jwt())
+                        .map((response: Response) => response.json())
+    }
 
     getById(param: string): Promise<Agent> {
         const url = `/agents/${param}`;

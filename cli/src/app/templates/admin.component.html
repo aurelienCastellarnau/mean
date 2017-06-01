@@ -1,0 +1,20 @@
+<div class="show-agents">
+    <div class="row">
+        <div class="col-sm-6 col-md-offset-3">
+            <h1>MEAN AGENTS</h1>
+        </div>
+    </div>
+    <div class="row">
+            <div class="col-sm-3 col-md-offset-1" *ngFor="let agent of agents" routerLink="/agents/{{ agent._id }}" style="margin-bottom: 10px">
+                <md-card class="example-card">
+                <md-card-header>
+                    <md-card-title>{{ agent.firstname }} {{ agent.lastname }}</md-card-title>
+                    <md-card-subtitle>{{ agent.role }}</md-card-subtitle>
+                  </md-card-header>
+                  <md-card-content>
+                    AgentCode: {{ agent.agentcode }}
+                  </md-card-content>
+                </md-card>
+            </div>
+    </div>
+</div>
