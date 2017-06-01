@@ -16,7 +16,7 @@ router.use(verify.token)
 
 router.get("/", function(req, res){
     agents
-        .find()
+        .find({status: 'active'})
         .select('-password')
         .then(function(err, a) {
             if (err) {

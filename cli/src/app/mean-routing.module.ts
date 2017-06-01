@@ -15,6 +15,7 @@ import { EditAgentComponent }     from './components/agent-edit.component';
 import { RegisterCaseComponent }  from './components/case-register.component';
 import { EditCaseComponent }      from './components/cases-edit.component';
 import { RegisterComponent }      from './components/register-agent.component';
+import { AdminComponent }         from './components/admin.component';
 
 const routes: Routes = [
   {
@@ -74,6 +75,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'admin',
+    component: AdminComponent
   },
   {
     path: '**',

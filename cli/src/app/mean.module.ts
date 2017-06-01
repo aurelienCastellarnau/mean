@@ -30,6 +30,7 @@ import { EditAgentComponent }      from './components/agent-edit.component';
 import { RegisterCaseComponent }   from './components/case-register.component';
 import { EditCaseComponent }       from './components/cases-edit.component';
 import { RegisterComponent }       from './components/register-agent.component';
+import { AdminComponent }          from './components/admin.component';
 
 @NgModule({
   imports: [
@@ -55,7 +56,8 @@ import { RegisterComponent }       from './components/register-agent.component';
     EditAgentComponent,
     RegisterCaseComponent,
     EditCaseComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminComponent
   ],
   providers: [
     CaseService,
