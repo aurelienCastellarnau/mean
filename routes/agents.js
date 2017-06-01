@@ -27,6 +27,23 @@ router.get("/", function(req, res){
     })
 })
 
+router.get('/properties', function(req, res){
+    agents.aggregate([{
+        "$group": {
+                _id:    null,
+                role:   { $addToSet: "$role" },
+                status: { $addToSet: "$status" },
+        }
+    }], function(err, properties){
+        if (err){
+            console.log("[API stacktrace] Error rised on GET /agents/properties")
+            res.status(500).json(err)
+        }
+        console.log("[API stacktrace] GET /agents/properties succeed: ", properties)
+        res.status(200).json(properties)
+    })
+})
+
 router.get("/:id", function(req, res){
     let param
 

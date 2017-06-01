@@ -1,20 +1,22 @@
-import { Component, OnInit }   from '@angular/core';
-import { Case }                from '../model/Case';
-import { MeanMaterialModule }  from '../mean-material.module';
-import { CaseService }         from '../services/case.service';
+import { Component, OnInit } from '@angular/core';
+import { Case } from '../model/Case';
+import { MeanMaterialModule } from '../mean-material.module';
+import { CaseService } from '../services/case.service';
 import { ErrorHandlerService } from '../services/error-handler.service';
 
 @Component({
-    selector:    'cases',
+    selector: 'cases',
     templateUrl: '../templates/cases.component.html',
-    providers:   [CaseService, ErrorHandlerService]
+    providers: [CaseService, ErrorHandlerService]
 })
 export class CasesComponent implements OnInit {
-    cases:                    Case[];
+    cases: Case[];
+    properties: Array<String>;
+
     constructor(
-        private CaseService:  CaseService,
+        private CaseService: CaseService,
         private errorHandler: ErrorHandlerService,
-    ){}
+    ) { }
 
     getCases(): void {
         this.CaseService.getCases()
@@ -23,8 +25,19 @@ export class CasesComponent implements OnInit {
 
     }
 
-    ngOnInit(): void {
-        this.getCases()
+    getProperties(): void {
+        const that = this;
+
+        this.CaseService.getProperties()
+            .then(function (properties) {
+                console.log("[mean] getProperties(): ", properties);
+                that.properties = properties;
+            })
+            .catch(that.errorHandler.handlePromise)
     }
 
+    ngOnInit(): void {
+        this.getProperties()
+        this.getCases()
+    }
 }

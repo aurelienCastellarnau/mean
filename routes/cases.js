@@ -30,35 +30,41 @@ router.get("/", function (req, res) {
     }).limit(100)
 })
 
-// router.get("/:param", function (req, res) {
-//     let param = [];
-//     let keywords = [];
-//     let query = Cases.find();
+router.get('/properties', function (req, res) {
+    let properties = [];
 
-//     if ((param = req.params.param) == "")
-//         res.send("no parameters in query")
-//     param = param.split(",");
-//     console.log("[API stacktrace] GET /cases/:param with param: ", param)
-//     for (let i = 0; i < param.length; i++) {
-//         let word = param[i].trim()
-//         keywords[i] = { naturecode: word };
-//     }
-//     console.log("mots clés: ", keywords)
-//     query.or(keywords)
-//     query.exec(function (err, c) {
-//         if (err) {
-//             return res.send(500, err)
-//         }
-//         console.log("[API stacktrace] result from textsearch: ", c)
-//         res.json(c)
-//     })
-// })
-//
-router.get("/:id", function(req, res){
+    Cases.aggregate([
+        {
+            "$group": {
+                _id: null,
+                naturecode: { $addToSet: "$naturecode" },
+                incident_type_description: { $addToSet: "$incident_type_description" },
+                main_crimecode: { $addToSet: "$main_crimecode" },
+                reptdistrict: { $addToSet: "$reptdistrict" },
+                reportingarea: { $addToSet: "$reportingarea" },
+                weapontype: { $addToSet: "$weapontype" },
+                shift: { $addToSet: "$shift" },
+                day_week: { $addToSet: "$day_week" },
+                ucrpart: { $addToSet: "$ucrpart" },
+                streetname: { $addToSet: "$streetname" },
+                xstreetname: { $addToSet: "$xstreetname" }
+            }
+        }
+    ], function (err, properties) {
+        if (err) {
+            console.log("[API] GET /cases/properties failed: ", err)
+            res.status(500).json(err)
+        }
+        console.log("[API stacktrace] GET /properties success: ", properties)
+        res.status(200).json(properties)
+    })
+});
+
+router.get("/:id", function (req, res) {
     let param
     console.log("/id");
     param = req.params.id
-    Cases.findById(param, function(err, c) {
+    Cases.findById(param, function (err, c) {
         if (err) {
             return res.send(err)
         }
@@ -145,6 +151,8 @@ router.delete('/:id', function (req, res) {
             message: 'no role provided.'
         })
     }
-});
+})
+
+
 
 module.exports = router

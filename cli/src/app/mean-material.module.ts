@@ -9,7 +9,8 @@ import { MdButtonModule }          from '@angular/material';
 import { MdIconModule }            from '@angular/material';
 import { MdToolbarModule }         from '@angular/material';
 import { MaterialModule }          from '@angular/material';
-
+import { TypeaheadModule }         from 'ngx-bootstrap';
+import { PopoverModule }           from 'ngx-bootstrap';
 
 @NgModule({
     imports: [
@@ -23,6 +24,8 @@ import { MaterialModule }          from '@angular/material';
         MdListModule,
         MdInputModule,
         MaterialModule,
+        TypeaheadModule.forRoot(),
+        PopoverModule.forRoot(),
     ],
     exports: [
         MdCardModule,
@@ -35,6 +38,8 @@ import { MaterialModule }          from '@angular/material';
         MdListModule,
         MdInputModule,
         MaterialModule,
+        TypeaheadModule,
+        PopoverModule,
     ]
 })
 export class MeanMaterialModule {}
