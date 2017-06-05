@@ -28,7 +28,7 @@ router.get("/", function (req, res) {
         console.log("[API stacktrace] GET /cases success")
         console.log(c)
         res.json(c)
-    }).limit(100)
+    })
 })
 
 router.get('/properties', function (req, res) {

@@ -18,7 +18,7 @@ router.get('/', function (req, res) {
     ESClient.search({
         index: 'cases',
         body: {
-            "from": 0, "size": 500,
+            "from": 0, "size": 10000,
             query: {
                 "match_all": {}
             }
@@ -42,7 +42,7 @@ router.get('/:param', function (req, res) {
         index: 'cases',
         body: {
             "from": 0,
-            "size": 500,
+            "size": 25000,
             "query": {
                 "match": {
                     "_all": param
