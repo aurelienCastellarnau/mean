@@ -8,14 +8,19 @@
         <div class="col-md-2">
             <legend>Elastic Tools:</legend>
             <ul>
-                <li>Search on</li>
+                <li>
+                    <a (click)="search()">Search on all fields:</a>
+                    <input type="text" name="q" [(ngModel)]="query"> 
+                </li>
                 <li>Search on</li>
                 <li>Search on</li>
                 <li>Search on</li>
             </ul>
         </div>
         <div class="col-md-10">
-            <cases></cases>
+            <elastic-cases [cases]="cases"
+                           [properties]="properties">
+            </elastic-cases>
         </div>
     </div>
 </div>
