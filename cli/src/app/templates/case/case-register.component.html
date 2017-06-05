@@ -129,10 +129,11 @@
     <div class="col-sm-3">
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !ucrpart.valid }">
             <label for="ucrpart">ucrpart
-                <button type="button" class="btn btn-primary"
+                <button md-icon-button 
                         [popover]="properties[0].ucrpart"
-                        placement="right">
-                        see all xstreetnames
+                        placement="right"
+                        (click)="prevent($event)">
+                    <md-icon>announcement</md-icon>
                 </button>
             </label>
             <input [(ngModel)]="model.ucrpart"

@@ -1,20 +1,21 @@
 import { Component, OnInit }   from '@angular/core';
-import { Agent }               from '../model/agent';
-import { MeanMaterialModule }  from '../mean-material.module';
-import { AgentService }        from '../services/agent.service';
-import { ErrorHandlerService } from '../services/error-handler.service';
+import { Agent }               from '../../model/agent';
+import { MeanMaterialModule }  from '../../mean-material.module';
+import { AgentService }        from '../../services/agent.service';
+import { ErrorHandlerService } from '../../services/error-handler.service';
 import { TabsetComponent }     from 'ngx-bootstrap';
 
 @Component({
     selector:    'agents',
-    templateUrl: '../templates/admin.component.html',
-    providers: [AgentService]
+    templateUrl: '../../templates/agent/agents.component.html',
+    providers:   [AgentService]
 })
 export class AdminComponent implements OnInit {
-    agents:                     Agent[];
-    properties:                 String;
-    active = {status: 'active'}
-    waiting = {status: 'waiting'}
+    public agents:              Agent[];
+    public properties:          String;
+    public active =             {status: 'active'}
+    public waiting =            {status: 'waiting'}
+
     constructor(
         private AgentService:   AgentService,
         private errorHandler:   ErrorHandlerService,
@@ -68,5 +69,4 @@ export class AdminComponent implements OnInit {
         this.getAgents()
         this.getProperties()
     }
-
 }

@@ -6,6 +6,12 @@ Common prerequisites:
                 - download and install nodejs: https://nodejs.org/en/download/
                 - install npm: http://blog.npmjs.org/post/85484771375/how-to-install-npm
                 - download and install mongodb https://www.mongodb.com/download-center#community
+        
+ElasticSearch benefit:
+
+                - download and launch as service: 
+                        on windows: https://www.elastic.co/guide/en/elasticsearch/reference/2.3/setup-service-win.html
+
                 
 Windows prerequisites:
                 - set mongo as service : 

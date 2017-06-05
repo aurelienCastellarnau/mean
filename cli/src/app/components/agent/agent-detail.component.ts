@@ -1,21 +1,21 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Params}           from '@angular/router';
-import { Agent }                     from '../model/agent';
-import { AgentService }              from '../services/agent.service';
+import { ActivatedRoute, Params}    from '@angular/router';
+import { Agent }                    from '../../model/agent';
+import { AgentService }             from '../../services/agent.service';
 
 @Component({
   selector:    'agent-detail',
-  templateUrl: '../templates/agent-detail.component.html',
+  templateUrl: '../../templates/agent/agent-detail.component.html',
 })
 
 export class AgentDetailComponent implements OnInit {
   @Input() agent:         Agent;
-  id:                     string;
+  public id:              string;
 
   constructor(
     private AgentService: AgentService,
-    private route:       ActivatedRoute
-  ) {}
+    private route:        ActivatedRoute
+  ){}
 
 ngOnInit(): void {
     let that = this;

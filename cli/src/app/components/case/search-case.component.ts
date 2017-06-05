@@ -1,19 +1,21 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Case }                     from '../model/case';
+import { Case }                     from '../../model/case';
 import { Router }                   from '@angular/router';
-import { MeanMaterialModule }       from '../mean-material.module';
-import { CaseService }              from '../services/case.service';
-import { ErrorHandlerService }      from '../services/error-handler.service';
+import { MeanMaterialModule }       from '../../mean-material.module';
+import { CaseService }              from '../../services/case.service';
+import { ErrorHandlerService }      from '../../services/error-handler.service';
 
 @Component({
     selector:    'search-case',
-    templateUrl: '../templates/search-case.component.html',
-    providers:   [CaseService, ErrorHandlerService]
+    templateUrl: '../../templates/case/search-case.component.html',
+    providers:   [CaseService, ErrorHandlerService],
 })
+
 export class SearchCaseComponent implements OnInit {
-    search:                   string;
-    searchedCases:            Case[];
-    searchedCase:             Case;
+    public search:            string
+    public searchedCases:     Case[]
+    public searchedCase:      Case
+    
     constructor(
         private caseService:  CaseService,
         private router:       Router,
