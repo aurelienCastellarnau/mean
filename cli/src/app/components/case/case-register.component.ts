@@ -1,5 +1,8 @@
-import {  Component, OnInit }     from '@angular/core';
+import {  Component, 
+          OnInit,
+          Input }                 from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Case }                   from '../../model/case';
 import { CaseService }            from '../../services/case.service';
 import { AlertService }           from '../../services/alert.service';
 import { ErrorHandlerService }    from '../../services/error-handler.service';
@@ -11,7 +14,7 @@ import { Location }               from '@angular/common';
 })
 
 export class RegisterCaseComponent implements OnInit {
-    public model:             any = {}
+    public model =            new Case()
     public properties:        any
 
     constructor(

@@ -1,22 +1,23 @@
-import { NgModule }               from '@angular/core';
-import { RouterModule, Routes }   from '@angular/router';
-import { HomeComponent }          from './components/mean/home.component';
-import { NavigationComponent }    from './components/mean/navigation.component';
-import { LoginComponent }         from './components/mean/login.component';
-import { RegisterComponent }      from './components/agent/register-agent.component';
-import { AdminComponent }         from './components/agent/admin.component';
-import { AgentComponent }         from './components/agent/agents.component';
-import { AgentDetailComponent }   from './components/agent/agent-detail.component';
-import { RegisterAgentComponent } from './components/agent/agent-register.component';
-import { EditAgentComponent }     from './components/agent/agent-edit.component';
-import { CaseDetailComponent }    from './components/case/case-detail.component';
-import { CasesComponent }         from './components/case/cases.component';
-import { SearchCaseComponent }    from './components/case/search-case.component';
-import { RegisterCaseComponent }  from './components/case/case-register.component';
-import { EditCaseComponent }      from './components/case/cases-edit.component';
-import { AuthGuard }              from './guards/auth.guard';
-import { RoleGuard }              from './guards/role.guard';
-import { PropertiesResolver }     from './services/propertiesResolver.service'
+import { NgModule }                from '@angular/core';
+import { RouterModule, Routes }    from '@angular/router';
+import { HomeComponent }           from './components/mean/home.component';
+import { NavigationComponent }     from './components/mean/navigation.component';
+import { LoginComponent }          from './components/mean/login.component';
+import { RegisterComponent }       from './components/agent/register-agent.component';
+import { AdminComponent }          from './components/agent/admin.component';
+import { AgentComponent }          from './components/agent/agents.component';
+import { AgentDetailComponent }    from './components/agent/agent-detail.component';
+import { RegisterAgentComponent }  from './components/agent/agent-register.component';
+import { EditAgentComponent }      from './components/agent/agent-edit.component';
+import { CaseDetailComponent }     from './components/case/case-detail.component';
+import { CasesComponent }          from './components/case/cases.component';
+import { SearchCaseComponent }     from './components/case/search-case.component';
+import { RegisterCaseComponent }   from './components/case/case-register.component';
+import { EditCaseComponent }       from './components/case/cases-edit.component';
+import { ElasticBrowserComponent } from './components/elastic/elastic-browser.component';
+import { AuthGuard }               from './guards/auth.guard';
+import { RoleGuard }               from './guards/role.guard';
+import { PropertiesResolver }      from './services/propertiesResolver.service'
 
 const routes: Routes = [
   {
@@ -85,7 +86,7 @@ const routes: Routes = [
   },
   {
     path: 'elasticsearch',
-    component: CasesComponent,
+    component: ElasticBrowserComponent,
     canActivate: [AuthGuard, RoleGuard]
   },
   {

@@ -26,6 +26,7 @@ router.get("/", function (req, res) {
             return res.send(err)
         }
         console.log("[API stacktrace] GET /cases success")
+        console.log(c)
         res.json(c)
     }).limit(100)
 })

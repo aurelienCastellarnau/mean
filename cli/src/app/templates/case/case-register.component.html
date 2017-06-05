@@ -3,7 +3,7 @@
         <h2>Register new Case</h2>
     </div>
 </div>
-<form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+<form *ngIf="model" name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
     <div class="col-sm-3">
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !compnos.valid }">
             <label for="compnos">compnos</label>

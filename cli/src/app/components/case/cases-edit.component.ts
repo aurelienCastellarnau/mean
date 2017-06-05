@@ -1,29 +1,32 @@
-import { Component, OnInit }   from '@angular/core';
+import { Component, 
+         Input }               from '@angular/core';
 import { Router, 
          ActivatedRoute, 
          Params }              from '@angular/router';
+import { Case }                from '../../model/case';
 import { CaseService }         from '../../services/case.service';
 import { AlertService }        from '../../services/alert.service';
 import { ErrorHandlerService } from '../../services/error-handler.service';
 import { Location }            from '@angular/common';
 
 @Component({
-    moduleId: module.id,
+    moduleId:    module.id,
+    selector:    'case-edit',
     templateUrl: '../../templates/case/case-register.component.html',
 })
 
-export class EditCaseComponent implements OnInit {
-    public model: any = {}
-    public properties: any
+export class EditCaseComponent {
+    @Input() model:           Case
+    @Input() properties:      any
 
-    private sub: any
-    private id: string
+    private sub:              any
+    private id:               string
     constructor(
-        private router: Router,
-        private CaseService: CaseService,
+        private router:       Router,
+        private CaseService:  CaseService,
         private alertService: AlertService,
-        private location: Location,
-        private route: ActivatedRoute,
+        private location:     Location,
+        private route:        ActivatedRoute,
         private errorHandler: ErrorHandlerService,
     ){}
 
@@ -49,20 +52,6 @@ export class EditCaseComponent implements OnInit {
         this.location.back()
     }
 
-    ngOnInit(): void {
-        let that = this
-
-        this.properties = this.route.snapshot.data['properties']
-        this.route.params
-            .switchMap((params: Params) => this.CaseService.getCase(params['param']))
-            .subscribe(function (c) {
-                that.model = c
-            })
-        this.sub = this.route.params.subscribe(params => {
-            this.id = params['param']
-        })
-
-    }
     private value: any = ['Athens']
     private _disabledV: string = '0'
     private disabled: boolean = false

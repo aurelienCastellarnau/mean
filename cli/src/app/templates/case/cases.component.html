@@ -7,26 +7,26 @@
         </div>
     </div>
     <div class="row">
-<<<<<<< HEAD:cli/src/app/templates/cases.component.html
-
-            <div class="col-sm-3 col-md-offset-1" *ngFor="let case of cases" routerLink="/cases/{{ case._id }}" style="margin-bottom: 10px">
-=======
-        <button type="button" 
-                class="btn btn-info"
-                (click)="getCasesElastic()">
-                Elastic GET /cases
-        </button>
-            <div class="col-sm-3 col-md-offset-1" *ngFor="let case of cases" (click)="sel" style="margin-bottom: 10px">
->>>>>>> [API][client] refactor + norme + add elastic search part.:cli/src/app/templates/case/cases.component.html
+        <div class="col-md-6">
+            <div class="col-md-4"
+                 *ngFor="let case of cases" 
+                 (click)="selectCase(case)"
+                 style="margin-bottom: 10px">
                 <md-card class="example-card">
-                <md-card-header>
-                    <md-card-title>{{ case.incident_type_description }} {{ case.compnos }}</md-card-title>
-                    <md-card-subtitle>{{ case.reportingarea }}</md-card-subtitle>
-                  </md-card-header>
-                  <md-card-content>
-                    case: {{ case.location }}
-                  </md-card-content>
+                    <md-card-header>
+                        <md-card-title>{{ case.incident_type_description }} {{ case.compnos }}</md-card-title>
+                        <md-card-subtitle>{{ case.reportingarea }}</md-card-subtitle>
+                    </md-card-header>
+                    <md-card-content>
+                        case: {{ case.location }}
+                    </md-card-content>
                 </md-card>
             </div>
+        </div>
+        <div class="col-md-6">
+            <case-edit [model]="selectedCase"
+                       [properties]="properties">
+            </case-edit>
+        </div>
     </div>
 </div>

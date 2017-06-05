@@ -11,8 +11,8 @@ import { CaseService }              from '../../services/case.service';
 
 export class CaseDetailComponent implements OnInit {
   @Input() case:         Case
-  public param:          string
-  
+  public   param:        string
+
   constructor(
     private CaseService: CaseService,
     private route:       ActivatedRoute,

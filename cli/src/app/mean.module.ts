@@ -22,6 +22,7 @@ import { CasesComponent }          from './components/case/cases.component';
 import { RegisterCaseComponent }   from './components/case/case-register.component';
 import { EditCaseComponent }       from './components/case/cases-edit.component';
 import { SearchCaseComponent }     from './components/case/search-case.component';
+import { ElasticBrowserComponent } from './components/elastic/elastic-browser.component';
 import { Case }                    from './model/case';
 import { Agent }                   from './model/agent';
 import { CaseService }             from './services/case.service';
@@ -49,6 +50,7 @@ import { RoleGuard }               from './guards/role.guard';
     CasesComponent,
     CaseDetailComponent,
     SearchCaseComponent,
+    ElasticBrowserComponent,
     NavigationComponent,
     LoginComponent,
     HomeComponent,

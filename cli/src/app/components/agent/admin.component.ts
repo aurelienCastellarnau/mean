@@ -7,7 +7,7 @@ import { TabsetComponent }     from 'ngx-bootstrap';
 
 @Component({
     selector:    'agents',
-    templateUrl: '../../templates/agent/agents.component.html',
+    templateUrl: '../../templates/agent/admin.component.html',
     providers:   [AgentService]
 })
 export class AdminComponent implements OnInit {
