@@ -1,5 +1,4 @@
 import { Component, 
-         Output, 
          OnInit }              from '@angular/core';
 import { Case }                from '../../model/Case';
 import { MeanMaterialModule }  from '../../mean-material.module';
@@ -17,7 +16,7 @@ import { ErrorHandlerService } from '../../services/error-handler.service';
 export class CasesComponent implements OnInit {
     public    cases:             Case[]
     public    properties:        Array<String>
-    @Output() selectedCase:      Case
+    public    selectedCase:      Case
 
     constructor(
         private CaseService:  CaseService,
