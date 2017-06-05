@@ -1,12 +1,11 @@
 import { Component }             from '@angular/core';
 import { Case }                  from '../model/case';
-import { NavigationComponent }   from './navigation.component';
+import { NavigationComponent }   from './mean/navigation.component';
 
 @Component({
   selector:    'mean-root',
   templateUrl: '../templates/mean.component.html',
-  styleUrls:   ['../style/mean.component.css']
+  styleUrls:   ['../style/mean.component.css'],
 })
 
-export class MeanComponent {
-}
+export class MeanComponent {}

@@ -7,8 +7,17 @@
         </div>
     </div>
     <div class="row">
+<<<<<<< HEAD:cli/src/app/templates/cases.component.html
 
             <div class="col-sm-3 col-md-offset-1" *ngFor="let case of cases" routerLink="/cases/{{ case._id }}" style="margin-bottom: 10px">
+=======
+        <button type="button" 
+                class="btn btn-info"
+                (click)="getCasesElastic()">
+                Elastic GET /cases
+        </button>
+            <div class="col-sm-3 col-md-offset-1" *ngFor="let case of cases" (click)="sel" style="margin-bottom: 10px">
+>>>>>>> [API][client] refactor + norme + add elastic search part.:cli/src/app/templates/case/cases.component.html
                 <md-card class="example-card">
                 <md-card-header>
                     <md-card-title>{{ case.incident_type_description }} {{ case.compnos }}</md-card-title>

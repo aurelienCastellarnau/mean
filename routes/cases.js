@@ -58,7 +58,7 @@ router.get('/properties', function (req, res) {
         console.log("[API stacktrace] GET /properties success: ", properties)
         res.status(200).json(properties)
     })
-});
+})
 
 router.get("/:id", function (req, res) {
     let param

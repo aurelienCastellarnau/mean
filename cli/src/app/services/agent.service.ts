@@ -1,16 +1,15 @@
 import { Injectable, OnInit }                      from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Agent }                                   from '../model/agent';
-import { ErrorHandlerService } from '../services/error-handler.service';
+import { ErrorHandlerService }                     from '../services/error-handler.service';
 
 @Injectable()
 export class AgentService {
-    url = '/agents';
-
+    url =                     '/agents'
     constructor(
-        private http: Http,
+        private http:         Http,
         private errorHandler: ErrorHandlerService,
-    ) { }
+    ){}
 
     getAll() {
         console.log("[stacktrace-mean] call on Agentservice getAll()")
@@ -26,19 +25,19 @@ export class AgentService {
     }
 
     getById(param: string): Promise<Agent> {
-        const url = `/agents/${param}`;
-        let c:      Agent;
+        const url = `/agents/${param}`
+        let c:      Agent
 
         console.log("[stacktrace-mean] call on CaseService: getCase() with param: ", param)
         return this.http.get(url, this.jwt())
             .toPromise()
             .then(response => response.json() as Agent)
-            .catch(this.errorHandler.handlePromise);
+            .catch(this.errorHandler.handlePromise)
     }
 
     getProperties(): Promise<String> {
-        const url = '/agents/properties';
-        const that = this;
+        const url = '/agents/properties'
+        const that = this
 
         return this.http.get(url, this.jwt())
             .toPromise()
@@ -49,15 +48,15 @@ export class AgentService {
             .catch(function(err){
                 console.log(err)
                 that.errorHandler.handlePromise(err)
-            });
+            })
     }
 
     create(agent: Agent) {
-        return this.http.post('/register', agent);
+        return this.http.post('/register', agent)
     }
 
     update(agent: Agent, __id: string) {
-        return this.http.put(this.url + '/' + __id + '/edit', agent, this.jwt());
+        return this.http.put(this.url + '/' + __id + '/edit', agent, this.jwt())
     }
 
     accept(__id: string) {
@@ -69,10 +68,11 @@ export class AgentService {
     }
 
     private jwt() {
-        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'))
+
         if (currentUser && currentUser.token) {
-            let headers = new Headers({ 'Authorization': currentUser.token });
-            return new RequestOptions({ headers: headers });
+            let headers = new Headers({ 'Authorization': currentUser.token })
+            return new RequestOptions({ headers: headers })
         }
     }
 }
