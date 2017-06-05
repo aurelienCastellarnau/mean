@@ -23,17 +23,7 @@ export class ElasticService {
 
         return this.http.get(url, this.jwt())
             .toPromise()
-            .then(function (response) {
-                let hits = response.json()
-                that.cases = []
-                hits.hits.hits.forEach(element => {
-                    //element._source._id = element._source.uuid
-                    console.log(element)
-                    that.cases.push(element._source as Case)
-                });
-                console.log("cases: ", that.cases)
-                return that.cases
-            })
+            .then(response => response.json())
             .catch(this.handleError.handlePromise)
     }
 
