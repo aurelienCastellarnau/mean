@@ -32,6 +32,8 @@ import { EditCaseComponent }       from './components/cases-edit.component';
 import { RegisterComponent }       from './components/register-agent.component';
 import { AdminComponent }          from './components/admin.component';
 import { PropertiesResolver }      from './services/propertiesResolver.service';
+import { StatusPipe }              from './pipes/status.component';
+import { PagerService }            from './services/paginator.service';
 
 @NgModule({
   imports: [
@@ -58,7 +60,8 @@ import { PropertiesResolver }      from './services/propertiesResolver.service';
     RegisterCaseComponent,
     EditCaseComponent,
     RegisterComponent,
-    AdminComponent
+    AdminComponent,
+    StatusPipe
   ],
   providers: [
     CaseService,
@@ -69,7 +72,8 @@ import { PropertiesResolver }      from './services/propertiesResolver.service';
     AuthenticationService,
     AgentService,
     AlertService,
-    PropertiesResolver
+    PropertiesResolver,
+    PagerService
   ],
   bootstrap: [MeanComponent]
 })

@@ -44,7 +44,7 @@ export class AgentService {
             .toPromise()
             .then(function(response){
                  console.log(response)
-                 return response.json()            
+                 return response.json()
             })
             .catch(function(err){
                 console.log(err)
@@ -60,8 +60,12 @@ export class AgentService {
         return this.http.put(this.url + '/' + __id + '/edit', agent, this.jwt());
     }
 
+    accept(__id: string) {
+        return this.http.put('/admin/' + __id, __id,this.jwt());
+    }
+
     delete(__id: string) {
-        return this.http.delete(this.url + __id, this.jwt());
+        return this.http.delete(this.url + '/' + __id, this.jwt());
     }
 
     private jwt() {

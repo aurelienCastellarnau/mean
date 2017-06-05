@@ -11,6 +11,10 @@ import { MdToolbarModule }         from '@angular/material';
 import { MaterialModule }          from '@angular/material';
 import { TypeaheadModule }         from 'ngx-bootstrap';
 import { PopoverModule }           from 'ngx-bootstrap';
+import { TabsModule }              from 'ngx-bootstrap';
+import { ButtonsModule }           from 'ngx-bootstrap';
+import { PaginationModule }        from 'ngx-bootstrap';
+
 
 @NgModule({
     imports: [
@@ -26,6 +30,9 @@ import { PopoverModule }           from 'ngx-bootstrap';
         MaterialModule,
         TypeaheadModule.forRoot(),
         PopoverModule.forRoot(),
+        TabsModule.forRoot(),
+        ButtonsModule.forRoot(),
+        PaginationModule.forRoot()
     ],
     exports: [
         MdCardModule,
@@ -40,6 +47,9 @@ import { PopoverModule }           from 'ngx-bootstrap';
         MaterialModule,
         TypeaheadModule,
         PopoverModule,
+        TabsModule,
+        ButtonsModule,
+        PaginationModule
     ]
 })
 export class MeanMaterialModule {}
