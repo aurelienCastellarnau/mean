@@ -1,7 +1,10 @@
 Cases = require('../models/casesModel');
 ESClient = require('../utils/elasticsearch.js');
 
-
+/*
+** Service de gestion de l'index
+** ElasticSearch. Pour l'instant, juste le add.
+*/
 const elastic = {
     "init": function init() {
         Cases.find({}, { '_id': 0 }, function (err, c) {// { '_id': 0 },
