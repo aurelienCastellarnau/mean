@@ -1,4 +1,5 @@
 import { Component, 
+         OnInit,
          Input }               from '@angular/core';
 import { Router, 
          ActivatedRoute, 
@@ -15,7 +16,7 @@ import { Location }            from '@angular/common';
     templateUrl: '../../templates/case/case-register.component.html',
 })
 
-export class EditCaseComponent {
+export class EditCaseComponent implements OnInit {
     @Input() model:           Case
     @Input() properties:      any
 
@@ -50,6 +51,10 @@ export class EditCaseComponent {
 
     goBack() {
         this.location.back()
+    }
+
+    ngOnInit() {
+        this.properties = this.CaseService.getProperties()
     }
 
     private value: any = ['Athens']

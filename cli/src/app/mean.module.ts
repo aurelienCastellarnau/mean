@@ -23,6 +23,7 @@ import { RegisterCaseComponent }   from './components/case/case-register.compone
 import { EditCaseComponent }       from './components/case/cases-edit.component';
 import { SearchCaseComponent }     from './components/case/search-case.component';
 import { ElasticBrowserComponent } from './components/elastic/elastic-browser.component';
+import { ElasticCasesComponent }   from './components/elastic/elastic-cases.component';
 import { Case }                    from './model/case';
 import { Agent }                   from './model/agent';
 import { CaseService }             from './services/case.service';
@@ -32,6 +33,7 @@ import { ErrorHandlerService }     from './services/error-handler.service';
 import { AuthenticationService }   from './services/auth.service';
 import { PagerService }            from './services/paginator.service';
 import { PropertiesResolver }      from './services/propertiesResolver.service';
+import { ElasticService }          from './services/elastic.service';
 import { StatusPipe }              from './pipes/status.component';
 import { AuthGuard }               from './guards/auth.guard';
 import { RoleGuard }               from './guards/role.guard';
@@ -51,6 +53,7 @@ import { RoleGuard }               from './guards/role.guard';
     CaseDetailComponent,
     SearchCaseComponent,
     ElasticBrowserComponent,
+    ElasticCasesComponent,
     NavigationComponent,
     LoginComponent,
     HomeComponent,
@@ -75,7 +78,8 @@ import { RoleGuard }               from './guards/role.guard';
     AgentService,
     AlertService,
     PropertiesResolver,
-    PagerService
+    PagerService,
+    ElasticService
   ],
   bootstrap: [MeanComponent]
 })
