@@ -11,11 +11,12 @@ const elastic = {
             if (err) {
                 // console.log("[ES in /cases routes] indexation error: ", err)
             } else {
-                index(c, 5000)
+                index(c, 100)
             }
-        }).limit(22000)
+        })
     }
 }
+
 function index(c, limit, last) {
     if (!last)
         last = 0
@@ -27,7 +28,7 @@ function index(c, limit, last) {
             body: c[key]
         }, function (err, resp, status) {
             if (key === limit - 1 && key !== (c.length - 1))
-                index(c, limit + 5000, key)
+                index(c, limit + 100, key)
         });
     }
 }
