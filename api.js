@@ -11,17 +11,16 @@ const express      = require('express'),
 
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(elasticS.init);
+//app.use(elasticS.init);
 app.set('superSecret', conf.secret);
 
 mongoose.Promise = require('bluebird');
 mongoose.connect(conf.dsn);
 const db = mongoose.connection;
-
+console.log('coco')
 db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', function (){
     console.log('connection succeeded');
-    db.collections.agents.createIndex( { firstname: "text", lastname: "text" } )
     //db.collections.cases.createIndex({ })
     /*
     ** serve the client directory

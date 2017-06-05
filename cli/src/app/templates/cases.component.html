@@ -1,10 +1,13 @@
 <div class="show-cases">
     <div class="row">
+    </div>
+    <div class="row">
         <div class="col-sm-6 col-md-offset-3">
             <h1>MEAN CASES</h1>
         </div>
     </div>
     <div class="row">
+
             <div class="col-sm-3 col-md-offset-1" *ngFor="let case of cases" routerLink="/cases/{{ case._id }}" style="margin-bottom: 10px">
                 <md-card class="example-card">
                 <md-card-header>

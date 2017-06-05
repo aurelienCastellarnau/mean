@@ -4,17 +4,48 @@
             <h1>MEAN AGENTS</h1>
         </div>
     </div>
-    <div class="row">
-            <div class="col-sm-3 col-md-offset-1" *ngFor="let agent of agents" routerLink="/agents/{{ agent._id }}" style="margin-bottom: 10px">
+    <div>
+  <hr/>
+  <tabset #staticTabs>
+    <tab heading="Waiting agents">
+            <div class="row">
+            <div class="col-sm-3 col-md-offset-1" *ngFor="let agent of agents | status:waiting" style="margin-bottom: 10px">
                 <md-card class="example-card">
                 <md-card-header>
-                    <md-card-title>{{ agent.firstname }} {{ agent.lastname }}</md-card-title>
+                    <md-card-title> <h5>{{ agent.firstname }} {{ agent.lastname }}</h5></md-card-title>
                     <md-card-subtitle>{{ agent.role }}</md-card-subtitle>
                   </md-card-header>
                   <md-card-content>
                     AgentCode: {{ agent.agentcode }}
                   </md-card-content>
+                  <md-card-content>
+                    <button class="btn btn-info" routerLink="/agents/{{ agent._id }}">voir</button>
+                    <button type='button' class="btn btn-danger" (click)="delete(agent._id)" >Supprimer</button>
+                    <button type='button' class="btn btn-success" (click)="accept(agent._id)" >Accepter</button>
+                  </md-card-content>
                 </md-card>
             </div>
     </div>
+    </tab>
+    <tab heading="Active agents">
+    <div class="row">
+            <div class="col-sm-3 col-md-offset-1" *ngFor="let agent of agents | status:active" style="margin-bottom: 10px">
+                <md-card class="example-card">
+                <md-card-header>
+                    <md-card-title><h5>{{ agent.firstname }} {{ agent.lastname }}</h5></md-card-title>
+                    <md-card-subtitle>{{ agent.role }}</md-card-subtitle>
+                  </md-card-header>
+                  <md-card-content>
+                    AgentCode: {{ agent.agentcode }}
+                  </md-card-content>
+                    <md-card-content>
+                    <button type='button' class="btn btn-danger" (click)="delete(agent._id)" >Supprimer</button>
+                    <button class="btn btn-info" routerLink="/agents/{{ agent._id }}">voir</button>
+                  </md-card-content>
+                </md-card>
+            </div>
+    </div>
+    </tab>
+  </tabset>
+</div>
 </div>
