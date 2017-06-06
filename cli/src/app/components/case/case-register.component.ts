@@ -9,13 +9,13 @@ import { ErrorHandlerService }    from '../../services/error-handler.service';
 import { Location }               from '@angular/common';
 
 @Component({
-    moduleId: module.id,
+    moduleId:    module.id,
     templateUrl: '../../templates/case/case-register.component.html',
 })
 
-export class RegisterCaseComponent implements OnInit {
-    public model =            new Case()
-    public properties:        any
+export class CaseRegisterComponent implements OnInit {
+    public model =             new Case()
+    public properties:         any
 
     constructor(
         private router:       Router,

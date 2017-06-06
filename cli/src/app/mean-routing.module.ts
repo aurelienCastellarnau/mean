@@ -47,7 +47,7 @@ const routes: Routes = [
   },
   {
     path: 'create/case',
-    component: RegisterCaseComponent,
+    component: CaseRegisterComponent,
     resolve: { properties: PropertiesResolver },
     canActivate: [AuthGuard, RoleGuard]
   },

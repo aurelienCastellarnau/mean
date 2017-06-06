@@ -1,7 +1,6 @@
 import { Component }             from '@angular/core';
 import { Location }              from '@angular/common';
 import { RouterModule }          from '@angular/router';
-import { MdDialog, MdDialogRef } from '@angular/material';
 import { Agent }                 from '../../model/agent';
 import { AgentService }          from '../../services/agent.service';
 
