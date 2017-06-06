@@ -1,6 +1,8 @@
-import { Component, OnInit }   from '@angular/core';
+import { Component, 
+         OnInit }              from '@angular/core';
 import { Case }                from '../../model/Case';
 import { MeanMaterialModule }  from '../../mean-material.module';
+import { CaseDetailComponent } from './case-detail.component';
 import { CaseService }         from '../../services/case.service';
 import { ElasticService }      from '../../services/elastic.service';
 import { ErrorHandlerService } from '../../services/error-handler.service';
@@ -12,9 +14,9 @@ import { ErrorHandlerService } from '../../services/error-handler.service';
 })
 
 export class CasesComponent implements OnInit {
-    public cases:             Case[]
-    public properties:        Array<String>
-
+    public    cases:             Case[]
+    public    properties:        Array<String>
+    public    selectedCase:      Case
 
     constructor(
         private CaseService:  CaseService,
@@ -48,6 +50,11 @@ export class CasesComponent implements OnInit {
                 that.properties = properties
             })
             .catch(this.errorHandler.handlePromise)
+    }
+
+    selectCase(c: Case): any {
+        this.selectedCase = c
+        console.log(this.selectedCase)
     }
 
     ngOnInit(): void {

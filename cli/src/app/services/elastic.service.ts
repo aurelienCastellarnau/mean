@@ -23,28 +23,54 @@ export class ElasticService {
 
         return this.http.get(url, this.jwt())
             .toPromise()
-            .then(function (response) {
-                let hits = response.json()
-                that.cases = []
-                hits.hits.hits.forEach(element => {
-                    //element._source._id = element._source.uuid
-                    console.log(element)
-                    that.cases.push(element._source as Case)
-                });
-                console.log("cases: ", that.cases)
-                return that.cases
-            })
+            .then(response => response.json())
             .catch(this.handleError.handlePromise)
     }
 
-    getCase(param: string): Promise<Case>{
+    getCase(param: String): Promise<Case>{
         const url = `/elasticsearch/${param}`
         const that = this
 
         return this.http.get(url, this.jwt())
         .toPromise()
-        .then(response => this.case = response.json() as Case)
+        .then(response => response.json() as Case)
         .catch(this.handleError.handlePromise)
+    }
+
+    /*
+    ** De ce côté ca marche comme ailleurs...
+    */
+    search(param: String): Promise<any>{
+        const url = `/elasticsearch/${param}`
+        const that = this
+
+        return this.http.get(url, this.jwt())
+        .toPromise()
+        .then(response => response.json())
+        .catch(this.handleError.handlePromise)
+    }
+
+    /*
+    ** particularité de la réponse fournie par elastic search.
+    ** les objets sont dans response.hits.hits[
+    **                                        0 => [
+    **                                            _source: case
+    **                                        ]
+    **                                        1 => [
+    **                                            _source: case
+    **                                        ]
+    **                                        etc...
+    **                                  ]
+    ** d'où cette méthode de parsing.
+    */
+    toCases(elasticObject: any): Case[]{
+        let cases = []
+
+        elasticObject.hits.hits.forEach(hit => {
+            cases.push(hit._source)
+        })
+        console.log(cases)
+        return cases
     }
 
     private jwt() {
