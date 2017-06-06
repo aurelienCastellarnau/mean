@@ -21,18 +21,22 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-server": "node ./api.js -index false",
-    "start-server-index": "node ./api.js -index true",
-    "build-client": "cd cli && npm install && ng build && cd ../",
+    "start_server_index": "node ./api.js -index true",
+    "build_client": "cd cli && npm install && ng build && cd ../",
     "mongo_win": "net start MongoDB",
     "mongo_unix": "mongod --fork",
     "elastic": "cd ../elasticsearch/bin/ && elasticsearch-service.bat start && cd ../",
-    "deploy": "npm run build-client & npm install && npm run start-server",
-    "deploy_index": "npm run build-client & npm install && npm run start-server-index",
+    "deploy": "npm run build_client & npm install && npm run start_server",
+    "deploy_index": "npm run build_client & npm install && npm run start_server_index",
     "deploy_win": "npm run elastic & npm run mongo_win & npm run deploy",
     "deploy_win_index": "npm run elastic & npm run mongo_win & npm run deploy_index",
     "deploy_unix": "npm run mongo_unix & npm run deploy",
-    "deploy_unix_index": "npm run mongo_unix & npm run deploy_index"
+    "deploy_unix_index": "npm run mongo_unix & npm run deploy_index",
+
+    "cli": "cd cli && ng build && cd ../",
+    "start_server": "node ./api.js -index false",
+        
+    "mean": "npm run cli && npm run start_server"
   },
   "author": "billau_j, castel_a, godefr_s",
   "license": "ISC"
