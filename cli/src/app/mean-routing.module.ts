@@ -12,7 +12,7 @@ import { EditAgentComponent }      from './components/agent/agent-edit.component
 import { CaseDetailComponent }     from './components/case/case-detail.component';
 import { CasesComponent }          from './components/case/cases.component';
 import { SearchCaseComponent }     from './components/case/search-case.component';
-import { RegisterCaseComponent }   from './components/case/case-register.component';
+import { CaseRegisterComponent }   from './components/case/case-register.component';
 import { EditCaseComponent }       from './components/case/cases-edit.component';
 import { ElasticBrowserComponent } from './components/elastic/elastic-browser.component';
 import { AuthGuard }               from './guards/auth.guard';

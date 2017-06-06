@@ -1,5 +1,9 @@
-import { Component, Input } from '@angular/core';
-import { Case }             from '../../model/Case';
+import { Component,
+         Input }       from '@angular/core';
+import { MdDialog, 
+         MdDialogRef } from '@angular/material';
+import { EditDialog }  from '../case/edit-dialog.component';      
+import { Case }        from '../../model/case';
 
 @Component({
     selector: 'elastic-cases',
@@ -13,12 +17,25 @@ export class ElasticCasesComponent {
     ** lors de l'appel du template 
     ** (voir elastic-browser.component.html et l'appel de <elastic-cases>)
     */
-    @Input() cases:        Case[]
-    @Input() properties:   String[]
-    public   selectedCase: Case
+    @Input() cases:                    Case[]
+    @Input() properties:               String[]
+    public   selectedCase:             Case
+
+    private  modelSave:                Case
+    constructor(public editDialog: MdDialog){}
 
     selectCase(c: Case): void {
-        this.selectedCase = c
-        console.log(this.selectedCase)
+        this.selectedCase = Object.assign({}, c)
+        this.modelSave = Object.assign({}, c)
+        console.log("original:", c, " selected: ", this.selectedCase, " modelSave: ", this.modelSave)
+        let editDialogRef = this.editDialog.open(EditDialog, {
+            height: '500px',
+            width: '700px',
+            data: {
+                'model': this.selectedCase,
+                'modelSave': this.modelSave,
+                'properties': this.properties
+            }
+        })
     }
-}}
+}

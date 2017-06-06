@@ -46,10 +46,10 @@ export class CaseService {
         return this.http.post('/cases/create', Case, this.jwt())
     }
 
-    update(Case: Case, __id: string) {
+    update(c: Case, save: Case) {
         const url = '/cases'
         
-        return this.http.put(url + '/' + __id + '/edit', Case, this.jwt())
+        return this.http.put(url + '/' + save + '/edit', {'new':c, 'old':save}, this.jwt())
     }
 
     delete(__id: string) {

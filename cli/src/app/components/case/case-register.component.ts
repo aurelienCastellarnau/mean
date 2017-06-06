@@ -16,6 +16,8 @@ import { Location }               from '@angular/common';
 export class CaseRegisterComponent implements OnInit {
     public model =             new Case()
     public properties:         any
+    public selectedProperties: String
+    public title =             "Register a new case: "
 
     constructor(
         private router:       Router,
@@ -37,6 +39,17 @@ export class CaseRegisterComponent implements OnInit {
                 console.log("ERROR QUI CLAQUE")
                 this.alertService.error(error._body)
             })
+    }
+
+    selectProperties(p: any, event) {
+        event.preventDefault()
+        let properties: String
+        console.log(p)
+        p.forEach(element => {
+            console.log(element)
+            properties.concat(element, ", ")            
+        });
+        this.selectedProperties = properties.slice(0, properties.length - 2)
     }
 
    prevent(event) {

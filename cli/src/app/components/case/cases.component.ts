@@ -6,7 +6,8 @@ import { CaseDetailComponent } from './case-detail.component';
 import { CaseService }         from '../../services/case.service';
 import { ElasticService }      from '../../services/elastic.service';
 import { ErrorHandlerService } from '../../services/error-handler.service';
-import { SebmGoogleMap, SebmGoogleMapMarker } from 'angular2-google-maps/core';
+import { SebmGoogleMap, 
+         SebmGoogleMapMarker } from 'angular2-google-maps/core';
 
 @Component({
     selector:    'cases',
@@ -18,16 +19,15 @@ export class CasesComponent implements OnInit {
     public    cases:             Case[]
     public    properties:        Array<String>
     public    selectedCase:      Case
+    public p:                    number = 1;
+    public lat:                  number = 42.28598136;
+    public lng:                  number = -71.14732954;
 
-    public p: number = 1;
-    lat: number = 42.28598136;
-  lng: number = -71.14732954;
-
-
+    private   modelSave:         Case
     constructor(
-        private CaseService:  CaseService,
-        private errorHandler: ErrorHandlerService,
-        private elastic:      ElasticService,
+        private CaseService:     CaseService,
+        private errorHandler:    ErrorHandlerService,
+        private elastic:         ElasticService,
     ){}
 
     getCases(): void {
@@ -52,15 +52,14 @@ export class CasesComponent implements OnInit {
 
         this.CaseService.getProperties()
             .then(function (properties) {
-                console.log("[mean] getProperties(): ", properties)
                 that.properties = properties
             })
             .catch(this.errorHandler.handlePromise)
     }
 
     selectCase(c: Case): any {
-        this.selectedCase = c
-        console.log(this.selectedCase)
+        this.selectedCase = Object.assign({}, c)
+        this.modelSave =  Object.assign({}, c)
     }
 
     ngOnInit(): void {

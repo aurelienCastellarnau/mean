@@ -22,7 +22,8 @@
                         <md-card-subtitle>{{ case.reportingarea }}</md-card-subtitle>
                     </md-card-header>
                     <md-card-content>
-                        case: {{ case.location }}
+                        coord.: {{ case.location }}
+                        Begin : {{ case.fromdate | date:medium}}
                     </md-card-content>
                 </md-card>
             </div>
