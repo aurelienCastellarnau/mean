@@ -1,17 +1,21 @@
 <div class="show-cases">
     <div class="row">
-    </div>
-    <div class="row">
         <div class="col-sm-6 col-md-offset-3">
             <h1>MEAN CASES</h1>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="col-md-4"
-                 *ngFor="let case of cases" 
-                 (click)="selectCase(case)"
-                 style="margin-bottom: 10px">
+    <sebm-google-map [latitude]="lat" [longitude]="lng">
+            <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
+    </sebm-google-map>
+<!--         <div class="row">
+        <button type="button"
+                class="btn btn-info"
+                (click)="getCasesElastic()">
+                Elastic GET /cases
+        </button>
+        </div> -->
+        <div class="row">
+            <div class="col-sm-3 col-md-offset-1" *ngFor="let case of cases | paginate: { itemsPerPage: 10, currentPage: p, totalItems: total }" routerLink="/cases/{{ case._id }}" style="margin-bottom: 10px">
                 <md-card class="example-card">
                     <md-card-header>
                         <md-card-title>{{ case.incident_type_description }} {{ case.compnos }}</md-card-title>
@@ -22,11 +26,13 @@
                     </md-card-content>
                 </md-card>
             </div>
+<!--             <div class="col-md-6">
+                <case-edit [model]="selectedCase"
+                           [properties]="properties">
+                </case-edit>
+            </div> -->
+            </div>
+            <div class="row">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </div>
-        <div class="col-md-6">
-            <case-edit [model]="selectedCase"
-                       [properties]="properties">
-            </case-edit>
-        </div>
-    </div>
 </div>
