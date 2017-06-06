@@ -21,4 +21,4 @@ export class ElasticCasesComponent {
         this.selectedCase = c
         console.log(this.selectedCase)
     }
-}
+}}
