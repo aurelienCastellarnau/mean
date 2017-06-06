@@ -11,12 +11,12 @@ import { AgentService }          from '../../services/agent.service';
 })
 
 export class NavigationComponent {
-    title =               'Police Cases Analytics ~ A Mean 4.0 Project'
-    currentUser:          Agent
-    option:               string
+    public title =               'Police Cases Analytics ~ A Mean 4.0 Project'
+    public currentUser:           Agent
+    public option:                string
+
     constructor(
-        private location: Location,
-        public dialog:    MdDialog,
+        private location:         Location,
         ){this.currentUser = JSON.parse(localStorage.getItem('currentUser'))}
 
     goBack(){

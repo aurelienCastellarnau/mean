@@ -1,11 +1,11 @@
 import { Component, 
          Input,
-         OnInit }               from '@angular/core';
-import { ElasticCasesComponent} from './elastic-cases.component';
-import { Case }                 from '../../model/case';
-import { CaseService }          from '../../services/case.service';
-import { ElasticService }       from '../../services/elastic.service';
-import { ErrorHandlerService }  from '../../services/error-handler.service';
+         OnInit }                from '@angular/core';
+import { ElasticCasesComponent } from './elastic-cases.component';
+import { Case }                  from '../../model/case';
+import { CaseService }           from '../../services/case.service';
+import { ElasticService }        from '../../services/elastic.service';
+import { ErrorHandlerService }   from '../../services/error-handler.service';
 
 /*
 ** La stratégie utilisée est simple.

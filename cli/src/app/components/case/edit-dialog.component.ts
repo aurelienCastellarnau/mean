@@ -1,9 +1,15 @@
 import { Component, 
-         OnInit,
+         Inject,
          Input }               from '@angular/core';
+/*
+** En l'état le router n'est pas appellé! 
+*/
 import { Router, 
          ActivatedRoute, 
          Params }              from '@angular/router';
+import { MdDialog, 
+         MdDialogRef,
+         MD_DIALOG_DATA }      from '@angular/material';
 import { Case }                from '../../model/case';
 import { CaseService }         from '../../services/case.service';
 import { AlertService }        from '../../services/alert.service';
@@ -11,28 +17,31 @@ import { ErrorHandlerService } from '../../services/error-handler.service';
 import { Location }            from '@angular/common';
 
 @Component({
-    moduleId:    module.id,
-    selector:    'case-edit',
+    selector: "edit-dialog-component",
     templateUrl: '../../templates/case/case-register.component.html',
 })
+export class EditDialog {
+    public selectedProperties = []
+    public model:                                  Case
+    public properties = []
+    public title =                                 "Edit that case: "
 
-export class EditCaseComponent implements OnInit {
-    @Input() model:                   Case
-    @Input() properties:              any
-
-    public selectedProperties:        string[]
-    public title =                    "Edit that case: "
-
-    private sub:                      any
-    private modelSave:                Case
+    private sub:                                   any
+    private modelSave:                             Case
     constructor(
-        private router:               Router,
-        private CaseService:          CaseService,
-        private alertService:         AlertService,
-        private location:             Location,
-        private route:                ActivatedRoute,
-        private errorHandler:         ErrorHandlerService,
-    ){}
+        public dialogRef:                          MdDialogRef<EditDialog>,
+        @Inject(MD_DIALOG_DATA) public data:       any,
+        private router:                            Router,
+        private CaseService:                       CaseService,
+        private alertService:                      AlertService,
+        private location:                          Location,
+        private route:                             ActivatedRoute,
+        private errorHandler:                      ErrorHandlerService,
+        ){
+            this.properties = this.data.properties
+            this.model = this.data.model
+            this.modelSave = this.data.modelSave
+        }
 
     register() {
         this.CaseService.update(this.model, this.modelSave)
@@ -40,6 +49,7 @@ export class EditCaseComponent implements OnInit {
             data => {
                 this.alertService.success('Registration succesful', true)
                 console.log(data)
+                
             },
             error => {
                 console.log("ERROR QUI CLAQUE")
@@ -50,22 +60,33 @@ export class EditCaseComponent implements OnInit {
 
     selectProperties(p: string[], event) {
         event.preventDefault()
-        p.forEach((prop, index, array) => this.selectedProperties.push(prop))
+        this.selectedProperties = []
+        p.sort((a, b) => (a > b) ? 1 : -1)
+        p.forEach(element => this.selectedProperties.push(element));
     }
+
+    /*
+    ** Pas utilisé pour l'instant,
+    ** this.selectedProperties devient 'undefined'
 
     unselectProperties() {
         delete this.selectedProperties
     }
 
+    **
+    */
+    
     goBack() {
         this.location.back()
     }
 
-    ngOnInit() {
-        this.properties = this.CaseService.getProperties()
-    }
+    /*
+    ** Possible implémentation d'options
+    ** dans les inputs `TypeHead`
+    ** 
+    ** 
 
-    private value: any = ['Athens']
+    private value: any = ""
     private _disabledV: string = '0'
     private disabled: boolean = false
 
@@ -89,4 +110,8 @@ export class EditCaseComponent implements OnInit {
     public refreshValue(value: any): void {
         this.value = value;
     }
+
+    **
+    **
+    */
 }

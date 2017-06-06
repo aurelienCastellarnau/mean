@@ -18,6 +18,7 @@ export class CasesComponent implements OnInit {
     public    properties:        Array<String>
     public    selectedCase:      Case
 
+    private   modelSave:         Case
     constructor(
         private CaseService:  CaseService,
         private errorHandler: ErrorHandlerService,
@@ -46,15 +47,14 @@ export class CasesComponent implements OnInit {
 
         this.CaseService.getProperties()
             .then(function (properties) {
-                console.log("[mean] getProperties(): ", properties)
                 that.properties = properties
             })
             .catch(this.errorHandler.handlePromise)
     }
 
     selectCase(c: Case): any {
-        this.selectedCase = c
-        console.log(this.selectedCase)
+        this.selectedCase = Object.assign({}, c)
+        this.modelSave =  Object.assign({}, c)
     }
 
     ngOnInit(): void {

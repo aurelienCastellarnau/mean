@@ -4,7 +4,7 @@ const express = require('express'),
     app = require('../api'),
     verify = require('../utils/verify'),
     Cases = require('../models/casesModel'),
-    ESClient = require('../utils/elasticsearch.js');
+    esClient = require('../utils/elasticsearch.js');
 
 router.use(function timelog(req, res, next) {
     let now
@@ -107,21 +107,34 @@ router.put("/:id/edit", function (req, res) {
         if ("CHEF" !== role && "DETECTIVE" !== role) {
             res.json({ success: false, message: "you don't have rights to do this" })
         } else {
-            Cases.findById(id, function (err, c) {
-                if (err) {
-                    return res.send(err)
-                }
-                for (elem in c) {
-                    c[elem] = req.body[elem] || c[elem]
-                }
-
-                c.save(function (err, c) {
-                    if (err) {
+            Cases.find(req.body.old)
+                .exec(function (err, c) {
+                    if (err || !c[0]) {
+                        err || (err = "{'error': 'no result found'}")
+                        console.log("error during PUT /cases: ", err)
                         return res.send(err)
                     }
-                    res.send(c);
+                    console.log("result from find with object: ", c)
+                    c = c[0]
+                    Cases.generateCompnos(c, function (err, max) {
+                        console.log("Before updated fields: ", c)
+                        c.compnos || (c.compnos = max[0].compnos + 1)
+                        for (elem in c) {
+                            c[elem] = req.body.new[elem] || c[elem]
+                        }
+                        console.log("After updated fieds: ", c)
+                        c.save(function (err, c) {
+                            if (err) {
+                                return res.send(err)
+                            }
+                            c.on('es-indexed', function(err, res){
+                                if (err) throw err;
+                                console.log("Document indexed!")
+                            })
+                            res.send(c);
+                        })
+                    })
                 })
-            })
         }
     } else {
         res.status(403).json({

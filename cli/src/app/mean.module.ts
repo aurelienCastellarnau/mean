@@ -19,9 +19,10 @@ import { RegisterComponent }       from './components/agent/register-agent.compo
 import { AdminComponent }          from './components/agent/admin.component';
 import { CaseDetailComponent }     from './components/case/case-detail.component';
 import { CasesComponent }          from './components/case/cases.component';
-import { RegisterCaseComponent }   from './components/case/case-register.component';
+import { CaseRegisterComponent }   from './components/case/case-register.component';
 import { EditCaseComponent }       from './components/case/cases-edit.component';
 import { SearchCaseComponent }     from './components/case/search-case.component';
+import { EditDialog }              from './components/case/edit-dialog.component';
 import { ElasticBrowserComponent } from './components/elastic/elastic-browser.component';
 import { ElasticCasesComponent }   from './components/elastic/elastic-cases.component';
 import { Case }                    from './model/case';
@@ -34,6 +35,7 @@ import { AuthenticationService }   from './services/auth.service';
 import { PagerService }            from './services/paginator.service';
 import { PropertiesResolver }      from './services/propertiesResolver.service';
 import { ElasticService }          from './services/elastic.service';
+import { ToggleService }           from './services/toggle.service';
 import { StatusPipe }              from './pipes/status.component';
 import { AuthGuard }               from './guards/auth.guard';
 import { RoleGuard }               from './guards/role.guard';
@@ -54,6 +56,7 @@ import { RoleGuard }               from './guards/role.guard';
     SearchCaseComponent,
     ElasticBrowserComponent,
     ElasticCasesComponent,
+    EditDialog,
     NavigationComponent,
     LoginComponent,
     HomeComponent,
@@ -62,7 +65,7 @@ import { RoleGuard }               from './guards/role.guard';
     RegisterAgentComponent,
     AlertComponent,
     EditAgentComponent,
-    RegisterCaseComponent,
+    CaseRegisterComponent,
     EditCaseComponent,
     RegisterComponent,
     AdminComponent,
@@ -79,8 +82,10 @@ import { RoleGuard }               from './guards/role.guard';
     AlertService,
     PropertiesResolver,
     PagerService,
-    ElasticService
+    ElasticService,
+    ToggleService
   ],
+  entryComponents: [EditDialog],
   bootstrap: [MeanComponent]
 })
 export class MeanModule{}
