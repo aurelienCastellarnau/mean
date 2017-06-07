@@ -46,10 +46,10 @@ export class CaseService {
         return this.http.post('/cases/create', Case, this.jwt())
     }
 
-    update(Case: Case, __id: string) {
+    update(c: Case, save: Case) {
         const url = '/cases'
         
-        return this.http.put(url + '/' + __id + '/edit', Case, this.jwt())
+        return this.http.put(url + '/' + save + '/edit', {'new':c, 'old':save}, this.jwt())
     }
 
     delete(__id: string) {
@@ -72,6 +72,17 @@ export class CaseService {
                 console.log(err)
                 that.handleError.handlePromise(err)
             });
+    }
+
+    extractXY(coord: string): number[] {
+        let x: number
+        let y: number
+        let litteralXy: string[]
+        
+        litteralXy = coord.split(",", 2)
+        x = parseFloat(litteralXy[0].slice(1))
+        y = parseFloat(litteralXy[1].slice(0, litteralXy[1].length - 2))
+        return [x, y]
     }
 
     private jwt() {

@@ -6,16 +6,17 @@ import { Router,
 import { AlertService }         from '../services/alert.service';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class SuperUserGuard implements CanActivate {
     constructor(private router: Router, private alert: AlertService){}
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-
-        if (localStorage.getItem('currentUser')) {
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'))
+        
+        if (currentUser.role === 'CHEF') {
             return true
         }
-        console.log("You must be connected")
-        this.alert.error("You must be connected", true)
+        console.log("This action is reserved to the higher hierarchy level.")
+        this.alert.error("This action is reserved to the higher hierarchy level.", true)
         this.router.navigate(['/login'], { queryParams: {returnUrl: state.url }})
         return false
     }

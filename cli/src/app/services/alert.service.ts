@@ -5,8 +5,9 @@ import { Subject }                 from 'rxjs/Subject';
 
 @Injectable()
 export class AlertService {
-    private subject = new Subject<any>();
-    private keepAfterNavigationChange = false;
+
+    private subject = new Subject<any>()
+    private keepAfterNavigationChange = false
     constructor(
         private router: Router
     ){
@@ -20,20 +21,20 @@ export class AlertService {
                     this.subject.next()
                 }
             }
-        });
+        })
     }
 
+    public toggleAlert$ = this.subject.asObservable()
+
     success(message: string, keepAfterNavigationChange = false) {
+        console.log("Alert success asked")
         this.keepAfterNavigationChange = keepAfterNavigationChange
         this.subject.next({ type: 'success', text: message})
     }
 
     error(message: string, keepAfterNavigationChange = false) {
+        console.log("Alert error asked")
         this.keepAfterNavigationChange = keepAfterNavigationChange
         this.subject.next({ type: 'error', text: message})
-    }
-
-    getMessage(): Observable<any> {
-        return this.subject.asObservable()
     }
 }

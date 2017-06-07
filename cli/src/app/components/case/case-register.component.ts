@@ -9,13 +9,15 @@ import { ErrorHandlerService }    from '../../services/error-handler.service';
 import { Location }               from '@angular/common';
 
 @Component({
-    moduleId: module.id,
+    moduleId:    module.id,
     templateUrl: '../../templates/case/case-register.component.html',
 })
 
-export class RegisterCaseComponent implements OnInit {
-    public model =            new Case()
-    public properties:        any
+export class CaseRegisterComponent implements OnInit {
+    public model =             new Case()
+    public properties:         any
+    public selectedProperties: string[]
+    public title =             "Register a new case: "
 
     constructor(
         private router:       Router,
@@ -37,6 +39,13 @@ export class RegisterCaseComponent implements OnInit {
                 console.log("ERROR QUI CLAQUE")
                 this.alertService.error(error._body)
             })
+    }
+
+    selectProperties(p: any, event) {
+        event.preventDefault()
+        this.selectedProperties = []
+        p.sort((a, b) => (a > b) ? 1 : -1)
+        p.forEach(element => this.selectedProperties.push(element));
     }
 
    prevent(event) {

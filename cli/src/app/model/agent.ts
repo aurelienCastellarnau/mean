@@ -5,4 +5,5 @@ export class Agent {
     lastname:  string;
     role:      string;
     status:    string;
+    token:     string;
 }

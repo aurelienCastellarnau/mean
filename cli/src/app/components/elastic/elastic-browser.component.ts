@@ -1,11 +1,14 @@
 import { Component, 
          Input,
-         OnInit }               from '@angular/core';
-import { ElasticCasesComponent} from './elastic-cases.component';
-import { Case }                 from '../../model/case';
-import { CaseService }          from '../../services/case.service';
-import { ElasticService }       from '../../services/elastic.service';
-import { ErrorHandlerService }  from '../../services/error-handler.service';
+         OnInit,
+         AfterViewInit }         from '@angular/core';
+import { ElasticCasesComponent } from './elastic-cases.component';
+import { Case }                  from '../../model/case';
+import { CaseService }           from '../../services/case.service';
+import { ElasticService }        from '../../services/elastic.service';
+import { ToggleService }         from '../../services/toggle.service';
+import { ErrorHandlerService }   from '../../services/error-handler.service';
+import { AgmMap, AgmMarker }     from '@agm/core';
 
 /*
 ** La stratégie utilisée est simple.
@@ -13,22 +16,22 @@ import { ErrorHandlerService }  from '../../services/error-handler.service';
 ** ce component est le garant du modèle, des méthodes, et des variables
 ** il les fait ensuite redescendre vers ses deux enfants successifs
 ** <elastic-cases> => <case-edit>
-** 
 */
 @Component({
     selector: 'elastic-browser',
     templateUrl: '../../templates/elastic/elastic-browser.component.html',
 })
-export class ElasticBrowserComponent implements OnInit{
-    public   selectedCase:    Case
-    public   properties:      String[]
-    public   query:           String
-    public   cases:           Case[]
+export class ElasticBrowserComponent implements OnInit, AfterViewInit{
+    public   selectedCase:     Case
+    public   properties:       String[]
+    public   query:            String
+    public   cases:            Case[]
 
     constructor(
-        private elastic:      ElasticService,
-        private caseService:  CaseService,
-        private errorHandler: ErrorHandlerService,
+        private elastic:       ElasticService,
+        private caseService:   CaseService,
+        private errorHandler:  ErrorHandlerService,
+        private toggle:        ToggleService, 
         ){}
     
     search(): any {
@@ -44,11 +47,18 @@ export class ElasticBrowserComponent implements OnInit{
     }
 
     ngOnInit(): void {
+        const that = this
+
+        this.toggle.toggleAwaiting(true)
         this.elastic.getCases()
-        .then(cases => this.cases = this.elastic.toCases(cases))
+        .then(cases => this.cases = cases)
         .catch(this.errorHandler.handlePromise)
         this.caseService.getProperties()
         .then(prop => this.properties = prop)
         .catch(this.errorHandler.handlePromise)
+    }
+
+    ngAfterViewInit(): void {
+        this.toggle.toggleAwaiting(false)
     }
 }

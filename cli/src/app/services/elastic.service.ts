@@ -23,7 +23,10 @@ export class ElasticService {
 
         return this.http.get(url, this.jwt())
             .toPromise()
-            .then(response => response.json())
+            .then(function(response){
+                console.log(response)
+                return response.json()
+            } )
             .catch(this.handleError.handlePromise)
     }
 

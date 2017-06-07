@@ -39,6 +39,7 @@ db.once('open', function () {
             ESindex.init();
         }
     });
+    
     app.get('/*', (req, res) => {
         res.sendFile(path.join(conf.clipath, 'index.html'));
     });

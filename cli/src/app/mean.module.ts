@@ -19,9 +19,11 @@ import { RegisterComponent }       from './components/agent/register-agent.compo
 import { AdminComponent }          from './components/agent/admin.component';
 import { CaseDetailComponent }     from './components/case/case-detail.component';
 import { CasesComponent }          from './components/case/cases.component';
-import { RegisterCaseComponent }   from './components/case/case-register.component';
+import { CaseRegisterComponent }   from './components/case/case-register.component';
 import { EditCaseComponent }       from './components/case/cases-edit.component';
 import { SearchCaseComponent }     from './components/case/search-case.component';
+import { EditDialog }              from './components/case/edit-dialog.component';
+import { AgmDialog }               from './components/case/agm-dialog.component';
 import { ElasticBrowserComponent } from './components/elastic/elastic-browser.component';
 import { ElasticCasesComponent }   from './components/elastic/elastic-cases.component';
 import { Case }                    from './model/case';
@@ -34,11 +36,13 @@ import { AuthenticationService }   from './services/auth.service';
 import { PagerService }            from './services/paginator.service';
 import { PropertiesResolver }      from './services/propertiesResolver.service';
 import { ElasticService }          from './services/elastic.service';
+import { ToggleService }           from './services/toggle.service';
 import { StatusPipe }              from './pipes/status.component';
 import { AuthGuard }               from './guards/auth.guard';
 import { RoleGuard }               from './guards/role.guard';
-import {NgxPaginationModule}       from 'ngx-pagination';
-import { AgmCoreModule }           from 'angular2-google-maps/core';
+import { SuperUserGuard }          from './guards/super-user.guard';
+import { NgxPaginationModule }     from 'ngx-pagination';
+import { AgmCoreModule }           from '@agm/core';
 
 @NgModule({
   imports: [
@@ -60,6 +64,8 @@ import { AgmCoreModule }           from 'angular2-google-maps/core';
     SearchCaseComponent,
     ElasticBrowserComponent,
     ElasticCasesComponent,
+    EditDialog,
+    AgmDialog,
     NavigationComponent,
     LoginComponent,
     HomeComponent,
@@ -68,7 +74,7 @@ import { AgmCoreModule }           from 'angular2-google-maps/core';
     RegisterAgentComponent,
     AlertComponent,
     EditAgentComponent,
-    RegisterCaseComponent,
+    CaseRegisterComponent,
     EditCaseComponent,
     RegisterComponent,
     AdminComponent,
@@ -80,13 +86,16 @@ import { AgmCoreModule }           from 'angular2-google-maps/core';
     MdIconRegistry,
     AuthGuard,
     RoleGuard,
+    SuperUserGuard,
     AuthenticationService,
     AgentService,
     AlertService,
     PropertiesResolver,
     PagerService,
-    ElasticService
+    ElasticService,
+    ToggleService
   ],
+  entryComponents: [EditDialog, AgmDialog],
   bootstrap: [MeanComponent]
 })
 export class MeanModule{}

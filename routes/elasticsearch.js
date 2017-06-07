@@ -2,7 +2,7 @@ const express = require('express'),
     router = express.Router(),
     verify = require('../utils/verify'),
     Cases = require('../models/casesModel'),
-    ESClient = require('../utils/elasticsearch.js');
+    esClient = require('../utils/elasticsearch.js');
 
 router.use(function timelog(req, res, next) {
     let now
@@ -15,10 +15,12 @@ router.use(function timelog(req, res, next) {
 router.use(verify.token)
 
 router.get('/', function (req, res) {
-    ESClient.search({
+    esClient.search({
         index: 'cases',
+        scroll: '1m',
         body: {
-            "from": 0, "size": 10000,
+            "from": 0,
+            "size": 1000,
             query: {
                 "match_all": {}
             }
@@ -38,19 +40,20 @@ router.get('/:param', function (req, res) {
     ** regarde là : https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-multi-match-query.html
     ** on peut faire, genre, beaucoup, beaucoup de choses...
     */
-    ESClient.search({
+    esClient.search({
         index: 'cases',
+        scroll: '1m',
         body: {
-            "from": 0,
-            "size": 25000,
-            "query": {
-                "match": {
-                    "_all": param
+             "from": 0,
+             "size": 1000,
+             "query": {
+                "query_string" : {
+                    "query" : param
                 }
             }
         }
     })
-        .then(resp => res.status(200).json(resp),
-        err => console.log(err.message))
+    .then(resp => res.status(200).json(resp),
+    err => console.log(err.message))
 })
 module.exports = router
