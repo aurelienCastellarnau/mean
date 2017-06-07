@@ -23,6 +23,7 @@ import { CaseRegisterComponent }   from './components/case/case-register.compone
 import { EditCaseComponent }       from './components/case/cases-edit.component';
 import { SearchCaseComponent }     from './components/case/search-case.component';
 import { EditDialog }              from './components/case/edit-dialog.component';
+import { AgmDialog }               from './components/case/agm-dialog.component';
 import { ElasticBrowserComponent } from './components/elastic/elastic-browser.component';
 import { ElasticCasesComponent }   from './components/elastic/elastic-cases.component';
 import { Case }                    from './model/case';
@@ -63,6 +64,7 @@ import { AgmCoreModule }           from '@agm/core';
     ElasticBrowserComponent,
     ElasticCasesComponent,
     EditDialog,
+    AgmDialog,
     NavigationComponent,
     LoginComponent,
     HomeComponent,
@@ -91,7 +93,7 @@ import { AgmCoreModule }           from '@agm/core';
     ElasticService,
     ToggleService
   ],
-  entryComponents: [EditDialog],
+  entryComponents: [EditDialog, AgmDialog],
   bootstrap: [MeanComponent]
 })
 export class MeanModule{}

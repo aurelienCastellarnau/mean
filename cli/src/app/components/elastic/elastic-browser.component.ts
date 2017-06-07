@@ -6,6 +6,7 @@ import { Case }                  from '../../model/case';
 import { CaseService }           from '../../services/case.service';
 import { ElasticService }        from '../../services/elastic.service';
 import { ErrorHandlerService }   from '../../services/error-handler.service';
+import { AgmMap, AgmMarker }     from '@agm/core';
 
 /*
 ** La stratégie utilisée est simple.

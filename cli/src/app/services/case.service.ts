@@ -74,6 +74,17 @@ export class CaseService {
             });
     }
 
+    extractXY(coord: string): number[] {
+        let x: number
+        let y: number
+        let litteralXy: string[]
+        
+        litteralXy = coord.split(",", 2)
+        x = parseFloat(litteralXy[0].slice(1))
+        y = parseFloat(litteralXy[1].slice(0, litteralXy[1].length - 2))
+        return [x, y]
+    }
+
     private jwt() {
         let currentUser = JSON.parse(localStorage.getItem('currentUser'))
 

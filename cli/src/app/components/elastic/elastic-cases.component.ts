@@ -1,13 +1,18 @@
 import { Component,
-         Input }       from '@angular/core';
+         Input }               from '@angular/core';
 import { MdDialog, 
-         MdDialogRef } from '@angular/material';
-import { EditDialog }  from '../case/edit-dialog.component';      
-import { Case }        from '../../model/case';
+         MdDialogRef,
+         MdCardTitle }         from '@angular/material';
+import { EditDialog }          from '../case/edit-dialog.component';
+import { AgmDialog }           from '../case/agm-dialog.component';
+import { CaseService }         from '../../services/case.service';    
+import { Case }                from '../../model/case';
+import { AgmMap, AgmMarker }   from '@agm/core';
 
 @Component({
     selector: 'elastic-cases',
     templateUrl: '../../templates/elastic/elastic-cases.component.html',
+    styleUrls:   ['../../style/elastic-cases.component.css']
 })
 
 export class ElasticCasesComponent {
@@ -20,9 +25,14 @@ export class ElasticCasesComponent {
     @Input() cases:                    Case[]
     @Input() properties:               String[]
     public   selectedCase:             Case
-
+    
     private  modelSave:                Case
-    constructor(public editDialog: MdDialog){}
+    private   xy:                      number[]
+    private   x:                       number
+    private   y:                       number
+    constructor(public editDialog:     MdDialog,
+                public agmDialog:      MdDialog,
+                private caseService:   CaseService){}
 
     selectCase(c: Case): void {
         this.selectedCase = Object.assign({}, c)
@@ -38,4 +48,28 @@ export class ElasticCasesComponent {
             }
         })
     }
+    
+    getMap(coord: string): void {
+        let agmDialogRef = this.agmDialog.open(AgmDialog, {
+            data: {
+                'x': this.getX(coord),
+                'y': this.getY(coord),
+            }
+        })
+    }
+
+    getX(coord: string): number{
+        this.xy = this.caseService.extractXY(coord)
+        this.x = this.xy[0]
+        console.log("extract x: ", this.x)
+        return this.x
+    }
+    
+    getY(coord: string): number{
+        this.xy = this.caseService.extractXY(coord)
+        this.y = this.xy[1]
+        console.log("extract y:", this.y)
+        return this.y
+    }
+    
 }
