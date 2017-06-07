@@ -97,7 +97,8 @@ let Case = new Schema({
       })
 
 Case.plugin(mongoosastic, {
-      esClient: esClient
+      esClient: esClient,
+      index: 'cases'
 })
 var C = mongoose.model('case', Case)
   , stream = C.synchronize()

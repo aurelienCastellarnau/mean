@@ -40,7 +40,7 @@ import { StatusPipe }              from './pipes/status.component';
 import { AuthGuard }               from './guards/auth.guard';
 import { RoleGuard }               from './guards/role.guard';
 import {NgxPaginationModule}       from 'ngx-pagination';
-import { AgmCoreModule }           from 'angular2-google-maps/core';
+import { AgmCoreModule }           from '@agm/core';
 
 @NgModule({
   imports: [
