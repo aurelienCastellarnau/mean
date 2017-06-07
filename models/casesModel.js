@@ -100,6 +100,10 @@ Case.plugin(mongoosastic, {
       esClient: esClient,
       index: 'cases'
 })
+/*
+** Décommente pour synchro avec ta base:
+**
+
 var C = mongoose.model('case', Case)
   , stream = C.synchronize()
   , count = 0;
@@ -113,6 +117,8 @@ stream.on('close', function(){
 stream.on('error', function(err){
   console.log(err);
 });
+
+ */
 Case.static.setCompnos = function setCompnos(compnos) {
       this.compnos = compnos
 }
