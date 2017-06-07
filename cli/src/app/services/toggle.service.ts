@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject }    from 'rxjs/Subject';
+import { Agent }      from '../model/agent';
 
 /*
 ** Plus utilisé dans le projet, je laisse l'exemple
@@ -12,12 +13,26 @@ import { Subject }    from 'rxjs/Subject';
 */
 @Injectable()
 export class ToggleService {
-    private editPanel = new Subject<boolean>()
+    private alert = new Subject<string>()
+    private user = new Subject<Agent>()
+    private awaiting = new Subject<boolean>() 
 
-    editPanelToggled$ = this.editPanel.asObservable()
+    alertToggled$ = this.alert.asObservable()
+    userToggled$ = this.user.asObservable()
+    awaitingToggled$ = this.awaiting.asObservable()
 
-    toggleEditPanel(action: boolean) {
+    toggleAlert(alert: string) {
         console.log("toggle edit panel from toggle service")
-        this.editPanel.next(action)
+        this.alert.next(alert)
+    }
+
+    toggleUser(user: Agent) {
+        console.log("toggle on user")
+        this.user.next(user)
+    }
+
+    toggleAwaiting(awaiting: boolean){
+        console.log("toggle awaiting")
+        this.awaiting.next(awaiting)
     }
 }

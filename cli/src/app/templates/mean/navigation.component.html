@@ -1,39 +1,58 @@
-
 <md-toolbar color="accent">
-    <button md-icon-button mdTooltip="navbar" (click)="sidenav.toggle()"><md-icon>list</md-icon></button>
-    <span>{{title}}</span>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-1">
+            <button md-icon-button mdTooltip="navbar" (click)="sidenav.toggle()"><md-icon>list</md-icon></button>
+        </div>
+        <div class="col-md-offset-1 col-md-6">
+            {{title}}
+        </div>
+        <div *ngIf="currentUser" class="col-md-offset-1 col-md-2">
+            Welcome {{currentUser.firstname}} {{currentUser.lastname}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <alert></alert>
+        </div>
+    </div>
 </md-toolbar>
 <div class="content">
     <md-sidenav-container layout-margin>
         <md-sidenav layout-margin #sidenav mode="side" opened="true">
             <md-toolbar layout-margin class="md-tall md-hue-3" color="primary">
-            <span>Menu</span>
-            <md-toolbar-row>
-            <button md-icon-button (click)="goBack()"><md-icon>backspace</md-icon></button>
-            </md-toolbar-row>
-            <md-toolbar-row>
-                <button md-icon-button mdTooltip="Search Case" routerLink="/search"><md-icon>search</md-icon></button>
-            </md-toolbar-row>
-            <md-toolbar-row>
-                <button md-icon-button mdTooltip="Elastic Power Tool" routerLink="/elasticsearch"><md-icon>fingerprint</md-icon></button>
-            </md-toolbar-row>
-            <md-toolbar-row>
-                <button md-icon-button mdTooltip="Cases" routerLink="/cases"><md-icon>work</md-icon></button>
-            </md-toolbar-row>
-            <md-toolbar-row>
-                <button md-icon-button mdTooltip="Agents" routerLink="/agents"><md-icon>assignment_ind</md-icon></button>
-            </md-toolbar-row>
-            <md-toolbar-row>
-                <button md-icon-button mdTooltip="Register new case" routerLink="/create/case"><md-icon>add</md-icon></button>
-            </md-toolbar-row>
-            <md-toolbar-row>
-                <button md-icon-button mdTooltip="admin" [routerLink]="['/admin']"><md-icon>build</md-icon></button><br />
-            </md-toolbar-row>
-            <md-toolbar-row>
-                <button md-icon-button mdTooltip="Déconnexion" [routerLink]="['/login']"><md-icon>lock</md-icon></button><br />
-            </md-toolbar-row>
+                <span>Menu</span>
+                <md-toolbar-row>
+                    <button md-icon-button (click)="goBack()"><md-icon>backspace</md-icon></button>
+                </md-toolbar-row>
+                <md-toolbar-row>
+                    <button md-icon-button mdTooltip="Search Case" routerLink="/search"><md-icon>search</md-icon></button>
+                </md-toolbar-row>
+                <md-toolbar-row>
+                    <button md-icon-button mdTooltip="Elastic Power Tool" routerLink="/elasticsearch"><md-icon>fingerprint</md-icon></button>
+                </md-toolbar-row>
+                <md-toolbar-row>
+                    <button md-icon-button mdTooltip="Cases" routerLink="/cases"><md-icon>work</md-icon></button>
+                </md-toolbar-row>
+                <md-toolbar-row>
+                    <button md-icon-button mdTooltip="Agents" routerLink="/agents"><md-icon>assignment_ind</md-icon></button>
+                </md-toolbar-row>
+                <md-toolbar-row>
+                    <button md-icon-button mdTooltip="Register new case" routerLink="/create/case"><md-icon>add</md-icon></button>
+                </md-toolbar-row>
+                <md-toolbar-row>
+                    <button md-icon-button mdTooltip="admin" [routerLink]="['/admin']"><md-icon>build</md-icon></button><br
+                    />
+                </md-toolbar-row>
+                <md-toolbar-row>
+                    <button md-icon-button mdTooltip="Déconnexion" [routerLink]="['/login']"><md-icon>lock</md-icon></button><br
+                    />
+                </md-toolbar-row>
             </md-toolbar>
         </md-sidenav>
+        <div *ngIf="awaiting">
+            <p>Please wait while the system retrieve the data</p>
+            <img src="assets/images/42.gif"  alt="Loading">
+        </div>
         <router-outlet></router-outlet>
     </md-sidenav-container>
 </div>
