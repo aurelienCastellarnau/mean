@@ -17,6 +17,7 @@ import { EditCaseComponent }       from './components/case/cases-edit.component'
 import { ElasticBrowserComponent } from './components/elastic/elastic-browser.component';
 import { AuthGuard }               from './guards/auth.guard';
 import { RoleGuard }               from './guards/role.guard';
+import { SuperUserGuard }          from './guards/super-user.guard';
 import { PropertiesResolver }      from './services/propertiesResolver.service'
 
 const routes: Routes = [
@@ -64,7 +65,7 @@ const routes: Routes = [
   {
     path: 'agents/:param',
     component: AgentDetailComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, RoleGuard]
   },
    {
     path: 'agents/:param/edit',
@@ -82,12 +83,13 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    component: AdminComponent
+    component: AdminComponent,
+    canActivate: [AuthGuard, SuperUserGuard]
   },
   {
     path: 'elasticsearch',
     component: ElasticBrowserComponent,
-    canActivate: [AuthGuard, RoleGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: '**',
