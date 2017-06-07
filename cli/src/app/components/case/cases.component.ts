@@ -6,12 +6,12 @@ import { CaseDetailComponent } from './case-detail.component';
 import { CaseService }         from '../../services/case.service';
 import { ElasticService }      from '../../services/elastic.service';
 import { ErrorHandlerService } from '../../services/error-handler.service';
-import { SebmGoogleMap, 
-         SebmGoogleMapMarker } from 'angular2-google-maps/core';
+import { AgmMap, AgmMarker }   from '@agm/core';
 
 @Component({
     selector:    'cases',
     templateUrl: '../../templates/case/cases.component.html',
+    styleUrls:   ['../../style/cases.component.css'],
     providers:   [CaseService, ErrorHandlerService, ElasticService],
 })
 

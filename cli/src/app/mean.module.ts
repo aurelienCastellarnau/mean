@@ -39,7 +39,7 @@ import { ToggleService }           from './services/toggle.service';
 import { StatusPipe }              from './pipes/status.component';
 import { AuthGuard }               from './guards/auth.guard';
 import { RoleGuard }               from './guards/role.guard';
-import {NgxPaginationModule}       from 'ngx-pagination';
+import { NgxPaginationModule }     from 'ngx-pagination';
 import { AgmCoreModule }           from '@agm/core';
 
 @NgModule({
