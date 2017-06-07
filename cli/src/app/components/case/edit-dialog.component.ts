@@ -9,7 +9,8 @@ import { Router,
          Params }              from '@angular/router';
 import { MdDialog, 
          MdDialogRef,
-         MD_DIALOG_DATA }      from '@angular/material';
+         MD_DIALOG_DATA,
+         MdDatepicker }      from '@angular/material';
 import { Case }                from '../../model/case';
 import { CaseService }         from '../../services/case.service';
 import { AlertService }        from '../../services/alert.service';
@@ -75,7 +76,7 @@ export class EditDialog {
 
     **
     */
-    
+
     goBack() {
         this.location.back()
     }

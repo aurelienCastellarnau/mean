@@ -74,7 +74,9 @@
             </div>
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !fromdate.valid }">
                 <label for="fromdate">fromdate</label>
-                <input type="text" class="form-control" name="fromdate" [(ngModel)]="model.fromdate" #fromdate="ngModel" required />
+                <input type="text" class="form-control" name="fromdate" [mdDatepicker]="d" [(ngModel)]="model.fromdate" #fromdate="ngModel" required />
+                <input [mdDatepicker]="myDatepicker">
+                <md-datepicker #myDatepicker startView="year" [startAt]="model.fromdate"></md-datepicker>
                 <div *ngIf="f.submitted && !fromdate.valid" class="help-block">fromdate is required</div>
             </div>
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !weapontype.valid }">

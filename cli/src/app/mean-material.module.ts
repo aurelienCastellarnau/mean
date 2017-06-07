@@ -11,6 +11,8 @@ import { MdToolbarModule }         from '@angular/material';
 import { MaterialModule }          from '@angular/material';
 import { MdDialogModule, 
          MdDialogRef}              from '@angular/material';
+import { MdDatepickerModule,
+         MdNativeDateModule }      from '@angular/material';
 import { TypeaheadModule }         from 'ngx-bootstrap';
 import { PopoverModule }           from 'ngx-bootstrap';
 import { TabsModule }              from 'ngx-bootstrap';
@@ -30,6 +32,8 @@ import { PaginationModule }        from 'ngx-bootstrap';
         MdListModule,
         MdInputModule,
         MdDialogModule,
+        MdDatepickerModule,
+        MdNativeDateModule,
         MaterialModule,
         TypeaheadModule.forRoot(),
         PopoverModule.forRoot(),
@@ -50,6 +54,8 @@ import { PaginationModule }        from 'ngx-bootstrap';
         MaterialModule,
         TypeaheadModule,
         PopoverModule,
+        MdDatepickerModule,
+        MdNativeDateModule,
         TabsModule,
         ButtonsModule,
         PaginationModule
