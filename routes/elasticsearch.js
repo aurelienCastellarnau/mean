@@ -44,16 +44,16 @@ router.get('/:param', function (req, res) {
         index: 'cases',
         scroll: '1m',
         body: {
-            "from": 0,
-            "size": 1000,
-            "query": {
-                "match": {
-                    "_all": param
+             "from": 0,
+             "size": 1000,
+             "query": {
+                "query_string" : {
+                    "query" : param
                 }
             }
         }
     })
-        .then(resp => res.status(200).json(resp),
-        err => console.log(err.message))
+    .then(resp => res.status(200).json(resp),
+    err => console.log(err.message))
 })
 module.exports = router
