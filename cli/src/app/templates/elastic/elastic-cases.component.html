@@ -13,24 +13,24 @@
                 <md-card-header>
                     <md-card-title>
                         <h3 class="md-headline">{{ case.incident_type_description }}</h3>
-                        <legend class="md-subhead">{{ case.compnos }}</legend>
+                        <legend class="md-subhead">Crime code: {{case.Weapon}} main_crimecode: {{ case.weapon }}</legend>
                     </md-card-title>
-                    <md-card-subtitle>{{ case.reportingarea }}</md-card-subtitle>
+                    <md-card-subtitle>Area: {{ case.reportingarea }} Street: {{case.streetname }}</md-card-subtitle>
                 </md-card-header>
                 <md-card-content>
                     Begin : {{ case.fromdate | date:medium}}
                 </md-card-content>
-    <agm-map [latitude]="getX(case.location)" [longitude]="getY(case.location)">
-            <agm-marker [latitude]="getX(case.location)" [longitude]="getY(case.location)"></agm-marker>
-    </agm-map>
-                <md-card-actions layout="row" layout-align="end center">
-                    <button md-icon-button (click)="getMap(case.location)">
-                        <md-icon>location_searching</md-icon>
-                    </button>
-                    <button md-icon-button (click)="selectCase(case)">
-                        <md-icon>create</md-icon>
-                    </button>
-                </md-card-actions>
+                    <agm-map [latitude]="getX(case.location)" [longitude]="getY(case.location)">
+                            <agm-marker [latitude]="getX(case.location)" [longitude]="getY(case.location)"></agm-marker>
+                    </agm-map>
+                    <md-card-actions layout="row" layout-align="end center">
+                        <button md-icon-button (click)="getMap(case.location)">
+                            <md-icon>location_searching</md-icon>
+                        </button>
+                        <button md-icon-button (click)="selectCase(case)">
+                            <md-icon>create</md-icon>
+                        </button>
+                    </md-card-actions>
             </md-card>
         </div>
     </div>

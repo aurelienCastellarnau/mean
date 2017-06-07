@@ -5,35 +5,23 @@
         </div>
     </div>
     <agm-map [latitude]="lat" [longitude]="lng">
-            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
     </agm-map>
-<!--         <div class="row">
-        <button type="button"
-                class="btn btn-info"
-                (click)="getCasesElastic()">
-                Elastic GET /cases
-        </button>
-        </div> -->
-        <div class="row">
-            <div class="col-sm-6" *ngFor="let case of cases | paginate: { itemsPerPage: 8, currentPage: p, totalItems: total }" routerLink="/cases/{{ case._id }}" style="margin-bottom: 10px">
-                <md-card class="example-card">
-                    <md-card-header>
-                        <md-card-title>{{ case.incident_type_description }} {{ case.compnos }}</md-card-title>
-                        <md-card-subtitle>{{ case.reportingarea }}</md-card-subtitle>
-                    </md-card-header>
-                    <md-card-content>
-                        coord.: {{ case.location }}
-                        Begin : {{ case.fromdate | date:medium}}
-                    </md-card-content>
-                </md-card>
-            </div>
-<!--             <div class="col-md-6">
-                <case-edit [model]="selectedCase"
-                           [properties]="properties">
-                </case-edit>
-            </div> -->
-            </div>
-            <div class="row">
-            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    <div class="row">
+        <div class="col-sm-6" *ngFor="let case of cases | paginate: { itemsPerPage: 8, currentPage: p, totalItems: total }" routerLink="/cases/{{ case._id }}"
+            style="margin-bottom: 10px">
+            <md-card class="example-card">
+                <md-card-header>
+                    <md-card-title>{{ case.incident_type_description }} {{ case.compnos }}</md-card-title>
+                    <md-card-subtitle>{{ case.reportingarea }}</md-card-subtitle>
+                </md-card-header>
+                <md-card-content>
+                    coord.: {{ case.location }} Begin : {{ case.fromdate | date:medium}}
+                </md-card-content>
+            </md-card>
         </div>
+    </div>
+    <div class="row">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
 </div>
