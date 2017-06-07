@@ -16,7 +16,7 @@ import { Location }               from '@angular/common';
 export class CaseRegisterComponent implements OnInit {
     public model =             new Case()
     public properties:         any
-    public selectedProperties: String
+    public selectedProperties: string[]
     public title =             "Register a new case: "
 
     constructor(
@@ -43,13 +43,9 @@ export class CaseRegisterComponent implements OnInit {
 
     selectProperties(p: any, event) {
         event.preventDefault()
-        let properties: String
-        console.log(p)
-        p.forEach(element => {
-            console.log(element)
-            properties.concat(element, ", ")            
-        });
-        this.selectedProperties = properties.slice(0, properties.length - 2)
+        this.selectedProperties = []
+        p.sort((a, b) => (a > b) ? 1 : -1)
+        p.forEach(element => this.selectedProperties.push(element));
     }
 
    prevent(event) {

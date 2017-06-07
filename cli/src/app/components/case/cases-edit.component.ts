@@ -50,6 +50,8 @@ export class EditCaseComponent implements OnInit {
 
     selectProperties(p: string[], event) {
         event.preventDefault()
+        this.selectedProperties = []
+        p.sort((a, b) => (a > b) ? 1 : -1)
         p.forEach((prop, index, array) => this.selectedProperties.push(prop))
     }
 
