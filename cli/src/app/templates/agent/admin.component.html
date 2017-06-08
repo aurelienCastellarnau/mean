@@ -19,7 +19,6 @@
                     AgentCode: {{ agent.agentcode }}
                   </md-card-content>
                   <md-card-content>
-                    <button class="btn btn-info" routerLink="/agents/{{ agent._id }}">voir</button>
                     <button type='button' class="btn btn-danger" (click)="delete(agent._id)" >Supprimer</button>
                     <button type='button' class="btn btn-success" (click)="accept(agent._id)" >Accepter</button>
                   </md-card-content>
@@ -41,7 +40,6 @@
                     <md-card-content>
                     <button type='button' class="btn btn-danger" (click)="delete(agent._id)" >Supprimer</button>
                     <button type='button' class="btn btn-warning" routerLink="/agents/{{ agent._id }}/edit" >Edit</button>
-                    <button class="btn btn-info" routerLink="/agents/{{ agent._id }}">voir</button>
                   </md-card-content>
                 </md-card>
             </div>

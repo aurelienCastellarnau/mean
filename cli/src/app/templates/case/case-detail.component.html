@@ -1,6 +1,7 @@
 <div *ngIf='case'>
   <legend>case {{ case._id }}:</legend>
     <accordion>
+    <div class="row">
     <div class="col-sm-6">
     <accordion-group #group>
     <div accordion-heading>
@@ -35,6 +36,9 @@
             <span name="shift" type="text">{{case.shift}}</span><br/>
         </accordion-group>
     </div>
+    </div>
+
+    <div class="row">
     <div class="col-sm-6">
         <accordion-group #group>
             <div accordion-heading>
@@ -76,6 +80,7 @@
             <label for="day_weak">day_weak:</label>
             <span  name="day_weak" type="text">{{case.day_weak}}</span><br/>
         </accordion-group>
+    </div>
     </div>
     </accordion>
 </div>
