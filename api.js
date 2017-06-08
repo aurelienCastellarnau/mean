@@ -15,7 +15,6 @@ app.set('superSecret', conf.secret);
 mongoose.Promise = require('bluebird');
 mongoose.connect(conf.dsn);
 const db = mongoose.connection;
-console.log('coco')
 db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', function () {
     console.log('connection succeeded');
@@ -39,7 +38,7 @@ db.once('open', function () {
             ESindex.init();
         }
     });
-    
+
     app.get('/*', (req, res) => {
         res.sendFile(path.join(conf.clipath, 'index.html'));
     });

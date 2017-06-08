@@ -32,8 +32,7 @@ export class LoginComponent implements OnInit {
         this.loading = true;
         this.authentificationService
             .login(this.model.agentcode, this.model.password)
-            .subscribe(function(data) {
-                console.log(data)
+            .subscribe( data => {
                 that.router.navigate([this.returnUrl])
             },
             error => {

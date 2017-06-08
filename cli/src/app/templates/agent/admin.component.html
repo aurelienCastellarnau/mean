@@ -9,7 +9,7 @@
   <tabset #staticTabs>
     <tab heading="Waiting agents">
             <div class="row">
-            <div class="col-sm-3 col-md-offset-1" *ngFor="let agent of agents | status:waiting" style="margin-bottom: 10px">
+            <div class="col-sm-3" *ngFor="let agent of agents | status:waiting" style="margin-bottom: 10px">
                 <md-card class="example-card">
                 <md-card-header>
                     <md-card-title> <h5>{{ agent.firstname }} {{ agent.lastname }}</h5></md-card-title>
@@ -19,7 +19,6 @@
                     AgentCode: {{ agent.agentcode }}
                   </md-card-content>
                   <md-card-content>
-                    <button class="btn btn-info" routerLink="/agents/{{ agent._id }}">voir</button>
                     <button type='button' class="btn btn-danger" (click)="delete(agent._id)" >Supprimer</button>
                     <button type='button' class="btn btn-success" (click)="accept(agent._id)" >Accepter</button>
                   </md-card-content>
@@ -29,7 +28,7 @@
     </tab>
     <tab heading="Active agents">
     <div class="row">
-            <div class="col-sm-3 col-md-offset-1" *ngFor="let agent of agents | status:active" style="margin-bottom: 10px">
+            <div class="col-sm-3" *ngFor="let agent of agents | status:active" style="margin-bottom: 10px">
                 <md-card class="example-card">
                 <md-card-header>
                     <md-card-title><h5>{{ agent.firstname }} {{ agent.lastname }}</h5></md-card-title>
@@ -40,7 +39,7 @@
                   </md-card-content>
                     <md-card-content>
                     <button type='button' class="btn btn-danger" (click)="delete(agent._id)" >Supprimer</button>
-                    <button class="btn btn-info" routerLink="/agents/{{ agent._id }}">voir</button>
+                    <button type='button' class="btn btn-warning" routerLink="/agents/{{ agent._id }}/edit" >Edit</button>
                   </md-card-content>
                 </md-card>
             </div>

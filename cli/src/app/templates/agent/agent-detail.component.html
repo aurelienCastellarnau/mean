@@ -1,6 +1,18 @@
-<div *ngIf='agent'>
-        <button routerLink="/agents/{{ agent._id }}/edit">EDIT</button><br/>
-        <span>{{ agent._id }}</span><br/>
-        <span>{{ agent.firstname }} {{agent.lastname}}</span><br/>
-        <span>{{ agent.role }}</span>
+<div class="row">
+    <div class="col-sm-4 col-md-offset-3" style="margin-top:20px">
+        <div *ngIf='agent'>
+            <md-card>
+                <md-card-header>
+                    <md-card-title><h5>{{ agent.firstname }} {{ agent.lastname }}</h5></md-card-title>
+                    <md-card-subtitle>{{ agent.role }}</md-card-subtitle>
+                  </md-card-header>
+                  <md-card-content>
+                    AgentCode: {{ agent.agentcode }}
+                  </md-card-content>
+                    <md-card-content>
+                    <button type='button' class="btn-sm btn-info" routerLink="/agents/{{ agent._id }}/edit" ><i class="glyphicon glyphicon-wrench"></i></button>
+                  </md-card-content>
+                  </md-card>
+        </div>
+    </div>
 </div>

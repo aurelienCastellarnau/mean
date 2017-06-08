@@ -65,7 +65,7 @@ const routes: Routes = [
   {
     path: 'agents/:param',
     component: AgentDetailComponent,
-    canActivate: [AuthGuard, RoleGuard]
+    canActivate: [AuthGuard]
   },
    {
     path: 'agents/:param/edit',

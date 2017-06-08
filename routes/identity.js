@@ -24,6 +24,10 @@ router.post("/", function(req, res) {
         if (!agent) {
             res.status(401).json({ success: false, message: 'Authentication failed. Agent not found.' });
         } else if (agent) {
+            if (agent.status != 'active') {
+                res.status(401).json({ success:false, message: 'you need to be accepted'});
+                return;
+            }
             // check if password matches
             if (agent.password != req.body.password) {
                 res.status(401).json({ success: false, message: 'Authentication failed. Wrong password.' });
