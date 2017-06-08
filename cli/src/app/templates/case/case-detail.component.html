@@ -1,43 +1,81 @@
 <div *ngIf='case'>
-  <legend>case {{ case._id }}:</legend> <button routerLink="/cases/{{ case._id }}/edit">EDIT</button>
+  <legend>case {{ case._id }}:</legend>
+    <accordion>
+    <div class="col-sm-6">
+    <accordion-group #group>
+    <div accordion-heading>
+      Main codes of the case
+      <i class="pull-right float-xs-right glyphicon"
+         [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
+    </div>
     <label for="compnos">compnos:</label>
     <span name="compnos" type="Number">{{ case.compnos }}</span><br/>
     <label for="naturecode">naturecode:</label>
     <span  name="naturecode" type="text">{{ case.naturecode }}</span><br/>
-    <label for="incident_type_description">incident_type_description:</label>
-    <span  name="incident_type_description" type="text">{{ case.incident_type_description }}</span><br/>
     <label for="main_crimecode">main_crimecode:</label>
     <span  name="main_crimecode" type="text">{{ case.main_crimecode }}</span><br/>
-    <label for="reptdistrict">reptdistrict:</label>
-    <span  name="reptdistrict" type="text">{{ case.reptdistrict }}</span><br/>
-    <label for="reportingarea">reportingarea:</label>
-    <span  name="reportingarea" type="number">{{ case.reportingarea }}</span><br/>
-    <label for="fromdate">fromdate:</label>
-    <span  name="fromdate" type="text">{{ case.fromdate }}</span><br/>
-    <label for="weapontype">weapontype:</label>
-    <span  name="weapontype" type="text">{{case.weapontype}}</span><br/>
-    <label for="shooting">shooting:</label>
-    <span  name="shooting" type="text">{{case.shooting}}</span><br/>
-    <label for="domestic">domestic:</label>
-    <span  name="domestic" type="text">{{case.domestic}}</span><br/>
-    <label for="shift">shift:</label>
-    <span name="shift" type="text">{{case.shift}}</span><br/>
-    <label for="year">year:</label>
-    <span name="year" type="number">{{case.year}}</span><br/>
-    <label for="month">month:</label>
-    <span name="month" type="number">{{case.month}}</span><br/>
-    <label for="day_weak">day_weak:</label>
-    <span  name="day_weak" type="text">{{case.day_weak}}</span><br/>
-    <label for="ucrpart">ucrpart:</label>
-    <span name="ucrpart" type="text">{{case.ucrpart}}</span><br/>
-    <label for="x">x:</label>
-    <span  type="number">{{case.x}}</span><br/>
-    <label for="y">y:</label>
-    <span  type="number">{{case.y}}</span><br/>
-    <label for="streetname">streetname:</label>
-    <span  name="streetname" type="text">{{case.streetname}}</span><br/>
-    <label for="xstreetname">xstreetname:</label>
-    <span  name="xstreetname" type="text">{{case.xstreetname}}</span><br/>
-    <label for="location">location:</label>
-    <span  name="location" type="text">{{case.location}}</span><br/>
+    </accordion-group>
+    </div>
+    <div class="col-sm-6">
+        <accordion-group #group>
+            <div accordion-heading>
+                Type of the case
+                    <i class="pull-right float-xs-right glyphicon"
+                        [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
+            </div>
+            <label for="incident_type_description">incident_type_description:</label>
+            <span  name="incident_type_description" type="text">{{ case.incident_type_description }}</span><br/>
+            <label for="weapontype">weapontype:</label>
+            <span  name="weapontype" type="text">{{case.weapontype}}</span><br/>
+            <label for="shooting">shooting:</label>
+            <span  name="shooting" type="text">{{case.shooting}}</span><br/>
+            <label for="domestic">domestic:</label>
+            <span  name="domestic" type="text">{{case.domestic}}</span><br/>
+            <label for="shift">shift:</label>
+            <span name="shift" type="text">{{case.shift}}</span><br/>
+        </accordion-group>
+    </div>
+    <div class="col-sm-6">
+        <accordion-group #group>
+            <div accordion-heading>
+                Location
+                    <i class="pull-right float-xs-right glyphicon"
+                        [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
+            </div>
+            <label for="reptdistrict">reptdistrict:</label>
+            <span  name="reptdistrict" type="text">{{ case.reptdistrict }}</span><br/>
+            <label for="x">x:</label>
+            <span  type="number">{{case.x}}</span><br/>
+            <label for="y">y:</label>
+            <span  type="number">{{case.y}}</span><br/>
+            <label for="streetname">streetname:</label>
+            <span  name="streetname" type="text">{{case.streetname}}</span><br/>
+            <label for="xstreetname">xstreetname:</label>
+            <span  name="xstreetname" type="text">{{case.xstreetname}}</span><br/>
+            <label for="location">location:</label>
+            <span  name="location" type="text">{{case.location}}</span><br/>
+            <label for="reportingarea">reportingarea:</label>
+            <span  name="reportingarea" type="number">{{ case.reportingarea }}</span><br/>
+            <label for="ucrpart">ucrpart:</label>
+            <span name="ucrpart" type="text">{{case.ucrpart}}</span><br/>
+        </accordion-group>
+    </div>
+    <div class="col-sm-6">
+        <accordion-group #group>
+            <div accordion-heading>
+                date
+                    <i class="pull-right float-xs-right glyphicon"
+                        [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
+            </div>
+            <label for="fromdate">fromdate:</label>
+            <span  name="fromdate" type="text">{{ case.fromdate }}</span><br/>
+            <label for="year">year:</label>
+            <span name="year" type="number">{{case.year}}</span><br/>
+            <label for="month">month:</label>
+            <span name="month" type="number">{{case.month}}</span><br/>
+            <label for="day_weak">day_weak:</label>
+            <span  name="day_weak" type="text">{{case.day_weak}}</span><br/>
+        </accordion-group>
+    </div>
+    </accordion>
 </div>

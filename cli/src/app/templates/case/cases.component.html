@@ -7,6 +7,12 @@
     <agm-map [latitude]="lat" [longitude]="lng">
         <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
     </agm-map>
+    <br/>
+    <div class="row">
+        <div class="col-sm-6">
+        <h1>All Cases</h1>
+        </div>
+        </div>
     <div class="row">
         <div class="col-sm-6" *ngFor="let case of cases | paginate: { itemsPerPage: 8, currentPage: p, totalItems: total }" routerLink="/cases/{{ case._id }}"
             style="margin-bottom: 10px">

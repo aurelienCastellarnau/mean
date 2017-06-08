@@ -9,7 +9,7 @@ import { MdButtonModule }          from '@angular/material';
 import { MdIconModule }            from '@angular/material';
 import { MdToolbarModule }         from '@angular/material';
 import { MaterialModule }          from '@angular/material';
-import { MdDialogModule, 
+import { MdDialogModule,
          MdDialogRef}              from '@angular/material';
 import { MdDatepickerModule,
          MdNativeDateModule }      from '@angular/material';
@@ -18,6 +18,7 @@ import { PopoverModule }           from 'ngx-bootstrap';
 import { TabsModule }              from 'ngx-bootstrap';
 import { ButtonsModule }           from 'ngx-bootstrap';
 import { PaginationModule }        from 'ngx-bootstrap';
+import { AccordionModule }         from 'ngx-bootstrap';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { PaginationModule }        from 'ngx-bootstrap';
         PopoverModule.forRoot(),
         TabsModule.forRoot(),
         ButtonsModule.forRoot(),
-        PaginationModule.forRoot()
+        PaginationModule.forRoot(),
+        AccordionModule.forRoot()
     ],
     exports: [
         MdCardModule,
@@ -58,7 +60,8 @@ import { PaginationModule }        from 'ngx-bootstrap';
         MdNativeDateModule,
         TabsModule,
         ButtonsModule,
-        PaginationModule
+        PaginationModule,
+        AccordionModule
     ]
 })
 export class MeanMaterialModule {}

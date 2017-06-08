@@ -5,8 +5,9 @@
         </div>
     </div>
     <div class="row">
-            <div class="col-sm-3 col-md-offset-1" *ngFor="let agent of agents" routerLink="/agents/{{ agent._id }}" style="margin-bottom: 10px">
-                <md-card class="example-card">
+            <div class="col-sm-3" *ngFor="let agent of agents" style="margin-bottom: 10px">
+                <md-card class="example-card" style="padding-top:0px; padding-right:0px">
+                <button type='button' class="btn-sm btn-info pull-right" routerLink="/agents/{{ agent._id }}/edit" ><i class="glyphicon glyphicon-wrench"></i></button>
                 <md-card-header>
                     <md-card-title>{{ agent.firstname }} {{ agent.lastname }}</md-card-title>
                     <md-card-subtitle>{{ agent.role }}</md-card-subtitle>

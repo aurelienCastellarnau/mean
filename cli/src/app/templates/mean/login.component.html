@@ -1,21 +1,23 @@
 <div class="mean-content">
-    <h2>Login</h2>
-    <form name="loginForm" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !agentcode.valid}">
-            <md-input-container>
-                <input mdInput placeholder="Agent Code" name="agentcode" [(ngModel)]="model.agentcode" #agentcode="ngModel" required>
-            </md-input-container>
-            <div *ngIf="f.submitted && !agentcode.valid">Password required</div>
-        </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid}">
-            <md-input-container>
-                <input mdInput placeholder="password" name="password" [(ngModel)]="model.password" #password="ngModel" required>
-            </md-input-container>
-            <div *ngIf="f.submitted && !password.valid">Password required</div>
-        </div>
-        <div class="form-group">
-            <button md-raised-button [disabled]="loading">Login</button>
-            <a class="btn btn-success" routerLink="/register">Register</a>
-        </div>
-    </form>
+    <div class="col-sm-6 col-md-offset-4" style="margin-top:40px;">
+        <h2>Login</h2>
+        <form name="loginForm" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !agentcode.valid}">
+                <md-input-container>
+                    <input mdInput placeholder="Agent Code" name="agentcode" [(ngModel)]="model.agentcode" #agentcode="ngModel" required>
+                </md-input-container>
+                <div *ngIf="f.submitted && !agentcode.valid">Password required</div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid}">
+                <md-input-container>
+                    <input mdInput type=password placeholder="password" name="password" [(ngModel)]="model.password" #password="ngModel" required>
+                </md-input-container>
+                <div *ngIf="f.submitted && !password.valid">Password required</div>
+            </div>
+            <div class="form-group">
+                <button md-raised-button [disabled]="loading">Login</button>
+                <a class="btn btn-success" routerLink="/register">Register</a>
+            </div>
+        </form>
+    </div>
 </div>
